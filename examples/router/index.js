@@ -1,15 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import components from './components'
+import home from '@/views/index'
+import icon from '@/views/icon'
 
 Vue.use(Router)
 
+const componentsRoutes = components.map(item => ({
+    name: item.name,
+    path: `/components/${item.name}`,
+    component: require(`@/views/${item.name}/index`).default
+}))
+
 export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'Hello',
-            component: HelloWorld
-        }
-    ]
+    routes: [{
+        path: '/',
+        name: 'home',
+        component: home
+    }, {
+        path: '/icon',
+        name: 'icon',
+        component: icon
+    }].concat(componentsRoutes)
 })
