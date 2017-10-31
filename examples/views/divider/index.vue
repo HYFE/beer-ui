@@ -1,15 +1,17 @@
 <template>
-    <div>
-        <h2>Divider 分割线</h2>
-        <p>用于内容分隔，列表分隔等。</p>
-        <h3>示例</h3>
-        <code-block title="简单使用" :code="simpleCode">
-            <simpleDemo></simpleDemo>
-        </code-block>
-        <code-block title="显示标题" :code="labelCode">
-            <labelDemo></labelDemo>
-        </code-block>
-    </div>
+    <docs-page title="Divider 分割线"
+               desc="用于内容分隔，列表分隔等。默认带上下边距。">
+        <template slot="code">
+            <code-block title="简单使用"
+                        :code="simpleCode">
+                <simpleDemo></simpleDemo>
+            </code-block>
+            <code-block title="带标题的分割线"
+                        :code="labelCode">
+                <labelDemo></labelDemo>
+            </code-block>
+        </template>
+    </docs-page>
 </template>
 <script>
 import simpleDemo from './simple'
@@ -22,7 +24,7 @@ export default {
         simpleDemo,
         labelDemo
     },
-    data() {
+    data () {
         return {
             simpleCode,
             labelCode
@@ -31,4 +33,5 @@ export default {
 }
 </script>
 <style lang="less">
+
 </style>

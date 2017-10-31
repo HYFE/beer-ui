@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <h2>图标</h2>
-        <ul class="list">
+    <docs-page title="Icon 图标"
+               desc="集成了 158 枚通用图标。">
+        <ul class="icon-list">
             <li v-for="icon in config.glyphs"
                 class="item">
                 <i :class="config.css_prefix_text + icon.css"></i>
                 {{config.css_prefix_text + icon.css}}
             </li>
         </ul>
-    </div>
+    </docs-page>
 </template>
 <script>
 import config from './config'
 
 export default {
-    data() {
+    data () {
         return {
             config
         }
@@ -22,12 +22,14 @@ export default {
 }
 </script>
 <style lang="less" scope>
-.list {
+.icon-list {
     display: flex;
     flex-wrap: wrap;
-}
-.item {
-    width: 25%;
-    padding: 10px 0;
+    margin-top: 15px;
+    font-size: 16px;
+    li {
+        width: 25%;
+        padding: 10px 0;
+    }
 }
 </style>

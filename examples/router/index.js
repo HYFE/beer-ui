@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import components from './components'
 import home from '@/views/index'
 import icon from '@/views/icon'
+import transition from '@/views/transition'
 
 Vue.use(Router)
 
@@ -21,5 +22,9 @@ export default new Router({
         path: '/icon',
         name: 'icon',
         component: icon
+    }, {
+        path: '/transition',
+        name: 'transition',
+        component: transition
     }].concat(componentsRoutes)
 })

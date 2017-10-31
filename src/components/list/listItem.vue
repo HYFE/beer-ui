@@ -6,7 +6,13 @@
              :style="itemStyle"
              :class="itemClass"
              @click="onClick">
-            <slot :to="to"></slot>
+            <div class="ui-item-content">
+                <slot :to="to"></slot>
+            </div>
+            <div class="ui-item-right"
+                 v-if="children">
+                <i class="icon-angle-up ui-item-arrow"></i>
+            </div>
         </div>
         <router-link v-if="!!to"
                      class="ui-item-inner"
@@ -15,19 +21,28 @@
                      :style="itemStyle"
                      :to="to"
                      @click="onClick">
-            <slot :to="to"></slot>
+            <div class="ui-item-content">
+                <slot :to="to"></slot>
+            </div>
+            <div class="ui-item-right"
+                 v-if="children">
+                <i class="icon-angle-up ui-item-arrow"></i>
+            </div>
         </router-link>
-        <div v-if="children"
-             class="ui-item-children"
-             v-show="expanded">
-            <ui-list-item v-for="item in children"
-                          :key="item[nodeKey]"
-                          :to="item.to"
-                          :children="item.children"
-                          :depth="depth + 1">
-                <slot :to="item.to" :value="item"></slot>
-            </ui-list-item>
-        </div>
+        <expand-transition>
+            <div v-if="children"
+                class="ui-item-children"
+                v-show="expanded">
+                <ui-list-item v-for="item in children"
+                            :key="item[nodeKey]"
+                            :to="item.to"
+                            :children="item.children"
+                            :depth="depth + 1">
+                    <slot :to="item.to"
+                        :value="item"></slot>
+                </ui-list-item>
+            </div>
+        </expand-transition>
     </div>
 </template>
 <script>
@@ -61,13 +76,17 @@ export default {
         nodeKey () {
             return this.$parent.nodeKey
         },
+        arrowPlacement () {
+            return this.$parent.arrowPlacement
+        },
         itemStyle () {
             return this.depth > 0 ? { paddingLeft: `${15 * this.depth + 20}px` } : null
         },
         itemClass () {
             return {
-                'non-action': !this.isAction,
-                disabled: this.disabled
+                'non-action': !this.isAction && !this.children,
+                disabled: this.disabled,
+                expanded: this.children && this.expanded
             }
         }
     },
@@ -82,7 +101,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/variables';
+@import '~_/styles/import';
 
 .ui-item {
     &.bordered {
@@ -92,8 +111,10 @@ export default {
         }
     }
     &-inner {
+        position: relative;
         padding: @list-item-padding;
         display: flex;
+        align-items: center;
         cursor: pointer;
         color: @text-base-color;
         text-decoration: none;
@@ -105,10 +126,33 @@ export default {
         }
         &:not(.non-action):hover {
             background: @lighter-color;
+            .ui-item-arrow {
+                opacity: 1;
+            }
         }
         &.non-action {
             cursor: default;
         }
+        &.expanded {
+            .ui-item-arrow {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &-content {
+        flex: 1;
+    }
+    &-right {
+        display: flex;
+        align-items: center;
+        align-self: flex-end;
+    }
+    &-arrow {
+        margin-right: -15px;
+        font-size: 18px;
+        font-weight: 600;
+        opacity: 0.7;
+        transition: transform 0.3s ease-in-out;
     }
 }
 </style>

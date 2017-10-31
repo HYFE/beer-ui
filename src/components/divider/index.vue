@@ -2,19 +2,24 @@
     <div class="ui-divider"
          :class="{ isLabel: label }">
         <label v-if="label"
-               class="ui-divider-label">{{label}}</label>
+               class="ui-divider-label"
+               :class="align">{{label}}</label>
     </div>
 </template>
 <script>
 export default {
     name: 'uiDivider',
     props: {
-        label: String
+        label: String,
+        align: {
+            type: String,
+            default: 'center'
+        }
     },
 }
 </script>
 <style lang="less">
-@import '~_/styles/variables';
+@import '~_/styles/import';
 
 .ui-divider {
     position: relative;
@@ -27,13 +32,23 @@ export default {
     }
     &-label {
         position: absolute;
-        top: 0;
-        left: 50%;
+        top: -12px;
         padding: 0 10px;
+        line-height: 24px;
         color: @text-light-color;
         font-size: 14px;
         background: #fff;
-        transform: translate(-50%, -50%);
+
+        &.center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &.left {
+            left: 5%;
+        }
+        &.right {
+            right: 5%;
+        }
     }
 }
 </style>

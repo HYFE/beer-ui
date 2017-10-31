@@ -1,21 +1,27 @@
 <template>
     <div class="code-block">
-        <h4>{{title}}</h4>
-        <div class="code-content"
-             v-show="visible">
-            <pre><code ref="code" class="lang-html">{{code}}</code></pre>
-        </div>
-        <div class="code-show">
+        <header class="code-header"
+                @click="visible = !visible">
+            <h4>{{title}}</h4>
             <a class="code-toggle"
-               @click="visible = !visible">
-                <i class="icon-code"></i> 展开代码</a>
+               title="code">
+                <i class="icon-code"></i>
+            </a>
+        </header>
+        <expand-transition>
+            <div class="code-content"
+                 v-show="visible">
+                <pre><code ref="code" class="lang-html">{{code}}</code></pre>
+            </div>
+        </expand-transition>
+        <div class="code-show">
             <slot></slot>
         </div>
     </div>
 </template>
 <script>
 import hljs from 'highlight.js'
-import 'highlight.js/styles/github.css'
+import 'highlight.js/styles/github-gist.css'
 
 export default {
     name: 'codeBlock',
@@ -41,8 +47,17 @@ export default {
     h4 {
         font-size: 14px;
         margin: 0;
-        padding: 12px 20px;
-        border-bottom: 1px solid #e8e8e8;
+    }
+}
+.code-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fafafa;
+    cursor: pointer;
+    &:hover {
+        background: #f0f0f0;
     }
 }
 .code-show {
@@ -52,24 +67,22 @@ export default {
 .code-content {
     border-bottom: 1px solid #e8e8e8;
     .hljs {
-        padding: 20px;
-        font-family: "Source Code Pro",Consolas,Menlo,Monaco,"Courier New",monospace
+        margin: 0;
+        padding: 15px 20px;
+        line-height: 1.8;
+        color: #484848;
+        background: #f8f8f8;
+        border: none
     }
 }
 .code-toggle {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    background: #fff;
     cursor: pointer;
-    padding: 2px 10px;
+    padding: 4px 8px;
+    line-height: 1;
     font-size: 16px;
-    // border: 1px solid #e8e8e8;
-    border-radius: 2px;
-    transform: translateX(-50%);
-    box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+    color: #7d7d7d;
     &:hover {
-        color: #000;
+        color: #444;
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p>111111</p>
+        <p>我是前面的内容。</p>
         <ui-divider></ui-divider>
-        <p>222222</p>
+        <p>我是后面的内容。</p>
     </div>
 </template>
