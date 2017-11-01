@@ -1,16 +1,22 @@
 <template>
     <div id="app">
+        <a href="https://github.com/HYFE/vue-components">
+            <img style="position: absolute; top: 0; right: 0; border: 0;width:auto"
+                 src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+                 alt="Fork me on GitHub"
+                 data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+        </a>
         <v-header title="Vue components"></v-header>
         <main class="docs-container docs-main">
             <aside class="docs-aside">
                 <ui-list exact>
-                    <ui-list-item :to="{ name: 'home' }">开始</ui-list-item>
-                    <ui-list-item :to="{ name: 'icon' }">图标</ui-list-item>
-                    <ui-list-item :to="{ name: 'transition' }">过渡</ui-list-item>
-                    <ui-list-item :isAction="false"
-                                  :children="routes">
+                    <ui-listitem :to="{ name: 'home' }">开始</ui-listitem>
+                    <ui-listitem :to="{ name: 'icon' }">图标</ui-listitem>
+                    <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
+                    <ui-listitem :isAction="false"
+                                 :children="routes">
                         <template slot-scope="{ value }">{{ value ? value.text : '组件'}}</template>
-                    </ui-list-item>
+                    </ui-listitem>
                 </ui-list>
             </aside>
             <router-view class="docs-body" />

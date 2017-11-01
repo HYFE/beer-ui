@@ -33,21 +33,21 @@
             <div v-if="children"
                 class="ui-item-children"
                 v-show="expanded">
-                <ui-list-item v-for="item in children"
+                <ui-listitem v-for="item in children"
                             :key="item[nodeKey]"
                             :to="item.to"
                             :children="item.children"
                             :depth="depth + 1">
                     <slot :to="item.to"
                         :value="item"></slot>
-                </ui-list-item>
+                </ui-listitem>
             </div>
         </expand-transition>
     </div>
 </template>
 <script>
 export default {
-    name: 'uiListItem',
+    name: 'uiListitem',
     props: {
         to: [Object, String],
         children: Array,

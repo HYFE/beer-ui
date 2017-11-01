@@ -8,7 +8,7 @@
         </header>
         <slot></slot>
         <template v-if="!$slots.default">
-            <h3>示例</h3>
+            <h3>用例</h3>
             <slot name="code"></slot>
             <h3>API</h3>
             <slot name="api"></slot>
@@ -34,6 +34,9 @@ export default {
         a {
             color: #2fb791;
             text-decoration: none;
+        }
+        &:last-child {
+            margin-bottom: 0
         }
     }
     h2,

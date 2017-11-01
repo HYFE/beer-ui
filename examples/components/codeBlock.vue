@@ -65,7 +65,7 @@ export default {
     padding: 15px 20px;
 }
 .code-content {
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 2px dotted #ddd;
     .hljs {
         margin: 0;
         padding: 15px 20px;

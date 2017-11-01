@@ -40,6 +40,8 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
+/* Regex \/\*[ ][^a-z]+[ ]*\/ */
+
 .icon-search:before { content: '\e800'; }
 .icon-heart:before { content: '\e801'; }
 .icon-heart-empty:before { content: '\e802'; }
@@ -51,7 +53,6 @@
 .icon-plus:before { content: '\e808'; }
 .icon-minus:before { content: '\e809'; }
 .icon-cancel:before { content: '\e80a'; }
-.icon-ok:before { content: '\e80b'; }
 .icon-th-large:before { content: '\e80c'; }
 .icon-eye:before { content: '\e80d'; }
 .icon-eye-off:before { content: '\e80e'; }
@@ -120,11 +121,35 @@
 .icon-chart-bar:before { content: '\e84d'; }
 .icon-floppy:before { content: '\e84e'; }
 .icon-check:before { content: '\e84f'; }
+.icon-ok-circled:before { content: '\e850'; }
+.icon-ok-circled2:before { content: '\e851'; }
+.icon-mail:before { content: '\e852'; }
+.icon-th:before { content: '\e853'; }
+.icon-th-list:before { content: '\e854'; }
+.icon-minus-circled:before { content: '\e855'; }
+.icon-plus-circled:before { content: '\e856'; }
+.icon-cancel-circled:before { content: '\e857'; }
+.icon-cancel-circled2:before { content: '\e858'; }
+.icon-forward:before { content: '\e859'; }
+.icon-thumbs-up:before { content: '\e85a'; }
+.icon-thumbs-down:before { content: '\e85b'; }
+.icon-phone:before { content: '\e85c'; }
+.icon-list:before { content: '\e85d'; }
+.icon-align-justify:before { content: '\e85e'; }
+.icon-scissors:before { content: '\e85f'; }
+.icon-qrcode:before { content: '\e860'; }
+.icon-ok:before { content: '\e861'; }
+.icon-move:before { content: '\f047'; }
 .icon-link-ext:before { content: '\f08e'; }
 .icon-check-empty:before { content: '\f096'; }
 .icon-rss:before { content: '\f09e'; }
+.icon-left-circled:before { content: '\f0a8'; }
+.icon-right-circled:before { content: '\f0a9'; }
+.icon-up-circled:before { content: '\f0aa'; }
+.icon-down-circled:before { content: '\f0ab'; }
 .icon-tasks:before { content: '\f0ae'; }
 .icon-filter:before { content: '\f0b0'; }
+.icon-resize-full-alt:before { content: '\f0b2'; }
 .icon-docs:before { content: '\f0c5'; }
 .icon-menu:before { content: '\f0c9'; }
 .icon-list-bullet:before { content: '\f0ca'; }
@@ -134,6 +159,7 @@
 .icon-sort:before { content: '\f0dc'; }
 .icon-sort-down:before { content: '\f0dd'; }
 .icon-sort-up:before { content: '\f0de'; }
+.icon-mail-alt:before { content: '\f0e0'; }
 .icon-gauge:before { content: '\f0e4'; }
 .icon-sitemap:before { content: '\f0e8'; }
 .icon-download-cloud:before { content: '\f0ed'; }
@@ -149,6 +175,7 @@
 .icon-angle-right:before { content: '\f105'; }
 .icon-angle-up:before { content: '\f106'; }
 .icon-angle-down:before { content: '\f107'; }
+.icon-reply:before { content: '\f112'; }
 .icon-folder-empty:before { content: '\f114'; }
 .icon-folder-open-empty:before { content: '\f115'; }
 .icon-smile:before { content: '\f118'; }
@@ -156,20 +183,32 @@
 .icon-meh:before { content: '\f11a'; }
 .icon-code:before { content: '\f121'; }
 .icon-star-half-alt:before { content: '\f123'; }
+.icon-crop:before { content: '\f125'; }
 .icon-fork:before { content: '\f126'; }
 .icon-unlink:before { content: '\f127'; }
+.icon-help:before { content: '\f128'; }
 .icon-calendar-empty:before { content: '\f133'; }
+.icon-angle-circled-left:before { content: '\f137'; }
+.icon-angle-circled-right:before { content: '\f138'; }
+.icon-angle-circled-up:before { content: '\f139'; }
+.icon-angle-circled-down:before { content: '\f13a'; }
 .icon-ellipsis:before { content: '\f141'; }
 .icon-ellipsis-vert:before { content: '\f142'; }
 .icon-minus-squared:before { content: '\f146'; }
 .icon-minus-squared-alt:before { content: '\f147'; }
+.icon-ok-squared:before { content: '\f14a'; }
+.icon-expand:before { content: '\f150'; }
+.icon-collapse:before { content: '\f151'; }
+.icon-expand-right:before { content: '\f152'; }
 .icon-doc-inv:before { content: '\f15b'; }
 .icon-doc-text-inv:before { content: '\f15c'; }
 .icon-sort-alt-up:before { content: '\f160'; }
 .icon-sort-alt-down:before { content: '\f161'; }
 .icon-thumbs-up-alt:before { content: '\f164'; }
 .icon-thumbs-down-alt:before { content: '\f165'; }
+.icon-collapse-left:before { content: '\f191'; }
 .icon-plus-squared-alt:before { content: '\f196'; }
+.icon-recycle:before { content: '\f1b8'; }
 .icon-file-pdf:before { content: '\f1c1'; }
 .icon-file-word:before { content: '\f1c2'; }
 .icon-file-excel:before { content: '\f1c3'; }
