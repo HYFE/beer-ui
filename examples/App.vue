@@ -15,7 +15,9 @@
                     <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
                     <ui-listitem :isAction="false"
                                  :children="routes">
-                        <template slot-scope="{ value }">{{ value ? value.text : '组件'}}</template>
+                        组件
+                        <template slot="children"
+                                  slot-scope="{ value }">{{value.text}}</template>
                     </ui-listitem>
                 </ui-list>
             </aside>

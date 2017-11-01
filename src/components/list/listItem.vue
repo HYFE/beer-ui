@@ -17,6 +17,7 @@
         <router-link v-if="!!to"
                      class="ui-item-inner"
                      exact-active-class="active"
+                     :exact="exact"
                      :class="itemClass"
                      :style="itemStyle"
                      :to="to"
@@ -31,15 +32,22 @@
         </router-link>
         <expand-transition>
             <div v-if="children"
-                class="ui-item-children"
-                v-show="expanded">
+                 class="ui-item-children"
+                 v-show="expanded">
                 <ui-listitem v-for="item in children"
-                            :key="item[nodeKey]"
-                            :to="item.to"
-                            :children="item.children"
-                            :depth="depth + 1">
+                             :key="item[nodeKey]"
+                             :to="item.to"
+                             :children="item.children"
+                             :depth="depth + 1">
                     <slot :to="item.to"
-                        :value="item"></slot>
+                          :value="item"
+                          name="children"></slot>
+                    <template slot="children"
+                              slot-scope="{ to, value }">
+                        <slot :to="to"
+                              :value="value"
+                              name="children"></slot>
+                    </template>
                 </ui-listitem>
             </div>
         </expand-transition>
@@ -67,20 +75,26 @@ export default {
         }
     },
     computed: {
+        parent() {
+            return this.$parent.$options.name === 'uiList' ? this.$parent : this.$parent.$parent
+        },
         bordered () {
-            return this.$parent.bordered
+            return this.parent.bordered
         },
         exact () {
-            return this.$parent.exact
+            return this.parent.exact
         },
         nodeKey () {
-            return this.$parent.nodeKey
+            return this.parent.nodeKey
         },
         arrowPlacement () {
-            return this.$parent.arrowPlacement
+            return this.parent.arrowPlacement
+        },
+        alignPadding () {
+            return this.parent.alignPadding
         },
         itemStyle () {
-            return this.depth > 0 ? { paddingLeft: `${15 * this.depth + 20}px` } : null
+            return this.depth > 0 ? { paddingLeft: `${this.alignPadding * this.depth + 20}px` } : null
         },
         itemClass () {
             return {
@@ -97,7 +111,7 @@ export default {
             }
             this.$emit('click', e)
         }
-    }
+    },
 }
 </script>
 <style lang="less">

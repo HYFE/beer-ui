@@ -72,7 +72,6 @@ export default {
         line-height: 1.8;
         color: #484848;
         background: #f8f8f8;
-        border: none
     }
 }
 .code-toggle {

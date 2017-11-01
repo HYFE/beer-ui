@@ -40,3 +40,23 @@ ol.default {
 img {
   width: 100%
 }
+
+.anim-move-right-enter,
+.anim-move-left-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(100%);
+}
+.anim-move-left-enter,
+.anim-move-right-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.anim-move-right-enter-active,
+.anim-move-right-leave-active,
+.anim-move-left-enter-active,
+.anim-move-left-leave-active {
+  transition: opacity .3s, transform .3s;
+  will-change: transform;
+}

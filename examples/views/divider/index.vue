@@ -11,6 +11,20 @@
                 <labelDemo></labelDemo>
             </code-block>
         </template>
+        <ui-tabs slot="api"
+                 v-model="tab">
+            <ui-tabbar slot="tabbar"
+                       v-model="tab"
+                       fill>
+                <ui-tab name="props">Props</ui-tab>
+            </ui-tabbar>
+            <ui-tab-panel name="props">
+                <ol class="default">
+                    <li>label</li>
+                    <li>align</li>
+                </ol>
+            </ui-tab-panel>
+        </ui-tabs>
     </docs-page>
 </template>
 <script>
@@ -27,11 +41,9 @@ export default {
     data () {
         return {
             simpleCode,
-            labelCode
+            labelCode,
+            tab: 'props'
         }
     }
 }
 </script>
-<style lang="less">
-
-</style>

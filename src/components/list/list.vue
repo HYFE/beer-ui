@@ -16,6 +16,10 @@ export default {
         arrowPlacement: {
             type: String,
             default: 'right'
+        },
+        alignPadding: {
+            type: Number,
+            default: 20
         }
     }
 }

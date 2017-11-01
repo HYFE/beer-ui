@@ -4,4 +4,10 @@ export default [{
 }, {
     name: 'list',
     text: '列表'
+}, {
+    name: 'tabbar',
+    text: '标签栏'
+}, {
+    name: 'tabs',
+    text: '标签页'
 }]

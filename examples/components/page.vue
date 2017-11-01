@@ -56,7 +56,6 @@ export default {
         font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New',
             monospace;
         background: #eee;
-        border: 1px solid #ddd;
         border-radius: 2px;
     }
 }
