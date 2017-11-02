@@ -2,7 +2,7 @@
     <div class="code-block">
         <header class="code-header"
                 @click="visible = !visible">
-            <h4>{{title}}</h4>
+            <strong>{{title}}</strong>
             <a class="code-toggle"
                title="code">
                 <i class="icon-code"></i>
@@ -20,9 +20,6 @@
     </div>
 </template>
 <script>
-import hljs from 'highlight.js'
-import 'highlight.js/styles/github-gist.css'
-
 export default {
     name: 'codeBlock',
     props: {
@@ -35,19 +32,15 @@ export default {
         }
     },
     mounted () {
-        hljs.highlightBlock(this.$refs.code)
+        this.$hljs.highlightBlock(this.$refs.code)
     }
 }
 </script>
 <style lang="less">
 .code-block {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     border-radius: 3px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    h4 {
-        font-size: 14px;
-        margin: 0;
-    }
 }
 .code-header {
     display: flex;
@@ -67,11 +60,7 @@ export default {
 .code-content {
     border-bottom: 2px dotted #ddd;
     .hljs {
-        margin: 0;
-        padding: 15px 20px;
         line-height: 1.8;
-        color: #484848;
-        background: #f8f8f8;
     }
 }
 .code-toggle {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import components from './components'
-import home from '@/views/index'
+import home from '@/views/home'
 import icon from '@/views/icon'
 import transition from '@/views/transition'
 

@@ -51,6 +51,11 @@ module.exports = {
                 include: [resolve('src'), resolve('examples')]
             },
             {
+                test: /\.md$/,
+                loader: 'raw-loader',
+                include: [resolve('examples')]
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {

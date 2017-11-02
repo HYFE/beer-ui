@@ -52,7 +52,7 @@ module.exports = {
 
         // import
         'import/no-unresolved': 0,
-        'import/extensions': [2, 'never', { "less": "always", "css": "always","jpg": "always", "png": "always" }],
+        'import/extensions': [2, 'never', { "less": "always", "css": "always","jpg": "always", "png": "always", "md": "always" }],
         'import/first': 0,
         'import/no-dynamic-require': 0,
         'import/no-extraneous-dependencies': 0,

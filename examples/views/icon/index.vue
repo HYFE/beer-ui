@@ -1,6 +1,5 @@
 <template>
-    <docs-page title="Icon 图标"
-               :desc="`集成了 ${config.glyphs.length} 枚通用图标。点击图标复制到剪贴板。`">
+    <docs-page>
         <ul class="icons-list">
             <li v-for="icon in config.glyphs"
                 class="item"
