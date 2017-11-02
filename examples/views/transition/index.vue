@@ -1,7 +1,8 @@
 <template>
     <docs-page>
-        <code-block title="expand-transition 展开折叠"
-                    :code="expandCode">
+        <code-block title="ExpandTransition"
+                    :code="expandCode"
+                    desc="展开折叠效果。">
             <expandDemo></expandDemo>
         </code-block>
     </docs-page>

@@ -1,31 +1,27 @@
 <template>
     <docs-page>
         <code-block title="基础用法"
-                    :code="simpleCode">
+                    :code="simpleCode"
+                    desc="默认列表项之间无分割线，你可以添加`borderer`属性显示菜单分割线。">
             <simpleDemo></simpleDemo>
-            <p>默认列表项之间无分割线，你可以添加
-                <code>borderer</code>属性显示菜单分割线。</p>
         </code-block>
         <code-block title="结合路由"
-                    :code="routerCode">
+                    :code="routerCode"
+                    desc="通过子组件的`to`属性设置跳转路径，表现与`router-link`的`to`属性一致。">
             <routerDemo></routerDemo>
-            <br>
-            <p>通过子组件的
-                <code>to</code>属性设置跳转路径，表现与
-                <code>router-link</code>的
-                <code>to</code>属性一致。</p>
         </code-block>
         <code-block title="多层级"
                     :code="childrenCode">
             <childrenDemo></childrenDemo>
-            <br>
-            <p>通过子组件的
-                <code>children</code>属性设置多层级列表，传入的数据项必须包含
-                <code>id</code>属性作为内部实现的需要的
-                <code>key</code>。</p>
-            <p>每个列表项显示的内容通过插槽实现。</p>
-            <p>结合
-                <code>Divider</code>组件，分隔静态列表和动态列表。</p>
+            <template slot="desc">
+                <p>通过子组件的
+                    <code>children</code>属性设置多层级列表，传入的数据项必须包含
+                    <code>id</code>属性作为内部实现的需要的
+                    <code>key</code>。</p>
+                <p>每个列表项显示的内容通过插槽实现。</p>
+                <p>结合
+                    <code>Divider</code>组件，分隔静态列表和动态列表。</p>
+            </template>
         </code-block>
     </docs-page>
 </template>
@@ -43,7 +39,7 @@ export default {
         routerDemo,
         childrenDemo
     },
-    data () {
+    data() {
         return {
             simpleCode,
             routerCode,

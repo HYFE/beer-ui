@@ -21,9 +21,11 @@ export default {
         }
     },
     computed: {
+        folder () {
+            return this.$route.name
+        },
         content () {
-            const name = this.$route.name
-            return require(`@/views/${name}/${name}.md`)
+            return require(`@/views/${this.folder}/${this.folder}.md`)
         },
         splitContent () {
             return this.content.split('<!--code-->')

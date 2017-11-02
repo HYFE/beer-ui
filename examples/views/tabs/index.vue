@@ -1,22 +1,19 @@
 <template>
     <docs-page>
         <code-block title="基础用法"
-                    :code="simpleCode">
+                    :code="simpleCode"
+                    desc="可以结合任意元素触发容器切换。">
             <simpleDemo></simpleDemo>
         </code-block>
         <code-block title="与 Tabbar 结合"
-                    :code="tabbarCode">
+                    :code="tabbarCode"
+                    desc="只需要把`ui-tabbar`组件放入`tabbar`插槽中。">
             <tabbarDemo></tabbarDemo>
-            <br> 只需要把
-            <code>ui-tabbar</code>组件放入
-            <code>tabbar</code>插槽中。
         </code-block>
         <code-block title="改变布局"
-                    :code="directionCode">
+                    :code="directionCode"
+                    desc='指定`layout="x"`时变为横轴布局模式。'>
             <directionDemo></directionDemo>
-            <br>
-            <p>指定
-                <code>layout="x"</code>时变为横轴布局模式。</p>
         </code-block>
     </docs-page>
 </template>
