@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import components from './components'
 import home from '@/views/home'
 import icon from '@/views/icon'
+import contributing from '@/views/contributing'
 import transition from '@/views/transition'
 
 Vue.use(Router)
@@ -22,6 +23,10 @@ export default new Router({
         path: '/icon',
         name: 'icon',
         component: icon
+    }, {
+        path: '/contributing',
+        name: 'contributing',
+        component: contributing
     }, {
         path: '/transition',
         name: 'transition',

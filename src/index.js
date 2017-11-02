@@ -1,4 +1,4 @@
-import './styles/index.less'
+import './styles/base.less'
 import divider from './components/divider'
 import { list, listItem } from './components/list'
 import expandTransition from './components/expandTransition'

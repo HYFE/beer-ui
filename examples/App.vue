@@ -11,6 +11,7 @@
             <aside class="docs-aside">
                 <ui-list exact>
                     <ui-listitem :to="{ name: 'home' }">开始</ui-listitem>
+                    <ui-listitem :to="{ name: 'contributing' }">贡献</ui-listitem>
                     <ui-listitem :to="{ name: 'icon' }">图标</ui-listitem>
                     <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
                     <ui-listitem :isAction="false"

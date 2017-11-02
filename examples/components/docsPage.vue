@@ -99,6 +99,7 @@ export default {
     ol,
     ul,
     dl,
+    pre,
     table,
     blockquote {
         margin-top: 0;

@@ -24,8 +24,7 @@ export default {
     data () {
         return {
             simpleCode,
-            labelCode,
-            tab: 'props'
+            labelCode
         }
     }
 }
