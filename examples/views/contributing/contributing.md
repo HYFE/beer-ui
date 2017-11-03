@@ -101,6 +101,21 @@ export default {
 </script>
 ```
 
-`code-block`只有3个接口，分别是`props:title`、`props:code`、`slots:default`。把每个示例编写为独立的组件引入，组件代码使用`raw-loader`以文本形式引入。
+### CodeBlock API
 
-看不明白的话可以结合具体的文件查看。
+#### Props
+
+名称|描述
+---|---
+title|示例代码标题
+desc|示例代码描述，可以传入 Markdown 格式字符串（可选）
+code|示例代码
+
+#### Slots
+
+名称|描述
+---|---
+default|一般用于插入示例代码组件
+desc|与`props:desc`二选一，以标签形式书写描述放入此插槽内
+
+> 看不明白的话可以结合具体的文件查看。

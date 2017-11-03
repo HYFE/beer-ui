@@ -82,15 +82,15 @@ export default {
     }
 
     h3 {
-        font-size: 1.25em;
+        font-size: 18px;
     }
 
     h4 {
-        font-size: 1em;
+        font-size: 16px;
     }
 
     h5 {
-        font-size: 0.875em;
+        font-size: 1em;
     }
 
     h6 {
