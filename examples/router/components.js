@@ -10,4 +10,10 @@ export default [{
 }, {
     name: 'tabs',
     text: '标签页'
+}, {
+    name: 'popover',
+    text: '弹窗'
+}, {
+    name: 'tooltip',
+    text: '气泡提示'
 }]
