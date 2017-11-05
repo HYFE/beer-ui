@@ -4,7 +4,7 @@
             <slot></slot>
         </div>
         <div class="code-info">
-            <div class="code-title">{{title}}</div>
+            <strong class="code-title">{{title}}</strong>
             <slot name="desc"></slot>
             <div v-if="!$slots.desc" v-html="descHtml"></div>
             <a class="code-toggle"
