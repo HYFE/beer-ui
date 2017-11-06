@@ -7,9 +7,11 @@
              v-show="popVisble"
              ref="pop">
             <div class="ui-popover-panel"
-                 v-where-close="{ visible: popVisble, handle: hideOnClickOutSide}">
+                 v-where-close="{ visible: popVisble, handle: hideOnClickOutSide}"
+                 :style="{ width: cssWidth }">
                 <div class="ui-popover-arrow"></div>
-                <div class="ui-popover-content">
+                <div class="ui-popover-content"
+                     :style="{ maxHeight }">
                     <slot></slot>
                 </div>
             </div>
@@ -53,17 +55,22 @@ export default {
             type: Boolean,
             default: true
         },
+        width: [Number, String],
         fullHeight: Boolean,
     },
-    data () {
+    data() {
         return {
             popper: null,
             reference: null,
             domEvents: [],
             exist: false,
+            maxHeight: ''
         }
     },
     computed: {
+        cssWidth() {
+            return this.width ? `${this.width}px`.replace(/(px){2}$/, 'px') : undefined
+        },
         modifiers() {
             return {
                 offset: {
@@ -74,32 +81,42 @@ export default {
                     element: '.ui-popover-arrow',
                 },
                 fullHeight: {
-                    enabled: true,
+                    enabled: !!this.fullHeight,
                     order: 1000,
-                    fn(data) {
+                    fn: data => {
                         console.log(data)
+                        const popper = data.popper
+                        const isTop = /top/.test(data.placement)
+                        const isBottom = /bottom/.test(data.placement)
+                        // data.styles.height = `${height}px`
+                        if (isTop) {
+                            this.maxHeight = `${popper.bottom - 12}px`
+                        }
+                        if (isBottom) {
+                            this.maxHeight = `${window.innerHeight - popper.top - 12}px`
+                        }
                         return data
                     }
                 }
             }
         },
         popVisble: {
-            get () {
+            get() {
                 return this.visible
             },
-            set (val) {
+            set(val) {
                 this.$emit('update:visible', val)
             }
         },
     },
     watch: {
-        visible (val) {
+        visible(val) {
             val ? this.createPop() : this.hidePop()
             if (!this.exist && val) this.exist = true
         }
     },
     methods: {
-        showPop () {
+        showPop() {
             if (this.popVisble) {
                 this.popVisble = false
                 return
@@ -109,7 +126,7 @@ export default {
                 this.pushStack()
             })
         },
-        createPop () {
+        createPop() {
             this.$nextTick(() => {
                 this.popper = new Popper(this.reference, this.$refs.pop, {
                     placement: this.placement,
@@ -118,14 +135,14 @@ export default {
                 })
             })
         },
-        hidePop () {
+        hidePop() {
             this.popper.destroy()
             this.popper = null
         },
-        hideOnLeave () {
+        hideOnLeave() {
             this.popVisble = false
         },
-        bind () {
+        bind() {
             const reference = this.$parent.$refs[this.for]
             const refEl = reference instanceof HTMLElement ? reference : reference.$el
             switch (this.trigger) {
@@ -142,7 +159,7 @@ export default {
             }
             this.reference = refEl
         },
-        unBind () {
+        unBind() {
             switch (this.trigger) {
                 case 'hover':
                     this.reference.removeEventListener('mouseenter', this.showPop)
@@ -157,14 +174,13 @@ export default {
             }
         }
     },
-    created () {
-        console.log('created')
+    created() {
         this.bind()
     },
-    mounted () {
+    mounted() {
         document.body.appendChild(this.$el)
     },
-    destroyed () {
+    destroyed() {
         this.unBind()
         if (this.$el.parentNode) this.$el.parentNode.removeChild(this.$el)
         if (this.popper) this.hidePop()
@@ -172,55 +188,57 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import "~_/styles/import";
+
+@panel-padding: 8px;
+@arrow-offset: -3px;
 
 .ui-popover {
     position: absolute;
     top: -100%;
     left: -100%;
     z-index: -1;
-    min-width: @popover-min-width;
 
-    &[x-placement^='top'] {
+    &[x-placement^="top"] {
         .ui-popover- {
             &panel {
-                padding-bottom: 8px;
+                padding-bottom: @panel-padding;
             }
             &arrow {
-                bottom: -3px;
+                bottom: @arrow-offset;
                 border-top-color: #fff;
             }
         }
     }
-    &[x-placement^='right'] {
+    &[x-placement^="right"] {
         .ui-popover- {
             &panel {
-                padding-left: 8px;
+                padding-left: @panel-padding;
             }
             &arrow {
-                left: -3px;
+                left: @arrow-offset;
                 border-right-color: #fff;
             }
         }
     }
-    &[x-placement^='bottom'] {
+    &[x-placement^="bottom"] {
         .ui-popover- {
             &panel {
-                padding-top: 8px;
+                padding-top: @panel-padding;
             }
             &arrow {
-                top: -3px;
+                top: @arrow-offset;
                 border-bottom-color: #fff;
             }
         }
     }
-    &[x-placement^='left'] {
+    &[x-placement^="left"] {
         .ui-popover- {
             &panel {
-                padding-right: 8px;
+                padding-right: @panel-padding;
             }
             &arrow {
-                right: -3px;
+                right: @arrow-offset;
                 border-left-color: #fff;
             }
         }
@@ -228,9 +246,11 @@ export default {
 
     &-panel {
         position: relative;
+        min-width: @popover-min-width;
         filter: drop-shadow(@popover-shadow);
     }
     &-content {
+        overflow-y: auto;
         background: #fff;
         border-radius: @popover-radius;
     }
@@ -239,14 +259,6 @@ export default {
         width: 0;
         height: 0;
         border: 6px solid transparent;
-    }
-    &-full {
-        // &[x-placement^="bottom"] {
-        //     bottom: 3px;
-        // }
-        // &[x-placement^="top"] {
-        //     top: 3px;
-        // }
     }
 }
 </style>

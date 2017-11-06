@@ -4,19 +4,22 @@
             <button ref="btn">top-start</button>
             <ui-popover :visible.sync="visible1"
                         for="btn"
-                        placement="top-start">
+                        placement="top-start"
+                        key="pop1">
                 <p>我是弹窗</p>
             </ui-popover>
             <button ref="btn2">top</button>
             <ui-popover :visible.sync="visible2"
                         for="btn2"
-                        placement="top">
+                        placement="top"
+                        key="pop2">
                 <p>我是弹窗</p>
             </ui-popover>
             <button ref="btn3">top-end</button>
             <ui-popover :visible.sync="visible3"
                         for="btn3"
-                        placement="top-end">
+                        placement="top-end"
+                        key="pop3">
                 <p>我是弹窗</p>
             </ui-popover>
         </div>
@@ -25,19 +28,22 @@
                 <button ref="btn4">left-start</button>
                 <ui-popover :visible.sync="visible4"
                             for="btn4"
-                            placement="left-start">
+                            placement="left-start"
+                            key="pop4">
                     <p>我是弹窗</p>
                 </ui-popover>
                 <button ref="btn5">left</button>
                 <ui-popover :visible.sync="visible5"
                             for="btn5"
-                            placement="left">
+                            placement="left"
+                            key="pop5">
                     <p>我是弹窗</p>
                 </ui-popover>
                 <button ref="btn6">left-end</button>
                 <ui-popover :visible.sync="visible6"
                             for="btn6"
-                            placement="left-end">
+                            placement="left-end"
+                            key="pop6">
                     <p>我是弹窗</p>
                 </ui-popover>
             </div>
@@ -45,19 +51,22 @@
                 <button ref="btn7">right-start</button>
                 <ui-popover :visible.sync="visible7"
                             for="btn7"
-                            placement="right-start">
+                            placement="right-start"
+                            key="pop7">
                     <p>我是弹窗</p>
                 </ui-popover>
                 <button ref="btn8">right</button>
                 <ui-popover :visible.sync="visible8"
                             for="btn8"
-                            placement="right">
+                            placement="right"
+                            key="pop8">
                     <p>我是弹窗</p>
                 </ui-popover>
                 <button ref="btn9">right-end</button>
                 <ui-popover :visible.sync="visible9"
                             for="btn9"
-                            placement="right-end">
+                            placement="right-end"
+                            key="pop9">
                     <p>我是弹窗</p>
                 </ui-popover>
             </div>
@@ -66,19 +75,22 @@
             <button ref="btn10">bottom-start</button>
             <ui-popover :visible.sync="visible10"
                         for="btn10"
-                        placement="bottom-start">
+                        placement="bottom-start"
+                        key="pop10">
                 <p>我是弹窗</p>
             </ui-popover>
             <button ref="btn11">bottom</button>
             <ui-popover :visible.sync="visible11"
                         for="btn11"
-                        placement="bottom">
+                        placement="bottom"
+                        key="pop11">
                 <p>我是弹窗</p>
             </ui-popover>
             <button ref="btn12">bottom-end</button>
             <ui-popover :visible.sync="visible12"
                         for="btn12"
-                        placement="bottom-end">
+                        placement="bottom-end"
+                        key="pop12">
                 <p>我是弹窗</p>
             </ui-popover>
         </div>
@@ -128,4 +140,5 @@ button {
 .col {
     width: 100px;
 }
+
 </style>

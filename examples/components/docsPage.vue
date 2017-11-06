@@ -135,8 +135,7 @@ export default {
     code {
         margin: 0 4px;
         padding: 2px 4px;
-        font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New',
-            monospace;
+        font-family: Consolas, Menlo, Monaco, 'Courier New', monospace;
         background: #eee;
         border-radius: 2px;
     }
@@ -144,6 +143,7 @@ export default {
     table {
         width: 100%;
         overflow: auto;
+        font-family: Consolas, Menlo, Monaco, 'Courier New', monospace;
     }
 
     table th {
