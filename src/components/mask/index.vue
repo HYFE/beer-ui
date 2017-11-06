@@ -2,7 +2,7 @@
     <transition :name="animate">
         <div class="ui-mask"
              v-if="visible"
-             :style="{ zIndex: cssZIndex }"
+             :style="{ zIndex: cssIndex }"
              :class="{ transparent }"
              @click="clickMask">
             <slot></slot>
@@ -10,10 +10,11 @@
     </transition>
 </template>
 <script>
-import zIndex from './zIndex'
+import zIndex from '_/utils/zIndex'
 
 export default {
     name: 'uiMask',
+    mixins: [zIndex],
     props: {
         visible: Boolean,
         transparent: Boolean,
@@ -21,7 +22,6 @@ export default {
             type: String,
             default: 'fade-in'
         },
-        zIndex: Number,
         hideOnClick: {
             type: Boolean,
             default: true
@@ -30,11 +30,6 @@ export default {
     data() {
         return {
             inBody: false
-        }
-    },
-    computed: {
-        cssZIndex() {
-            return this.zIndex || zIndex()
         }
     },
     watch: {
