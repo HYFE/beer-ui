@@ -1,9 +1,8 @@
 <template>
     <div>
-        <button ref="btn">Click</button>
-        <ui-popover :visible.sync="visible"
-                    fullHeight
-                    for="btn">
+        <button v-popover:full>Click</button>
+        <ui-popover fullHeight
+                    name="full">
             <ul>
                 <li v-for="n in 100">第 {{n}} 行</li>
             </ul>
@@ -12,11 +11,6 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            visible: false
-        }
-    }
 }
 </script>
 <style scoped>

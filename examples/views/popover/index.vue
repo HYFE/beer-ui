@@ -2,7 +2,8 @@
     <docs-page>
         <code-block title="基础使用"
                     :code="baseCode"
-                    desc="使用`for`属性设置触发元素的关联。">
+                    desc="`v-popover`指令用于关联的触发元素，指令的`arg`和组件`name`保持一致。
+使用指令修饰符表示触发事件，省略时为`click`。">
             <baseDemo></baseDemo>
         </code-block>
         <code-block title="位置"
@@ -15,6 +16,11 @@
                     desc="内容超过容器时，根据显示方向伸展到最大高度。（不支持`left`、`right`）">
             <fullHeightDemo></fullHeightDemo>
         </code-block>
+        <code-block title="嵌套"
+                    :code="nestedCode"
+                    desc="支持弹窗嵌套，并且点击外部时按顺序关闭。">
+            <nestedDemo></nestedDemo>
+        </code-block>
     </docs-page>
 </template>
 <script>
@@ -24,18 +30,22 @@ import placementDemo from './placement'
 import placementCode from '!raw-loader!./placement'
 import fullHeightDemo from './fullHeight'
 import fullHeightCode from '!raw-loader!./fullHeight'
+import nestedDemo from './nested'
+import nestedCode from '!raw-loader!./nested'
 
 export default {
     components: {
         baseDemo,
         placementDemo,
-        fullHeightDemo
+        fullHeightDemo,
+        nestedDemo
     },
     data() {
         return {
             baseCode,
             placementCode,
-            fullHeightCode
+            fullHeightCode,
+            nestedCode
         }
     }
 }

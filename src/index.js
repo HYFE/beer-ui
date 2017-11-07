@@ -16,7 +16,7 @@ export const install = Vue => {
     Vue.component(tab.name, tab)
     Vue.component(tabs.name, tabs)
     Vue.component(tabPanel.name, tabPanel)
-    Vue.component(popover.name, popover)
+    Vue.use(popover)
 }
 
 export default {

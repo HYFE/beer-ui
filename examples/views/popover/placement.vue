@@ -1,96 +1,72 @@
 <template>
     <div class="wrap">
         <div class="top">
-            <button ref="btn">top-start</button>
-            <ui-popover :visible.sync="visible1"
-                        for="btn"
-                        placement="top-start"
-                        key="pop1">
+            <button v-popover:pop1>top-start</button>
+            <ui-popover placement="top-start"
+                        name="pop1">
                 <p>我是弹窗</p>
             </ui-popover>
-            <button ref="btn2">top</button>
-            <ui-popover :visible.sync="visible2"
-                        for="btn2"
-                        placement="top"
-                        key="pop2">
+            <button v-popover:pop2>top</button>
+            <ui-popover placement="top"
+                        name="pop2">
                 <p>我是弹窗</p>
             </ui-popover>
-            <button ref="btn3">top-end</button>
-            <ui-popover :visible.sync="visible3"
-                        for="btn3"
-                        placement="top-end"
-                        key="pop3">
+            <button v-popover:pop3>top-end</button>
+            <ui-popover placement="top-end"
+                        name="pop3">
                 <p>我是弹窗</p>
             </ui-popover>
         </div>
         <div class="center">
             <div class="col">
-                <button ref="btn4">left-start</button>
-                <ui-popover :visible.sync="visible4"
-                            for="btn4"
-                            placement="left-start"
-                            key="pop4">
+                <button v-popover:pop4>left-start</button>
+                <ui-popover placement="left-start"
+                            name="pop4">
                     <p>我是弹窗</p>
                 </ui-popover>
-                <button ref="btn5">left</button>
-                <ui-popover :visible.sync="visible5"
-                            for="btn5"
-                            placement="left"
-                            key="pop5">
+                <button v-popover:pop5>left</button>
+                <ui-popover placement="left"
+                            name="pop5">
                     <p>我是弹窗</p>
                 </ui-popover>
-                <button ref="btn6">left-end</button>
-                <ui-popover :visible.sync="visible6"
-                            for="btn6"
-                            placement="left-end"
-                            key="pop6">
+                <button v-popover:pop6>left-end</button>
+                <ui-popover placement="left-end"
+                            name="pop6">
                     <p>我是弹窗</p>
                 </ui-popover>
             </div>
             <div class="col">
-                <button ref="btn7">right-start</button>
-                <ui-popover :visible.sync="visible7"
-                            for="btn7"
-                            placement="right-start"
-                            key="pop7">
+                <button v-popover:pop7>right-start</button>
+                <ui-popover placement="right-start"
+                            name="pop7">
                     <p>我是弹窗</p>
                 </ui-popover>
-                <button ref="btn8">right</button>
-                <ui-popover :visible.sync="visible8"
-                            for="btn8"
-                            placement="right"
-                            key="pop8">
+                <button v-popover:pop8>right</button>
+                <ui-popover placement="right"
+                            name="pop8">
                     <p>我是弹窗</p>
                 </ui-popover>
-                <button ref="btn9">right-end</button>
-                <ui-popover :visible.sync="visible9"
-                            for="btn9"
-                            placement="right-end"
-                            key="pop9">
+                <button v-popover:pop9>right-end</button>
+                <ui-popover placement="right-end"
+                            name="pop9">
                     <p>我是弹窗</p>
                 </ui-popover>
             </div>
         </div>
         <div class="bottom">
-            <button ref="btn10">bottom-start</button>
-            <ui-popover :visible.sync="visible10"
-                        for="btn10"
-                        placement="bottom-start"
-                        key="pop10">
+            <button v-popover:pop10>bottom-start</button>
+            <ui-popover acement="bottom-start"
+                        name="pop10">
                 <p>我是弹窗</p>
             </ui-popover>
-            <button ref="btn11">bottom</button>
-            <ui-popover :visible.sync="visible11"
-                        for="btn11"
-                        placement="bottom"
-                        key="pop11">
+            <button v-popover:pop11>bottom</button>
+            <ui-popover acement="bottom"
+                        name="pop11">
                 <p>我是弹窗</p>
             </ui-popover>
-            <button ref="btn12">bottom-end</button>
-            <ui-popover :visible.sync="visible12"
-                        for="btn12"
-                        placement="bottom-end"
-                        key="pop12">
+            <button v-popover:pop12>bottom-end</button>
+            <ui-popover acement="bottom-end"
+                        name="pop12">
                 <p>我是弹窗</p>
             </ui-popover>
         </div>
@@ -98,22 +74,6 @@
 </template>
 <script>
 export default {
-    data () {
-        return {
-            visible1: false,
-            visible2: false,
-            visible3: false,
-            visible4: false,
-            visible5: false,
-            visible6: false,
-            visible7: false,
-            visible8: false,
-            visible9: false,
-            visible10: false,
-            visible11: false,
-            visible12: false,
-        }
-    }
 }
 </script>
 <style scoped>
@@ -140,5 +100,4 @@ button {
 .col {
     width: 100px;
 }
-
 </style>

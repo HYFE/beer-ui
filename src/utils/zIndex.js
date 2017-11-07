@@ -1,6 +1,6 @@
 let zIndex = 2000
 
-const getIndex = () => {
+const accountIndex = () => {
     zIndex += 1
     return zIndex
 }
@@ -11,7 +11,7 @@ export default {
     },
     computed: {
         cssIndex() {
-            return this.zIndex || getIndex()
+            return this.zIndex || accountIndex()
         }
     },
 }

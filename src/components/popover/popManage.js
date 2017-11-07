@@ -8,13 +8,16 @@ export default {
     },
     methods: {
         pushStack() {
-            popStack.push(this.$refs.pop)
+            popStack.push(this.name)
+        },
+        popStack() {
+            popStack.pop()
         },
         hideOnClickOutSide(target) {
             if(this.reference && this.reference.contains(target)) return
             const lastPop = popStack[popStack.length - 1]
-            if(lastPop === this.$refs.pop) {
-                this.popVisble = false
+            if(lastPop === this.name) {
+                this.hide()
             }
         }
     }
