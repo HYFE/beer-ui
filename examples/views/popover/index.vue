@@ -21,6 +21,12 @@
                     desc="支持弹窗嵌套，并且点击外部时按顺序关闭。">
             <nestedDemo></nestedDemo>
         </code-block>
+        <code-block title="单例"
+                    :code="singletonCode"
+                    desc="使用一个占位组件进行动态内容展示，模拟单例组件。
+> 实际使用中一般把`popoverHolder`放到根组件下。">
+            <singletonDemo></singletonDemo>
+        </code-block>
     </docs-page>
 </template>
 <script>
@@ -32,21 +38,25 @@ import fullHeightDemo from './fullHeight'
 import fullHeightCode from '!raw-loader!./fullHeight'
 import nestedDemo from './nested'
 import nestedCode from '!raw-loader!./nested'
+import singletonDemo from './singleton'
+import singletonCode from '!raw-loader!./singleton'
 
 export default {
     components: {
         baseDemo,
         placementDemo,
         fullHeightDemo,
-        nestedDemo
+        nestedDemo,
+        singletonDemo
     },
     data() {
         return {
             baseCode,
             placementCode,
             fullHeightCode,
-            nestedCode
+            nestedCode,
+            singletonCode
         }
-    }
+    },
 }
 </script>

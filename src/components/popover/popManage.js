@@ -1,4 +1,4 @@
-import whereClose from '_/utils/whereClose'
+import whereClose from '_/directives/whereClose'
 
 const popStack = []
 
@@ -8,10 +8,10 @@ export default {
     },
     methods: {
         pushStack() {
-            popStack.push(this.name)
+            this.trigger === 'click' && popStack.push(this.name)
         },
         popStack() {
-            popStack.pop()
+            this.trigger === 'click' && popStack.pop()
         },
         hideOnClickOutSide(target) {
             if(this.reference && this.reference.contains(target)) return

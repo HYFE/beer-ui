@@ -1,11 +1,11 @@
 import popover from './popover'
-import vPopover from './directive'
+import holder from './holder'
+import directive from './directive'
 
-const install = Vue => {
-    Vue.directive('popover', vPopover)
+popover.install = Vue => {
+    Vue.directive('popover', directive)
     Vue.component(popover.name, popover)
+    Vue.component(holder.name, holder)
 }
 
-export default {
-    install
-}
+export default popover

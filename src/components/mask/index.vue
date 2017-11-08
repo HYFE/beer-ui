@@ -10,7 +10,7 @@
     </transition>
 </template>
 <script>
-import zIndex from '_/utils/zIndex'
+import zIndex from '_/mixins/zIndex'
 
 export default {
     name: 'uiMask',

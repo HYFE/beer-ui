@@ -2,8 +2,9 @@
     <transition :name="transitionName">
         <div class="ui-popover"
              :style="{ zIndex: cssIndex }"
-             v-if="exist"
+             v-if="exist && (reset ? visible : true)"
              v-show="visible"
+             v-transclude="transclude"
              ref="pop">
             <div class="ui-popover-panel"
                  v-where-close="{ visible, handle: hideOnClickOutSide}"
@@ -18,14 +19,19 @@
     </transition>
 </template>
 <script>
+// import Vue from 'vue'
 import { bus } from './directive'
 import popManage from './popManage'
 import Popper from '_/libs/popper'
-import zIndex from '_/utils/zIndex'
+import zIndex from '_/mixins/zIndex'
+import transclude from '_/directives/transclude'
 
-export default {
+const component = {
     name: 'uiPopover',
     mixins: [popManage, zIndex],
+    directives: {
+        transclude
+    },
     props: {
         value: Boolean,
         name: {
@@ -50,9 +56,17 @@ export default {
         },
         width: [Number, String],
         fullHeight: Boolean,
+        mountPoint: {
+            type: [Boolean, String],
+            default: true
+        },
         transitionName: {
             type: String,
             default: 'fade-in'
+        },
+        reset: { // 重绘 or 保留状态
+            type: Boolean,
+            default: false
         }
     },
     data () {
@@ -63,7 +77,7 @@ export default {
             domEvents: [],
             exist: false,
             maxHeight: '',
-            trigger: 'click'
+            trigger: 'click',
         }
     },
     computed: {
@@ -72,6 +86,14 @@ export default {
         },
         modifiers () {
             return {
+                reference: {
+                    enabled: true,
+                    order: 50,
+                    fn: data => {
+                        console.log(data)
+                        return data
+                    }
+                },
                 offset: {
                     offset: this.offset
                 },
@@ -106,16 +128,20 @@ export default {
                 }
             }
         },
+        transclude() {
+            return this.visible ? this.mountPoint : false
+        }
     },
     watch: {
         visible (val) {
             val ? this.createPop() : this.destroyPop()
             if (!this.exist && val) this.exist = true
             this.$emit('change', val)
+            this.$emit('input', val)
         },
         value (val) {
             this.visible = val
-        }
+        },
     },
     methods: {
         show ({ name, reference, type }) {
@@ -139,11 +165,23 @@ export default {
                 this.popper = new Popper(this.reference, this.$refs.pop, {
                     placement: this.placement,
                     eventsEnabled: this.eventsEnabled,
-                    modifiers: this.modifiers
+                    modifiers: this.modifiers,
+                    onCreate: this.onPopCreate,
+                    onUpdate: this.onPopUpdate
                 })
             })
         },
+        updatePopper () {
+            this.popper && this.popper.update()
+        },
+        onPopCreate(data) {
+            this.$emit('create', data)
+        },
+        onPopUpdate(data) {
+            console.log(data)
+        },
         destroyPop () {
+            if(!this.popper) return
             this.popper.destroy()
             this.popper = null
         },
@@ -154,20 +192,18 @@ export default {
         unBind () {
             bus.$off(`show:popover-${this.name}`, this.show)
             bus.$off(`hide:popover-${this.name}`, this.hide)
-        }
+        },
     },
     created () {
         this.bind()
     },
-    mounted () {
-        document.body.appendChild(this.$el)
-    },
     destroyed () {
         this.unBind()
-        if (this.$el.parentNode) this.$el.parentNode.removeChild(this.$el)
-        if (this.popper) this.destroyPop()
+        this.destroyPop()
     }
 }
+
+export default component
 </script>
 <style lang="less">
 @import '~_/styles/import';

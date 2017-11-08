@@ -3,10 +3,12 @@ import Vue from 'vue'
 export const bus = new Vue()
 
 class PopTrigger {
-    constructor(el, { name, trigger = 'click' }) {
+    constructor(el, { name, options, trigger = 'click' }) {
         this.$el = el
-        this.name = name
         this.trigger = trigger
+        this.options = options
+        this.isSingleton = !!options && !name
+        this.name = this.isSingleton ? 'singleton' : name
         this.bindEvents()
     }
 
@@ -18,11 +20,17 @@ class PopTrigger {
         }
     }
 
-    showPopover = e => {
+    show(e) {
         bus.$emit(`show:popover-${this.name}`, this.payload(e))
     }
 
-    hidePopover = e => {
+    handleShow = e => {
+        this.isSingleton
+            ? bus.$emit('singleton:popover', this.options, () => this.show(e))
+            : this.show(e)
+    }
+
+    handleHide = e => {
         bus.$emit(`hide:popover-${this.name}`, this.payload(e))
     }
 
@@ -30,15 +38,15 @@ class PopTrigger {
         const $el = this.$el
         switch(this.trigger) {
             case 'hover':
-                $el.addEventListener('mouseenter', this.showPopover)
-                $el.addEventListener('mouseleave', this.hidePopover)
+                $el.addEventListener('mouseenter', this.handleShow)
+                $el.addEventListener('mouseleave', this.handleHide)
                 break
             case 'focus':
-                $el.addEventListener('focus', this.showPopover)
-                $el.addEventListener('blur', this.hidePopover)
+                $el.addEventListener('focus', this.handleShow)
+                $el.addEventListener('blur', this.handleHide)
                 break
             default:
-                $el.addEventListener('click', this.showPopover)
+                $el.addEventListener('click', this.handleShow)
         }
     }
 
@@ -46,26 +54,26 @@ class PopTrigger {
         const $el = this.$el
         switch(this.trigger) {
             case 'hover':
-                $el.removeEventListener('mouseenter', this.showPopover)
-                $el.removeEventListener('mouseleave', this.hidePopover)
+                $el.removeEventListener('mouseenter', this.handleShow)
+                $el.removeEventListener('mouseleave', this.handleHide)
                 break
             case 'focus':
-                $el.removeEventListener('focus', this.showPopover)
-                $el.removeEventListener('blur', this.hidePopover)
+                $el.removeEventListener('focus', this.handleShow)
+                $el.removeEventListener('blur', this.handleHide)
                 break
             default:
-                $el.removeEventListener('click', this.showPopover)
+                $el.removeEventListener('click', this.handleShow)
         }
     }
 }
 
 export default {
-    inserted(el, { modifiers, arg }) {
-        const name = arg
+    inserted(el, { value, modifiers, arg }) {
         const trigger = Object.keys(modifiers)[0]
         const instance = new PopTrigger(el, {
-            name,
-            trigger
+            name: arg,
+            trigger,
+            options: value
         })
         el.__POP_TRIGGER = instance
     },
