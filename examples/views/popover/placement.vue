@@ -55,17 +55,17 @@
         </div>
         <div class="bottom">
             <button v-popover:pop10>bottom-start</button>
-            <ui-popover acement="bottom-start"
+            <ui-popover placement="bottom-start"
                         name="pop10">
                 <p>我是弹窗</p>
             </ui-popover>
             <button v-popover:pop11>bottom</button>
-            <ui-popover acement="bottom"
+            <ui-popover placement="bottom"
                         name="pop11">
                 <p>我是弹窗</p>
             </ui-popover>
             <button v-popover:pop12>bottom-end</button>
-            <ui-popover acement="bottom-end"
+            <ui-popover placement="bottom-end"
                         name="pop12">
                 <p>我是弹窗</p>
             </ui-popover>
@@ -84,6 +84,10 @@ button {
     padding: 4px;
     margin-bottom: 5px;
     border-radius: 2px;
+}
+p {
+    text-align: center;
+    line-height: 50px;
 }
 .wrap {
     width: 510px;
