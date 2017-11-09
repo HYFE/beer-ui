@@ -78,57 +78,14 @@ const component = {
             exist: false,
             maxHeight: '',
             trigger: 'click',
+            cssIndex: this.zIndex
         }
     },
     computed: {
         cssWidth () {
             return this.width ? `${this.width}px`.replace(/(px){2}$/, 'px') : undefined
         },
-        modifiers () {
-            return {
-                reference: {
-                    enabled: true,
-                    order: 50,
-                    fn: data => {
-                        console.log(data)
-                        return data
-                    }
-                },
-                offset: {
-                    offset: this.offset
-                },
-                preventOverflow: {
-                    boundariesElement: 'viewport'
-                },
-                arrow: {
-                    enabled: this.arrow,
-                    element: '.ui-popover-arrow',
-                },
-                fullHeight: {
-                    enabled: !!this.fullHeight,
-                    order: 850,
-                    fn: data => {
-                        // console.log(data)
-                        const reference = data.instance.reference
-                        const { top, bottom } = reference.getBoundingClientRect()
-                        const tHeight = top - 17
-                        const bHeight = window.innerHeight - bottom - 17
-                        // // const clientHeight = window.innerHeight
-                        const isTop = /top/.test(data.originalPlacement)
-                        const isBottom = /bottom/.test(data.originalPlacement)
-                        // // data.styles.height = `${height}px`
-                        if (isTop || isBottom) {
-                            this.maxHeight = `${Math.max(tHeight, bHeight)}px`
-                        }
-                        // if (isBottom) {
-                        //     this.maxHeight = `${bHeight}px`
-                        // }
-                        return data
-                    }
-                }
-            }
-        },
-        transclude() {
+        transclude () {
             return this.visible ? this.mountPoint : false
         }
     },
@@ -160,28 +117,67 @@ const component = {
             this.popStack()
             this.$emit('hide')
         },
+        handleFullHeight () {
+            if (!this.fullHeight) return
+            const clientHeight = window.innerHeight
+            const { top, bottom } = this.reference.getBoundingClientRect()
+            if (/top|bottom/.test(this.placement)) {
+                const tHeight = top - 15
+                const bHeight = clientHeight - bottom - 15
+                this.maxHeight = `${Math.max(tHeight, bHeight)}px`
+            } else {
+                this.maxHeight = `${clientHeight - 10}px`
+            }
+        },
         createPop () {
+            this.cssIndex = this.zIndex || this.nextIndex()
+            this.handleFullHeight()
             this.$nextTick(() => {
                 this.popper = new Popper(this.reference, this.$refs.pop, {
                     placement: this.placement,
                     eventsEnabled: this.eventsEnabled,
-                    modifiers: this.modifiers,
                     onCreate: this.onPopCreate,
-                    onUpdate: this.onPopUpdate
+                    onUpdate: this.onPopUpdate,
+                    modifiers: {
+                        offset: {
+                            offset: this.offset
+                        },
+                        preventOverflow: {
+                            boundariesElement: 'viewport'
+                        },
+                        arrow: {
+                            enabled: this.arrow,
+                            element: '.ui-popover-arrow',
+                        },
+                        // test: {
+                        //     enabled: true,
+                        //     order: 1000,
+                        //     fn: data => console.log(data)
+                        // }
+                    },
                 })
             })
         },
-        updatePopper () {
-            this.popper && this.popper.update()
+        updatePopper ({ reference }) {
+            if (this.reference === reference) {
+                this.hide()
+                return
+            }
+            this.reference = reference
+            if (this.popper) {
+                this.destroyPop()
+                this.createPop()
+            }
         },
-        onPopCreate(data) {
-            this.$emit('create', data)
+        onPopCreate (data) {
+            this.handleFullHeight()
+            this.$emit('createPopover', data)
         },
-        onPopUpdate(data) {
-            console.log(data)
+        onPopUpdate (data) {
+            this.$emit('updatePopover', data)
         },
         destroyPop () {
-            if(!this.popper) return
+            if (!this.popper) return
             this.popper.destroy()
             this.popper = null
         },
@@ -216,6 +212,7 @@ export default component
     top: -100%;
     left: -100%;
     z-index: -1;
+    transition: opacity .4s ease-in-out;
 
     &[x-placement^='top'] {
         .ui-popover- {
@@ -260,6 +257,11 @@ export default component
                 border-left-color: #fff;
             }
         }
+    }
+
+    &[x-out-of-boundaries] {
+        opacity: 0;
+        visibility: hidden;
     }
 
     &-panel {

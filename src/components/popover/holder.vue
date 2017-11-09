@@ -1,12 +1,13 @@
 <template>
-    <ui-popover v-bind="props"
-                v-on="events"
+    <ui-popover v-bind="popoverProps"
+                v-on="popoverEvents"
                 v-if="component"
                 v-model="visible"
                 ref="pop">
         <component :is="component"
-                   v-bind="innerProps"
-                   v-on="innerEvents"></component>
+                   v-bind="props"
+                   v-on="events"
+                   @close:popover="closePopover"></component>
     </ui-popover>
 </template>
 <script>
@@ -23,24 +24,27 @@ export default {
             component: null,
             props: null,
             events: null,
-            innerProps: null,
-            innerEvents: null,
+            popoverProps: null,
+            popoverEvents: null,
             visible: false
         }
     },
     methods: {
-        handler ({ component, popover = {}, options = {} }, cb) {
-            this.visible = false
+        handler ({ component, popover = {}, ...options }, payload, cb) {
+            // this.visible = false
             popover.name = 'singleton'
-            const { events, ...props } = popover
-            const { events: innerEvents, ...innerProps } = options
+            const { events: popoverEvents, ...popoverProps } = popover
+            const { events, ...props } = options
+            this.popoverProps = popoverProps
+            this.popoverEvents = popoverEvents
             this.props = props
             this.events = events
-            this.innerProps = innerProps
-            this.innerEvents = innerEvents
             this.component = component
             if(!this.visible) this.$nextTick(cb)
-            else this.$refs.pop.updatePopper()
+            else this.$refs.pop.updatePopper(payload)
+        },
+        closePopover() {
+            this.visible = false
         }
     },
     created () {

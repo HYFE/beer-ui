@@ -2,9 +2,10 @@
     <div>
         <!-- 实际应用中把占位组件放在根组件下 -->
         <ui-popover-holder></ui-popover-holder>
-        <h3>{{msg}}</h3>
         <button v-popover="singlePop">Click</button>
         <button v-popover="singlePop2">Click2</button>
+        <button v-popover="singlePop3">Click3</button>
+        <h3>{{msg}}</h3>
     </div>
 </template>
 <script>
@@ -24,35 +25,41 @@ const pop2 = {
     }
 }
 
+const pop3 = {
+    template: `<button @click="onClick">内部关闭弹窗</button>`,
+    methods: {
+        onClick () {
+            this.$emit('close:popover')
+        }
+    }
+}
+
 export default {
     data () {
         return {
             msg: '',
             singlePop: {
                 component: pop, // 装载到 popover 的组件
-                popover: {  // 传入弹窗的配置
-                    placement: 'top'
-                },
-                options: {  // 传入弹窗内部组件的配置
-                    message: '传入弹窗1的数据',
-                }
+                message: '传入弹窗1的数据', // 传入弹窗内容组件的配置
             },
             singlePop2: {
                 component: pop2,
-                popover: {
+                events: { // 传入弹窗内容组件的事件
+                    click: msg => {
+                        this.msg = msg
+                    },
+                },
+                popover: { // 传入弹窗的配置
+                    placement: 'top',
                     events: { // 传入弹窗的事件
                         hide: () => {
                             this.msg = ''
                         }
                     }
                 },
-                options: {
-                    events: { // 传入弹窗内部组件的事件
-                        click: msg => {
-                            this.msg = msg
-                        }
-                    }
-                }
+            },
+            singlePop3: {
+                component: pop3
             }
         }
     }

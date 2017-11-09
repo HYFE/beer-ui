@@ -26,7 +26,7 @@ class PopTrigger {
 
     handleShow = e => {
         this.isSingleton
-            ? bus.$emit('singleton:popover', this.options, () => this.show(e))
+            ? bus.$emit('singleton:popover', this.options, this.payload(e), () => this.show(e))
             : this.show(e)
     }
 

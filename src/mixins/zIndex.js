@@ -9,9 +9,7 @@ export default {
     props: {
         zIndex: Number
     },
-    computed: {
-        cssIndex() {
-            return this.zIndex || nextIndex()
-        }
-    },
+    methods: {
+        nextIndex
+    }
 }

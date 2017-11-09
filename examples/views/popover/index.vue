@@ -13,7 +13,7 @@
         </code-block>
         <code-block title="最大高度"
                     :code="fullHeightCode"
-                    desc="内容超过容器时，根据显示方向伸展到最大高度。（不支持`left`、`right`）">
+                    desc="内容超过容器时，根据显示方向伸展到最大高度。">
             <fullHeightDemo></fullHeightDemo>
         </code-block>
         <code-block title="嵌套"
