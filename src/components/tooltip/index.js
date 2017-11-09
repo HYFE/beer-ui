@@ -15,6 +15,14 @@ export default class Tooltip {
     popover = null
     timer = null
 
+    get visible() {
+        return this.tooltip.style.display === 'block'
+    }
+
+    set visible(value) {
+        this.tooltip.style.display = value ? 'block' : 'none'
+    }
+
     createEl() {
         let tooltip = document.getElementById(this.globalId)
         if (!tooltip) {
@@ -35,12 +43,12 @@ export default class Tooltip {
     }
 
     show = e => {
-        this.createEl()
         if(this.timer) clearTimeout(this.timer)
         this.timer = setTimeout(() => {
+            this.createEl()
             this.destroyPop()
-            this.tooltip.style.display = 'block'
-            this.tooltip['x-placement'] = this.placement
+            this.visible = true
+
             this.popover = new Popper(this.$el, this.tooltip, {
                 placement: this.placement,
                 modifiers: {
@@ -63,7 +71,7 @@ export default class Tooltip {
         this.tooltip.classList.remove('in')
         if(this.timer) clearTimeout(this.timer)
         this.timer = setTimeout(() => {
-            this.tooltip.style.display = 'none'
+            this.visible = false
             this.destroyPop()
         }, 300)
     }
@@ -77,6 +85,7 @@ export default class Tooltip {
         this.destroyPop()
         this.$el.removeEventListener('mouseenter', this.show)
         this.$el.removeEventListener('mouseleave', this.hide)
+        if(this.timer) clearTimeout(this.timer)
     }
 
     static config = {
