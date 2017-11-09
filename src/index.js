@@ -6,8 +6,9 @@ import expandTransition from './components/expandTransition'
 import { tabbar, tab } from './components/tabbar'
 import { tabs, tabPanel } from './components/tabs'
 import popover from './components/popover'
+import tooltip from './components/tooltip'
 
-export const install = Vue => {
+export const install = (Vue, option = {}) => {
     Vue.component(divider.name, divider)
     Vue.component(list.name, list)
     Vue.component(listItem.name, listItem)
@@ -17,6 +18,7 @@ export const install = Vue => {
     Vue.component(tabs.name, tabs)
     Vue.component(tabPanel.name, tabPanel)
     Vue.use(popover)
+    Vue.use(tooltip, option.tooltip)
 }
 
 export default {

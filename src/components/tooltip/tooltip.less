@@ -1,0 +1,120 @@
+@import '~_/styles/import';
+
+.ui-tooltip {
+  display: none;
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+  transition-property: opacity, transform;
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
+  will-change: opacity, transform;
+
+  &-content {
+    padding: @tooltip-padding;
+    font-size: @tooltip-fontSize;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    border-radius: 3px;
+  }
+
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: @tooltip-arrow solid transparent;
+  }
+
+  &[x-placement^='top'] {
+    padding-bottom: @tooltip-arrow + 3px;
+    .ui-tooltip-arrow {
+      bottom: @tooltip-arrow / -2;
+    }
+  }
+  &[x-placement^='right'] {
+    padding-left: @tooltip-arrow + 3px;
+    .ui-tooltip-arrow {
+      left: @tooltip-arrow / -2;
+    }
+  }
+  &[x-placement^='bottom'] {
+    padding-top: @tooltip-arrow + 3px;
+    .ui-tooltip-arrow {
+      top: @tooltip-arrow / -2;
+    }
+  }
+  &[x-placement^='left'] {
+    padding-right: @tooltip-arrow + 3px;
+    .ui-tooltip-arrow {
+      right: @tooltip-arrow / -2;
+    }
+  }
+
+  &.in {
+    visibility: visible;
+    opacity: 1;
+    transform: none
+  }
+
+  &-light {
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,.14));
+
+    .ui-tooltip-content {
+      color: @text-base-color;
+      background: #fff;
+    }
+
+    &[x-placement^='top'] {
+      .ui-tooltip-arrow {
+        border-top-color: #fff;
+      }
+    }
+    &[x-placement^='left'] {
+      .ui-tooltip-arrow {
+        border-left-color: #fff;
+      }
+    }
+    &[x-placement^='right'] {
+      .ui-tooltip-arrow {
+        border-right-color: #fff;
+      }
+    }
+    &[x-placement^='bottom'] {
+      .ui-tooltip-arrow {
+        border-bottom-color: #fff;
+      }
+    }
+  }
+  &-dark {
+    .ui-tooltip-content {
+      color: #fff;
+      background: @tooltip-dark;
+    }
+
+    &[x-placement^='top'] {
+      .ui-tooltip-arrow {
+        border-top-color: @tooltip-dark;
+      }
+    }
+    &[x-placement^='left'] {
+      .ui-tooltip-arrow {
+        border-left-color: @tooltip-dark;
+      }
+    }
+    &[x-placement^='right'] {
+      .ui-tooltip-arrow {
+        border-right-color: @tooltip-dark;
+      }
+    }
+    &[x-placement^='bottom'] {
+      .ui-tooltip-arrow {
+        border-bottom-color: @tooltip-dark;
+      }
+    }
+  }
+}
