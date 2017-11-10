@@ -29,7 +29,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 
 .ui-tab {
     padding: 8px 16px;

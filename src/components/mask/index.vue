@@ -10,7 +10,7 @@
     </transition>
 </template>
 <script>
-import zIndex from '_/mixins/zIndex'
+import zIndex from '../../mixins/zIndex'
 
 export default {
     name: 'uiMask',
@@ -59,7 +59,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import "~_/styles/import";
+@import "../../styles/import";
 
 .ui-mask {
     position: absolute;

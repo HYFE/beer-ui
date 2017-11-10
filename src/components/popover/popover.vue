@@ -22,9 +22,9 @@
 // import Vue from 'vue'
 import { bus } from './directive'
 import popManage from './popManage'
-import Popper from '_/libs/popper'
-import zIndex from '_/mixins/zIndex'
-import transclude from '_/directives/transclude'
+import Popper from '../../libs/popper'
+import zIndex from '../../mixins/zIndex'
+import transclude from '../../directives/transclude'
 
 const component = {
     name: 'uiPopover',
@@ -202,7 +202,7 @@ const component = {
 export default component
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 
 @panel-padding: 8px;
 @arrow-offset: -3px;

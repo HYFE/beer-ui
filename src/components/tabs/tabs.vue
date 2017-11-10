@@ -42,7 +42,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 
 .ui-tabs {
     overflow: hidden;

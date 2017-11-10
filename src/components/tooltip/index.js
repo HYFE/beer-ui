@@ -1,5 +1,5 @@
 import './tooltip.less'
-import Popper from '_/libs/popper'
+import Popper from '../../libs/popper'
 
 export default class Tooltip {
     constructor(el, { text, placement, theme = '' }) {

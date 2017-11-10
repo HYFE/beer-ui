@@ -4,14 +4,14 @@ import router from './router'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github-gist.css'
 import marked from 'marked'
-import comments from '_'
+import BeerUI from '../src'
 import codeBlock from './components/codeBlock'
 import docsPage from './components/docsPage'
 
 Vue.config.productionTip = false
 Vue.config.debug = true
 
-Vue.use(comments)
+Vue.use(BeerUI)
 Vue.component(codeBlock.name, codeBlock)
 Vue.component(docsPage.name, docsPage)
 

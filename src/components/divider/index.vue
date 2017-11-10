@@ -19,7 +19,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 
 .ui-divider {
     position: relative;

@@ -1,4 +1,4 @@
-import whereClose from '_/directives/whereClose'
+import whereClose from '../../directives/whereClose'
 
 const popStack = []
 

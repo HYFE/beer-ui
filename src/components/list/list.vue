@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 
 .ui-list {
     width: 100%;

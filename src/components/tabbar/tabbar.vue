@@ -31,7 +31,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import '~_/styles/import';
+@import '../../styles/import';
 .ui-tabbar {
     display: flex;
     margin-bottom: @tab-active-border-weight * -1;
