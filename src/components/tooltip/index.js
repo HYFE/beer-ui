@@ -1,5 +1,6 @@
 import './tooltip.less'
 import Popper from '../../libs/popper'
+import nextIndex from '../../utils/zIndex'
 
 export default class Tooltip {
     constructor(el, { text, placement, theme = '' }) {
@@ -32,6 +33,7 @@ export default class Tooltip {
         }
         tooltip.className = `ui-tooltip ui-tooltip-${this.theme}`
         tooltip.innerHTML = `<div class="ui-tooltip-arrow"></div><div class="ui-tooltip-content">${this.text}</div>`
+        tooltip.style.zIndex = nextIndex
         this.tooltip = tooltip
     }
 
@@ -68,8 +70,9 @@ export default class Tooltip {
     }
 
     hide = e => {
-        this.tooltip.classList.remove('in')
+        if(this.tooltip) this.tooltip.classList.remove('in')
         if(this.timer) clearTimeout(this.timer)
+        if(!this.popover) return
         this.timer = setTimeout(() => {
             this.visible = false
             this.destroyPop()

@@ -1,9 +1,4 @@
-let zIndex = 2000
-
-const nextIndex = () => {
-    zIndex += 1
-    return zIndex
-}
+import nextIndex from '../utils/zIndex'
 
 export default {
     props: {

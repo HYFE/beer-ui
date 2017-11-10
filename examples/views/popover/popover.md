@@ -48,14 +48,14 @@ value|单例弹窗时使用，传入单例弹窗及弹窗内显示内容组件�
 {
     component, // 弹窗里的内容组件
 
-    // 内容组件的 poprs 参数
+    // 内容组件的 props 参数
     /* 略... */
 
     events: {}, // 内容组件的事件监听
 
     popover: { // popover 参数传递
 
-        // popover: poprs
+        // popover: props
         /* 略... */
 
         events: {} // popover: events
