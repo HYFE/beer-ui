@@ -11,7 +11,7 @@ function resolve(dir) {
 module.exports = {
     entry: {
         docs: './examples/main.js',
-        components: './src/index.js'
+        beer: './src/index.js'
     },
     output: {
         path: config.build.assetsRoot,

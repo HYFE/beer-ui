@@ -27,9 +27,9 @@ delay|Number|延迟显示（`ms`）|`500`
 ```js
 // 1. 引入全部组件
 import Vue from 'vue'
-import Components from 'vue-components'
+import BeerUI from 'beer-ui'
 
-Vue.use(Components, {
+Vue.use(BeerUI, {
     tooltip: {
         /* 你的配置 */
     }
@@ -39,7 +39,7 @@ Vue.use(Components, {
 ```js
 // 2. 只引用 tooltip
 import Vue from 'vue'
-import tooltip from 'vue-components/src/components/tooltip'
+import tooltip from 'beer-ui/src/components/tooltip'
 
 Vue.use(tooltip, {
     /* 你的配置 */
