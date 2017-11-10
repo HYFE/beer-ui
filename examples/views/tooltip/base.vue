@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-tooltip:top="'top'">top</button>
+        <button v-tooltip:top="top" @click="top = 'change'">top</button>
         <button v-tooltip:left="'left'">left</button>
         <button v-tooltip:right="'right'">right</button>
         <button v-tooltip:bottom="'bottom'">bottom</button>
@@ -8,6 +8,11 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            top: 'top'
+        }
+    }
 }
 </script>
 <style scoped>

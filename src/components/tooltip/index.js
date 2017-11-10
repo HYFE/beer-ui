@@ -33,7 +33,7 @@ export default class Tooltip {
         }
         tooltip.className = `ui-tooltip ui-tooltip-${this.theme}`
         tooltip.innerHTML = `<div class="ui-tooltip-arrow"></div><div class="ui-tooltip-content">${this.text}</div>`
-        tooltip.style.zIndex = nextIndex
+        tooltip.style.zIndex = nextIndex()
         this.tooltip = tooltip
     }
 
@@ -79,6 +79,14 @@ export default class Tooltip {
         }, 300)
     }
 
+    update({ text }) {
+        this.text = text
+        if(this.tooltip && this.visible) {
+            this.tooltip.querySelector('.ui-tooltip-content').innerHTML = text
+            this.popover && this.popover.update()
+        }
+    }
+
     bind() {
         this.$el.addEventListener('mouseenter', this.show)
         this.$el.addEventListener('mouseleave', this.hide)
@@ -112,9 +120,11 @@ export default class Tooltip {
                 })
                 el.__TOOLTIP = tooltip
             },
-            updata(el, { value, oldValue }) {
+            update(el, { value, oldValue }) {
                 if(oldValue && value !== oldValue) {
-                    el.__TOOLTIP.text = value
+                    el.__TOOLTIP.update({
+                        text: value
+                    })
                 }
             },
             unbind(el) {
