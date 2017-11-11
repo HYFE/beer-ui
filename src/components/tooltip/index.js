@@ -128,8 +128,10 @@ export default class Tooltip {
                 }
             },
             unbind(el) {
-                el.__TOOLTIP.unbind()
-                delete el.__TOOLTIP
+                if(el.__TOOLTIP) {
+                    el.__TOOLTIP.unbind()
+                    delete el.__TOOLTIP
+                }
             }
         })
     }

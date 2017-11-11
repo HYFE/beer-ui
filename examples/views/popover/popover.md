@@ -37,7 +37,7 @@ updatePopover|弹窗更新时触发|`dataObject`
 参数|描述
 ---|---
 arg|指令参数与要关联的`popover`组件的`name`属性值一致，单例弹窗忽略该项。
-modifiers|修饰符用来表示触发的事件，支持：`click`、`hover`、`focus`。省略该项时为`click`。
+modifiers|修饰符主要用来表示触发的事件，支持：`click`、`hover`、`focus`。省略该项时为`click`。还有一个作用是动态`name`，比如在一个循环中，你无法拼接一个指令`arg`值，你可以使用`v-popover.name="popName"`这种方式。
 value|单例弹窗时使用，传入单例弹窗及弹窗内显示内容组件的参数和事件等
 
 ### 单例弹窗

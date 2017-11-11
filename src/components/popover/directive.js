@@ -68,10 +68,11 @@ class PopTrigger {
 }
 
 export default {
-    inserted(el, { value, modifiers, arg }) {
-        const trigger = Object.keys(modifiers)[0]
+    inserted(el, { value, modifiers = {}, arg }) {
+        const name = modifiers.name ? value : arg
+        const trigger = modifiers.hover ? 'hover' : (modifiers.focus ? 'focus' : 'click')  // eslint-disable-line
         const instance = new PopTrigger(el, {
-            name: arg,
+            name,
             trigger,
             options: value
         })
