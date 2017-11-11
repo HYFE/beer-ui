@@ -1,5 +1,6 @@
 <template>
-    <div class="ui-list">
+    <div class="ui-list"
+        :class="{ thin }">
         <slot></slot>
     </div>
 </template>
@@ -20,7 +21,8 @@ export default {
         alignPadding: {
             type: Number,
             default: 20
-        }
+        },
+        thin: Boolean
     }
 }
 </script>
@@ -29,6 +31,13 @@ export default {
 
 .ui-list {
     width: 100%;
+    padding-top: @divider-spacing;
+    padding-bottom: @divider-spacing;
     overflow: hidden;
+    &.thin {
+        .ui-item-inner {
+            padding: @list-item-padding-thin
+        }
+    }
 }
 </style>

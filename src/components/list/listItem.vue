@@ -54,8 +54,13 @@
     </div>
 </template>
 <script>
+import expandTransition from '../expandTransition'
+
 export default {
     name: 'uiListitem',
+    components: {
+        expandTransition
+    },
     props: {
         to: [Object, String],
         children: Array,

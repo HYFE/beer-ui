@@ -7,6 +7,7 @@
         <component :is="component"
                    v-bind="props"
                    v-on="events"
+                   v-if="visible"
                    @close:popover="closePopover"></component>
     </ui-popover>
 </template>
