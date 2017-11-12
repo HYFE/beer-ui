@@ -2,6 +2,8 @@
 
 Vue components library.
 
+还在持续开发中……
+
 ## 安装
 ```bash
 npm i beer-ui -S

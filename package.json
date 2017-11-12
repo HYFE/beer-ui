@@ -73,5 +73,6 @@
   },
   "browserslist": [
     "last 2 versions"
-  ]
+  ],
+  "repository": "https://github.com/HYFE/beer-ui"
 }
