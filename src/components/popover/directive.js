@@ -78,6 +78,11 @@ export default {
         })
         el.__POP_TRIGGER = instance
     },
+    update(el, { value }) {
+        if(value) {
+            el.__POP_TRIGGER.options = value
+        }
+    },
     unbind(el) {
         el.__POP_TRIGGER.destroy()
         delete el.__POP_TRIGGER
