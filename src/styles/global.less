@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box
+}
+
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: @font-family-base;
+  line-height: 1.5;
+  color: @text-base-color;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+ul.default,
+ol.default {
+  padding-left: 30px
+}
+
+ul.default {
+  list-style: disc
+}
+
+ol.default {
+  list-style: decimal
+}
+
+img {
+  width: 100%
+}
+
+.anim-move-right-enter,
+.anim-move-left-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(100%);
+}
+.anim-move-left-enter,
+.anim-move-right-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.anim-move-right-enter-active,
+.anim-move-right-leave-active,
+.anim-move-left-enter-active,
+.anim-move-left-leave-active {
+  transition: opacity .3s, transform .3s;
+  will-change: transform;
+}
