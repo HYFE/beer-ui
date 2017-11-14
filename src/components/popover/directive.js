@@ -20,6 +20,11 @@ class PopTrigger {
         }
     }
 
+    update({ options }) {
+        this.options = options
+        bus.$emit('singleton:popover.sync', this.options)
+    }
+
     show(e) {
         bus.$emit(`show:popover-${this.name}`, this.payload(e))
     }
@@ -78,9 +83,11 @@ export default {
         })
         el.__POP_TRIGGER = instance
     },
-    update(el, { value }) {
-        if(value) {
-            el.__POP_TRIGGER.options = value
+    update(el, { value, oldValue }) {
+        if(el.__POP_TRIGGER && value && value !== oldValue) {
+            el.__POP_TRIGGER.update({
+                options: value
+            })
         }
     },
     unbind(el) {

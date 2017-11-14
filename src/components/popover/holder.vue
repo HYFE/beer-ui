@@ -46,13 +46,20 @@ export default {
         },
         closePopover() {
             this.visible = false
+        },
+        syncValue(options) {
+            const { events, ...props } = options
+            this.props = props
+            this.events = events
         }
     },
     created () {
         bus.$on('singleton:popover', this.handler)
+        bus.$on('singleton:popover.sync', this.syncValue)
     },
     destroyed () {
         bus.$off('singleton:popover', this.handler)
+        bus.$off('singleton:popover.sync', this.syncValue)
     }
 }
 </script>
