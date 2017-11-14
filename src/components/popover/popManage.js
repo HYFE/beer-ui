@@ -18,7 +18,6 @@ export default {
             if(target.__POP_TRIGGER && target.__POP_TRIGGER.name === this.name) return
             const lastPop = popStack[popStack.length - 1]
             if(lastPop === this.name) {
-                console.log('hideOnClickOutSide', this.name)
                 this.hide()
             }
         }

@@ -20,9 +20,12 @@ class PopTrigger {
         }
     }
 
-    update({ options }) {
-        this.options = options
-        bus.$emit('singleton:popover.sync', this.options)
+    update({ name, options }) {
+        if(name) this.name = name
+        if(options) {
+            this.options = options
+            bus.$emit('singleton:popover.sync', this.options)
+        }
     }
 
     show(e) {
@@ -83,11 +86,10 @@ export default {
         })
         el.__POP_TRIGGER = instance
     },
-    update(el, { value, oldValue }) {
+    update(el, { value, oldValue, modifiers = {} }) {
         if(el.__POP_TRIGGER && value && value !== oldValue) {
-            el.__POP_TRIGGER.update({
-                options: value
-            })
+            const updateVal = modifiers.name ? { name: value } : { options: value }
+            el.__POP_TRIGGER.update(updateVal)
         }
     },
     unbind(el) {

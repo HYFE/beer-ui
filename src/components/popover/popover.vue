@@ -2,6 +2,7 @@
     <transition :name="transitionName">
         <div class="ui-popover"
              :style="{ zIndex: cssIndex }"
+             :class="{ __arrow: arrow }"
              v-if="exist && (reset ? visible : true)"
              v-show="visible"
              v-transclude="transclude"
@@ -9,7 +10,8 @@
             <div class="ui-popover-panel"
                  v-where-close="{ visible, handle: hideOnClickOutSide}"
                  :style="{ width: cssWidth }">
-                <div class="ui-popover-arrow"></div>
+                <div class="ui-popover-arrow"
+                     v-if="arrow"></div>
                 <div class="ui-popover-content"
                      :style="{ maxHeight }">
                     <slot></slot>
@@ -204,7 +206,8 @@ export default component
 <style lang="less">
 @import '../../styles/import';
 
-@panel-padding: 8px;
+@panel-padding: 4px;
+@panel-arrow-padding: 5px + @panel-padding;
 @arrow-offset: -3px;
 
 .ui-popover {
@@ -212,49 +215,72 @@ export default component
     top: -100%;
     left: -100%;
     z-index: -1;
-    transition: opacity .4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
 
     &[x-placement^='top'] {
-        .ui-popover- {
-            &panel {
-                padding-bottom: @panel-padding;
-            }
-            &arrow {
-                bottom: @arrow-offset;
-                border-top-color: #fff;
-            }
+        .ui-popover-panel {
+            padding-bottom: @panel-padding;
         }
     }
     &[x-placement^='right'] {
-        .ui-popover- {
-            &panel {
-                padding-left: @panel-padding;
-            }
-            &arrow {
-                left: @arrow-offset;
-                border-right-color: #fff;
-            }
+        .ui-popover-panel {
+            padding-left: @panel-padding;
         }
     }
     &[x-placement^='bottom'] {
-        .ui-popover- {
-            &panel {
-                padding-top: @panel-padding;
-            }
-            &arrow {
-                top: @arrow-offset;
-                border-bottom-color: #fff;
-            }
+        .ui-popover-panel {
+            padding-top: @panel-padding;
         }
     }
     &[x-placement^='left'] {
-        .ui-popover- {
-            &panel {
-                padding-right: @panel-padding;
+        .ui-popover-panel {
+            padding-right: @panel-padding;
+        }
+    }
+
+    &.__arrow {
+        &[x-placement^='top'] {
+            .ui-popover- {
+                &panel {
+                    padding-bottom: @panel-arrow-padding;
+                }
+                &arrow {
+                    bottom: @arrow-offset;
+                    border-top-color: #fff;
+                }
             }
-            &arrow {
-                right: @arrow-offset;
-                border-left-color: #fff;
+        }
+        &[x-placement^='right'] {
+            .ui-popover- {
+                &panel {
+                    padding-left: @panel-arrow-padding;
+                }
+                &arrow {
+                    left: @arrow-offset;
+                    border-right-color: #fff;
+                }
+            }
+        }
+        &[x-placement^='bottom'] {
+            .ui-popover- {
+                &panel {
+                    padding-top: @panel-arrow-padding;
+                }
+                &arrow {
+                    top: @arrow-offset;
+                    border-bottom-color: #fff;
+                }
+            }
+        }
+        &[x-placement^='left'] {
+            .ui-popover- {
+                &panel {
+                    padding-right: @panel-arrow-padding;
+                }
+                &arrow {
+                    right: @arrow-offset;
+                    border-left-color: #fff;
+                }
             }
         }
     }

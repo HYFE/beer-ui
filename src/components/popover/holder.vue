@@ -31,24 +31,22 @@ export default {
         }
     },
     methods: {
-        handler ({ component, popover = {}, ...options }, payload, cb) {
-            // this.visible = false
-            popover.name = 'singleton'
-            const { events: popoverEvents, ...popoverProps } = popover
-            const { events, ...props } = options
-            this.popoverProps = popoverProps
-            this.popoverEvents = popoverEvents
-            this.props = props
-            this.events = events
-            this.component = component
+        handler (options, payload, cb) {
+            this.syncValue(options, true)
+            this.component = options.component
             if(!this.visible) this.$nextTick(cb)
             else this.$refs.pop.updatePopper(payload)
         },
         closePopover() {
             this.visible = false
         },
-        syncValue(options) {
+        syncValue({ component, popover = {}, ...options }, changed) {
+            if(!changed && this.component && this.component !== component) return
+            popover.name = 'singleton'
+            const { events: popoverEvents, ...popoverProps } = popover
             const { events, ...props } = options
+            this.popoverProps = popoverProps
+            this.popoverEvents = popoverEvents
             this.props = props
             this.events = events
         }
