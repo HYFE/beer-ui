@@ -12,8 +12,8 @@
                @focus="e => $emit('focus', e)"
                @blur="e => $emit('blur', e)"
                @input="e => !readonly?$emit('input', e.target.value):''"
-               @change="value => !readonly?$emit('change', value):''"
-               @keyup.enter="e => $emit('save', e.target.value)">
+               @change="e => !readonly?$emit('change', e.target.value):''"
+               @keyup.enter="e => !readonly?$emit('save', e.target.value):''">
         <textarea-component v-else
                             :value="value"
                             :readonly="readonly"

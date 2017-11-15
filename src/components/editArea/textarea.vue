@@ -4,11 +4,12 @@
                 v-model="content"
                 :focus="focus"
                 :maxlength="maxlength"
+                :readonly="readonly"
                 @focus="e => $emit('focus', e)"
                 @blur="e => $emit('blur', e)"
                 @input="e => {resize();$emit('input', e.target.value)}"
-                @change="$emit('change', content)"
-                @keyup.enter="e => $emit('save', e.target.value)"></textarea>
+                @change="!readonly?$emit('change', content):''"
+                @keyup.enter="e => !readonly?$emit('save', e.target.value):''"></textarea>
 </template>
 <script>
 export default {
@@ -19,7 +20,8 @@ export default {
             type: Boolean,
             default: false
         },
-        maxlength: Number
+        maxlength: Number,
+        readonly: Boolean
     },
     data() {
         return {
