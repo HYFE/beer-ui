@@ -6,10 +6,9 @@
                 :maxlength="maxlength"
                 @focus="e => $emit('focus', e)"
                 @blur="e => $emit('blur', e)"
-                @input="$emit('input', content)"
+                @input="e => {resize();$emit('input', e.target.value)}"
                 @change="$emit('change', content)"
-                @keyup.enter="e => $emit('save', e.target.value)"
-                :style="{height: textareaHeight?`${textareaHeight}px`:''}"></textarea>
+                @keyup.enter="e => $emit('save', e.target.value)"></textarea>
 </template>
 <script>
 export default {
@@ -31,12 +30,33 @@ export default {
     methods: {
         initValue() {
             this.content = this.value
+        },
+        resize() {
+            const textarea = this.$refs.textarea
+            this.changeOverflow(textarea)
+            this.setHeight(textarea)
+        },
+        changeOverflow(ta) {
+            const overflowY = window.getComputedStyle(ta, null).overflowY
+            if(overflowY === 'hidden') {
+                ta.style.overflowY = 'scroll'
+                ta.style.overflowY = 'hidden'
+                return
+            }
+            ta.style.overflowY = 'hidden'
+        },
+        setHeight(ta) {
+            const originalHeight = ta.style.height
+            ta.style.height = ''
+            const endHeight = ta.scrollHeight
+            if(endHeight === 0) {
+                ta.style.height = originalHeight
+                return
+            }
+            ta.style.height = `${endHeight}px`
         }
     },
     watch: {
-        content() {
-            this.textareaHeight = this.$refs.textarea.scrollHeight
-        },
         value(val) {
             this.initValue()
         }
