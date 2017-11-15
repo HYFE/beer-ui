@@ -57,6 +57,7 @@ export default {
     &-input {
         border: 0;
         padding: 2px;
+        width: 100%;
     }
     &-editable {
         &:focus,
