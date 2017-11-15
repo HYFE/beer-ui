@@ -5,6 +5,7 @@
                 :focus="focus"
                 :maxlength="maxlength"
                 :readonly="readonly"
+                rows="1"
                 @focus="e => $emit('focus', e)"
                 @blur="e => $emit('blur', e)"
                 @input="e => {resize();$emit('input', e.target.value)}"
@@ -65,6 +66,7 @@ export default {
     },
     mounted() {
         this.initValue()
+        this.resize()
     }
 }
 </script>
@@ -76,5 +78,6 @@ export default {
     overflow: hidden;
     padding: 2px;
     border: 0;
+    width: 100%;
 }
 </style>
