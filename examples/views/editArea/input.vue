@@ -1,5 +1,8 @@
 <template>
-    <ui-edit-area :value="value"></ui-edit-area>
+    <div>
+        <ui-edit-area v-model="value"></ui-edit-area>
+        {{value}}
+    </div>
 </template>
 <script>
 export default {

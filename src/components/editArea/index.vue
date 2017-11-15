@@ -2,19 +2,30 @@
     <div class="ui-edit-area">
         <input type="text"
                v-if="!isTextarea"
-               v-model="value"
+               :value="value"
                :readonly="readonly"
+               :maxlength="maxlength"
+               :placeholder="placeholder"
                class="ui-edit-area-input"
-               @focus="$emit('focus')"
-               @blur="$emit('blur')"
-               @input="value => $emit('input', value)"
-               @change="value => $emit('change', value)">
+               :class="{'ui-edit-area-editable': !readonly}"
+               :style="inputStyle"
+               @focus="e => $emit('focus', e)"
+               @blur="e => $emit('blur', e)"
+               @input="e => !readonly?$emit('input', e.target.value):''"
+               @change="value => !readonly?$emit('change', value):''"
+               @keyup.enter="e => $emit('save', e.target.value)">
         <textarea-component v-else
                             :value="value"
-                            @focus="$emit('focus')"
-                            @blur="$emit('blur')"
+                            :readonly="readonly"
+                            :maxlength="maxlength"
+                            :placeholder="placeholder"
+                            :class="{'ui-edit-area-editable': !readonly}"
+                            :style="inputStyle"
+                            @focus="e => $emit('focus', e)"
+                            @blur="e => $emit('blur', e)"
                             @input="value => $emit('input', value)"
-                            @change="value => $emit('change', value)"></textarea-component>
+                            @change="value => $emit('change', value)"
+                            @save="value => $emit('save', value)"></textarea-component>
     </div>
 </template>
 <script>
@@ -30,11 +41,12 @@ export default {
             default: false
         },
         inputStyle: Object,
-        maxLength: Number,
+        maxlength: Number,
         readonly: {
             type: Boolean,
             default: false
-        }
+        },
+        placeholder: ''
     }
 }
 </script>
@@ -43,12 +55,13 @@ export default {
 
 .ui-edit-area {
     &-input {
-        border: 2px solid transparent;
+        border: 0;
         padding: 2px;
-        border-radius: 2px;
+    }
+    &-editable {
         &:focus,
         &:hover {
-            border-color: @theme-color;
+            background-color: @border-color;
         }
     }
 }
