@@ -5,6 +5,7 @@
                 :focus="focus"
                 :maxlength="maxlength"
                 :readonly="readonly"
+                :spellcheck="false"
                 rows="1"
                 @focus="e => $emit('focus', e)"
                 @blur="e => $emit('blur', e)"
@@ -76,8 +77,9 @@ export default {
 .ui-textarea {
     resize: none;
     overflow: hidden;
-    padding: 2px;
+    padding: 4px;
     border: 0;
     width: 100%;
+    background-color: transparent;
 }
 </style>

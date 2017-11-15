@@ -22,5 +22,4 @@ readonly|Boolean|规定输入字段为只读|false
 focus|当元素获得焦点时触发|Event
 blur|当元素失去焦点时触发|Event
 input|当输入的值发生变化时触发|value
-change|当元素失去焦点并且输入的值发生变化时触发|value
-save|当按下enter键时触发|value
+change|当输入的值发生变化并且(失去焦点或者按下enter键)时触发|value
