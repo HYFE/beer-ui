@@ -9,6 +9,7 @@
             <div class="ui-item-content">
                 <slot :to="to"></slot>
             </div>
+            <slot name="right"></slot>
             <div class="ui-item-right"
                  v-if="children">
                 <i class="icon-angle-up ui-item-arrow"></i>
@@ -25,6 +26,7 @@
             <div class="ui-item-content">
                 <slot :to="to"></slot>
             </div>
+            <slot name="right"></slot>
             <div class="ui-item-right"
                  v-if="children">
                 <i class="icon-angle-up ui-item-arrow"></i>
