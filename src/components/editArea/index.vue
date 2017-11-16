@@ -26,7 +26,7 @@
                             @blur="e => $emit('blur', e)"
                             @input="value => $emit('input', value)"
                             @change="value => $emit('change', value)"></textarea-component>
-        <i class="icon-pencil ui-edit-area-icon"></i>
+        <slot></slot>
     </div>
 </template>
 <script>
@@ -62,23 +62,17 @@ export default {
     display: flex;
     border-radius: 4px;
     align-items: center;
+    width: 100%;
     &-input {
         border: 0;
         padding: 4px;
         width: 100%;
         background-color: transparent;
     }
-    &-icon {
-        padding-top: 4px;
-        color: transparent;
-        align-self: flex-start;
-    }
+
     &:focus,
     &:hover {
         background-color: @border-color;
-        .ui-edit-area-icon {
-            color: @text-light-color;
-        }
     }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <ui-edit-area v-model="value"></ui-edit-area>
+        <ui-edit-area v-model="value"
+                      iconClass="icon-pencil"></ui-edit-area>
         {{value}}
     </div>
 </template>
