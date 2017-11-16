@@ -13,7 +13,8 @@
                 <div class="ui-popover-arrow"
                      v-if="arrow"></div>
                 <div class="ui-popover-content"
-                     :style="{ maxHeight }">
+                     :style="{ maxHeight }"
+                     :class="contentClass">
                     <slot></slot>
                 </div>
             </div>
@@ -69,7 +70,8 @@ const component = {
         reset: { // 重绘 or 保留状态
             type: Boolean,
             default: false
-        }
+        },
+        contentClass: String
     },
     data () {
         return {
