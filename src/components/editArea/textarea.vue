@@ -1,5 +1,5 @@
 <template>
-    <textarea class="ui-textarea"
+    <textarea class="ui-edit-area-textarea"
                 ref="textarea"
                 v-model="content"
                 :focus="focus"
@@ -77,19 +77,20 @@ export default {
     },
     mounted() {
         this.initValue()
-        this.resize()
+        this.$nextTick(() => {
+            this.resize()
+        })
     }
 }
 </script>
 <style lang="less">
 @import '../../styles/variables';
 
-.ui-textarea {
+.ui-edit-area-textarea {
     resize: none;
     overflow: hidden;
-    padding: 4px;
-    border: 0;
-    width: 100%;
-    background-color: transparent;
+    // padding: 4px;
+    // width: 100%;
+    // background-color: transparent;
 }
 </style>

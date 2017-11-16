@@ -26,7 +26,6 @@
                             @blur="e => $emit('blur', e)"
                             @input="value => $emit('input', value)"
                             @change="value => $emit('change', value)"></textarea-component>
-        <slot></slot>
     </div>
 </template>
 <script>
@@ -60,19 +59,25 @@ export default {
 
 .ui-edit-area {
     display: flex;
-    border-radius: 4px;
     align-items: center;
     width: 100%;
-    &-input {
+    &-input,
+    &-textarea {
         border: 0;
         padding: 4px;
         width: 100%;
         background-color: transparent;
     }
-
-    &:focus,
-    &:hover {
-        background-color: @border-color;
+    &-editable {
+        border: 2px solid transparent;
+        border-radius: 4px;
+        &:hover {
+            background-color: @border-color;
+        }
+        &:focus {
+            background-color: #fff;
+            border-color: @theme-color;
+        }
     }
 }
 </style>

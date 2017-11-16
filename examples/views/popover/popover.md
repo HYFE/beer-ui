@@ -21,6 +21,7 @@ fullHeight|Boolean|是否自动填充高度到屏幕边界|-
 transitionName|String|设置弹窗显示的过渡名称（`transition`）|`fade-in`
 mountPoint|Boolean/String|弹窗挂载点。<br>`false`: 组件当前位置；`true`:`document.body`；`String`:传入一个 DOM 选择器。|`true`
 reset|Boolean|弹窗关闭时是否保留状态（为`true`时将使用`v-if`控制显示状态）|`false`
+contentClass|String|弹窗内容面板的自定义样式类|-
 
 ### Events
 
@@ -41,6 +42,14 @@ modifiers|修饰符主要用来表示触发的事件，支持：`click`、`hover
 value|单例弹窗时使用，传入单例弹窗及弹窗内显示内容组件的参数和事件等
 
 ### 单例弹窗
+
+#### 全局配置
+
+仅用一个唯一的`props`用于公共的`popover`设置，可设置项对应`popover:props`。
+
+```html
+<ui-popover-holder :settings="yourSettings"></ui-popover-holder>
+```
 
 #### 完整的参数据结构参考
 
