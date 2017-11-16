@@ -9,9 +9,9 @@
                 rows="1"
                 @focus="e => $emit('focus', e)"
                 @blur="e => $emit('blur', e)"
-                @input="e => {resize();$emit('input', e.target.value)}"
+                @input="e => {resize();$emit('input', content)}"
                 @change="!readonly?$emit('change', content):''"
-                @keyup.enter="e => !readonly?$emit('save', e.target.value):''"></textarea>
+                @keydown="keydownEvent"></textarea>
 </template>
 <script>
 export default {
@@ -23,7 +23,11 @@ export default {
             default: false
         },
         maxlength: Number,
-        readonly: Boolean
+        readonly: Boolean,
+        wrapable: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {
@@ -34,6 +38,12 @@ export default {
     methods: {
         initValue() {
             this.content = this.value
+        },
+        keydownEvent(e) {
+            if(e.keyCode === 13 && !this.wrapable) {
+                e.preventDefault()
+                this.$emit('change', this.content)
+            }
         },
         resize() {
             const textarea = this.$refs.textarea

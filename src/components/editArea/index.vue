@@ -21,14 +21,12 @@
                             :placeholder="placeholder"
                             :class="{'ui-edit-area-editable': !readonly}"
                             :style="inputStyle"
+                            :wrapable="wrapable"
                             @focus="e => $emit('focus', e)"
                             @blur="e => $emit('blur', e)"
                             @input="value => $emit('input', value)"
-                            @change="value => $emit('change', value)"
-                            @save="value => $emit('save', value)"></textarea-component>
-        <!-- <div class="ti-input-icon"> -->
+                            @change="value => $emit('change', value)"></textarea-component>
         <i class="icon-pencil ui-edit-area-icon"></i>
-        <!-- </div>                     -->
     </div>
 </template>
 <script>
@@ -49,7 +47,11 @@ export default {
             type: Boolean,
             default: false
         },
-        placeholder: ''
+        placeholder: '',
+        wrapable: {
+            type: Boolean,
+            default: true
+        }
     }
 }
 </script>
