@@ -43,6 +43,14 @@ value|单例弹窗时使用，传入单例弹窗及弹窗内显示内容组件�
 
 ### 单例弹窗
 
+#### 全局配置
+
+仅用一个唯一的`props`用于公共的`popover`设置，可设置项对应`popover:props`。
+
+```html
+<ui-popover-holder :settings="yourSettings"></ui-popover-holder>
+```
+
 #### 完整的参数据结构参考
 
 ```js

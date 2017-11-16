@@ -17,6 +17,12 @@ import uiPopover from './popover'
 
 export default {
     name: 'uiPopoverHolder',
+    props: {
+        settings: {
+            type: Object,
+            default: {}
+        }
+    },
     components: {
         uiPopover
     },
@@ -45,7 +51,7 @@ export default {
             popover.name = 'singleton'
             const { events: popoverEvents, ...popoverProps } = popover
             const { events, ...props } = options
-            this.popoverProps = popoverProps
+            this.popoverProps = { ...this.settings, ...popoverProps }
             this.popoverEvents = popoverEvents
             this.props = props
             this.events = events
