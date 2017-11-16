@@ -42,7 +42,6 @@ export default {
         keydownEvent(e) {
             if(e.keyCode === 13 && !e.shiftKey && !this.wrapable) {
                 e.preventDefault()
-                this.$emit('change', this.content)
                 this.$refs.textarea.blur()
             }
         },
