@@ -1,7 +1,8 @@
 <template>
     <div>
         <ui-edit-area v-model="value"
-                    isTextarea>
+                    isTextarea
+                    :wrapable="false">
         </ui-edit-area>
         {{value}}
     </div>
