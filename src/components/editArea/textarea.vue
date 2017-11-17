@@ -36,6 +36,9 @@ export default {
         initValue() {
             // Fix JSON.parse error
             this.content = this.value.replace(/\r|\n/g, '\\n')
+            this.$nextTick(() => {
+                this.resize()
+            })
         },
         keydownEvent(e) {
             if(e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
@@ -75,9 +78,6 @@ export default {
     },
     mounted() {
         this.initValue()
-        this.$nextTick(() => {
-            this.resize()
-        })
     }
 }
 </script>
@@ -87,8 +87,5 @@ export default {
 .ui-edit-area-textarea {
     resize: none;
     overflow: hidden;
-    // padding: 4px;
-    // width: 100%;
-    // background-color: transparent;
 }
 </style>
