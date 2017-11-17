@@ -59,6 +59,11 @@ export default {
     display: flex;
     align-items: center;
     width: 100%;
+    &-input {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: no-wrap;
+    }
     &-input,
     &-textarea {
         border: 0;
