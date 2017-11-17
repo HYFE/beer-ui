@@ -34,7 +34,8 @@ export default {
     },
     methods: {
         initValue() {
-            this.content = this.value
+            // Fix JSON.parse error
+            this.content = this.value.replace(/\r|\n/g, '\\n')
         },
         keydownEvent(e) {
             if(e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
