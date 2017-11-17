@@ -2,7 +2,7 @@
     <div class="ui-edit-area">
         <input type="text"
                v-if="!isTextarea"
-               :value="value"
+               :value.trim="value"
                :readonly="readonly"
                :maxlength="maxlength"
                :placeholder="placeholder"
@@ -47,11 +47,8 @@ export default {
             type: Boolean,
             default: false
         },
-        placeholder: '',
-        wrapable: {
-            type: Boolean,
-            default: true
-        }
+        placeholder: String,
+        wrapable: Boolean
     }
 }
 </script>
@@ -67,11 +64,12 @@ export default {
         border: 0;
         padding: 4px;
         width: 100%;
+        line-height: 1.2;
         background-color: transparent;
     }
     &-editable {
         border: 2px solid transparent;
-        border-radius: 4px;
+        border-radius: 3px;
         &:hover {
             background-color: @border-color;
         }

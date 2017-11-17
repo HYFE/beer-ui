@@ -15,7 +15,7 @@ isTextarea|Boolean|文本框类型|false
 inputStyle|Object|可直接修改输入框的样式|-
 maxlength|Number|规定输入字段的最大长度|-
 readonly|Boolean|规定输入字段为只读|false
-wrapable|Boolean|规定是否允许回车换行(当isTextarea为true时生效)|true
+wrapable|Boolean|规定是否允许`shift+enter`换行(当isTextarea为true时生效)|-
 
 ### 事件
 属性|描述|回调参数

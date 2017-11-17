@@ -1,7 +1,7 @@
 <template>
     <textarea class="ui-edit-area-textarea"
                 ref="textarea"
-                v-model="content"
+                v-model.trim="content"
                 :focus="focus"
                 :maxlength="maxlength"
                 :readonly="readonly"
@@ -24,10 +24,7 @@ export default {
         },
         maxlength: Number,
         readonly: Boolean,
-        wrapable: {
-            type: Boolean,
-            default: true
-        }
+        wrapable: Boolean
     },
     data() {
         return {
@@ -43,7 +40,7 @@ export default {
             })
         },
         keydownEvent(e) {
-            if(e.keyCode === 13 && !e.shiftKey && !this.wrapable) {
+            if(e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
                 e.preventDefault()
                 this.$refs.textarea.blur()
             }
