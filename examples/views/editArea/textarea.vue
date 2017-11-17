@@ -4,6 +4,7 @@
                     isTextarea
                     :wrapable="false">
         </ui-edit-area>
+        <button @click="value = '22222'">change</button>
         {{value}}
     </div>
 </template>

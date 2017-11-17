@@ -38,6 +38,9 @@ export default {
     methods: {
         initValue() {
             this.content = this.value
+            this.$nextTick(() => {
+                this.resize()
+            })
         },
         keydownEvent(e) {
             if(e.keyCode === 13 && !e.shiftKey && !this.wrapable) {
@@ -77,9 +80,6 @@ export default {
     },
     mounted() {
         this.initValue()
-        this.$nextTick(() => {
-            this.resize()
-        })
     }
 }
 </script>
@@ -89,8 +89,5 @@ export default {
 .ui-edit-area-textarea {
     resize: none;
     overflow: hidden;
-    // padding: 4px;
-    // width: 100%;
-    // background-color: transparent;
 }
 </style>
