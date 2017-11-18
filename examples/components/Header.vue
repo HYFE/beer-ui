@@ -5,6 +5,7 @@
                  alt="logo"
                  class="docs-logo">
             <h1 class="docs-title">{{title}}</h1>
+            <span class="docs-version" v-if="version">{{version}}</span>
         </div>
     </header>
 </template>
@@ -13,7 +14,8 @@ import logo from '../assets/logo.png'
 
 export default {
     props: {
-        title: String
+        title: String,
+        version: String
     },
     data () {
         return {
@@ -38,11 +40,22 @@ export default {
     }
     &title {
         margin: 0;
-        font-size: 20px;
+        font-size: 24px;
+        font-weight: 500;
     }
     &logo {
         width: 40px;
         margin-right: 12px;
+    }
+    &version {
+        align-self: self-end;
+        display: inline-block;
+        margin-left: 10px;
+        padding: 4px 6px;
+        line-height: 1;
+        color: #fff;
+        background: #2fb791;
+        border-radius: 3px;
     }
 }
 </style>
