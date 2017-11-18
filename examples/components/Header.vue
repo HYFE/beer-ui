@@ -48,7 +48,6 @@ export default {
         margin-right: 12px;
     }
     &version {
-        align-self: self-end;
         display: inline-block;
         margin-left: 10px;
         padding: 4px 6px;
