@@ -6,7 +6,7 @@
                  alt="Fork me on GitHub"
                  data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
         </a>
-        <v-header title="Beer ui"></v-header>
+        <v-header :title="title"></v-header>
         <main class="docs-container docs-main">
             <aside class="docs-aside">
                 <ui-list exact>
@@ -37,7 +37,8 @@ export default {
     },
     data () {
         return {
-            list
+            list,
+            title: 'BeerUI'
         }
     },
     computed: {
@@ -50,6 +51,9 @@ export default {
                 text: `${item.name} ${item.text}`
             }))
         }
+    },
+    created() {
+        this.title = document.title
     }
 }
 </script>

@@ -30,7 +30,8 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: config.dev.template,
       inject: true,
-      chunks: ['docs']
+      chunks: ['docs'],
+      title: config.dev.title
     }),
     new FriendlyErrorsPlugin()
   ]
