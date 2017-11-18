@@ -2,9 +2,9 @@
     <div>
         <!-- 实际应用中把占位组件放在根组件下 -->
         <ui-popover-holder></ui-popover-holder>
-        <button v-popover="singlePop">Click</button>
-        <button v-popover="singlePop2">Click2</button>
-        <button v-popover="singlePop3">Click3</button>
+        <button v-popover.only="singlePop">Click</button>
+        <button v-popover.only="singlePop2">Click2</button>
+        <button v-popover.only="singlePop3">Click3</button>
         <h3>{{msg}}</h3>
     </div>
 </template>

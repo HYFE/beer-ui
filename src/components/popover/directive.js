@@ -2,13 +2,20 @@ import Vue from 'vue'
 
 export const bus = new Vue()
 
+let onlyPopoverSeq = 1
+const onlyKey = () => {
+    onlyPopoverSeq += 1
+    return onlyPopoverSeq
+}
+
 class PopTrigger {
-    constructor(el, { name, options, trigger = 'click' }) {
+    constructor(el, { name, options, trigger = 'click', only = false }) {
         this.$el = el
         this.trigger = trigger
+        this.only = only
+        this.name = only ? 'onlyPopover' : name
+        this.guid = only ? `onlyPopover-${onlyKey()}` : null
         this.options = options
-        this.isSingleton = !!options && !name
-        this.name = this.isSingleton ? 'singleton' : name
         this.bindEvents()
     }
 
@@ -24,7 +31,7 @@ class PopTrigger {
         if(name) this.name = name
         if(options) {
             this.options = options
-            bus.$emit('singleton:popover.sync', this.options)
+            bus.$emit('sync:popover.only', this.guid, this.options)
         }
     }
 
@@ -33,9 +40,9 @@ class PopTrigger {
     }
 
     handleShow = e => {
-        this.isSingleton
-            ? bus.$emit('singleton:popover', this.options, this.payload(e), () => this.show(e))
-            : this.show(e)
+        this.only ? bus.$emit(
+            'popover.only', this.guid, this.options, this.payload(e), () => this.show(e)
+        ) : this.show(e)
     }
 
     handleHide = e => {
@@ -82,7 +89,8 @@ export default {
         const instance = new PopTrigger(el, {
             name,
             trigger,
-            options: value
+            options: value,
+            only: modifiers.only
         })
         el.__POP_TRIGGER = instance
     },

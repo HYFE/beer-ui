@@ -35,11 +35,13 @@ updatePopover|弹窗更新时触发|`dataObject`
 
 ### v-popover
 
-参数|描述
----|---
-arg|指令参数与要关联的`popover`组件的`name`属性值一致，单例弹窗忽略该项。
-modifiers|修饰符主要用来表示触发的事件，支持：`click`、`hover`、`focus`。省略该项时为`click`。还有一个作用是动态`name`，比如在一个循环中，你无法拼接一个指令`arg`值，你可以使用`v-popover.name="popName"`这种方式。
-value|单例弹窗时使用，传入单例弹窗及弹窗内显示内容组件的参数和事件等
+参数|描述|示例
+---|---|---
+arg|指令参数与要关联的`popover`组件的`name`属性值一致。|`v-popover:hello`
+modifiers.[trigger]|表示触发的事件，支持：`click`、`hover`、`focus`。省略该项时为`click`。|`v-popover:hello.hover`
+modifiers.name|动态`name`，比如在一个循环中，你无法拼接一个指令`arg`值，你可以使用这种方式。|`v-popover.name="popName"`
+modifiers.only|定义单例的弹窗|`v-popover.only="settings"`
+value|单例弹窗时传入单例弹窗及弹窗内显示内容组件的参数和事件等；或者动态`name`传入一个字符串|-
 
 ### 单例弹窗
 

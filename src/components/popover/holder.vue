@@ -30,6 +30,7 @@ export default {
     },
     data () {
         return {
+            guid: '',
             component: null,
             props: null,
             events: null,
@@ -39,8 +40,9 @@ export default {
         }
     },
     methods: {
-        handler (options, payload, cb) {
-            this.syncValue(options, true)
+        handler (guid, options, payload, cb) {
+            this.guid = guid
+            this.syncValue(guid, options, true)
             this.component = options.component
             if(!this.visible) this.$nextTick(cb)
             else this.$refs.pop.updatePopper(payload)
@@ -48,9 +50,9 @@ export default {
         closePopover() {
             this.visible = false
         },
-        syncValue({ component, popover = {}, ...options }, changed) {
-            if(!changed && this.component && this.component !== component) return
-            popover.name = 'singleton'
+        syncValue(guid, { component, popover = {}, ...options }, changed) {
+            if(!changed && this.guid !== guid) return
+            popover.name = 'onlyPopover'
             const { events: popoverEvents, ...popoverProps } = popover
             const { events, ...props } = options
             this.popoverProps = { ...this.settings, ...popoverProps }
@@ -60,12 +62,12 @@ export default {
         }
     },
     created () {
-        bus.$on('singleton:popover', this.handler)
-        bus.$on('singleton:popover.sync', this.syncValue)
+        bus.$on('popover.only', this.handler)
+        bus.$on('sync:popover.only', this.syncValue)
     },
     destroyed () {
-        bus.$off('singleton:popover', this.handler)
-        bus.$off('singleton:popover.sync', this.syncValue)
+        bus.$off('popover.only', this.handler)
+        bus.$off('sync:popover.only', this.syncValue)
     }
 }
 </script>
