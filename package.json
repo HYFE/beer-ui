@@ -1,6 +1,10 @@
 {
   "name": "beer-ui",
+<<<<<<< HEAD
   "version": "0.0.35",
+=======
+  "version": "0.0.34",
+>>>>>>> 9592e197d6eb6d91adc17e51925426ee1d6bd415
   "description": "Vue components library.",
   "author": "yscoder <634206017@qq.com>",
   "scripts": {

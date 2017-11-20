@@ -68,6 +68,7 @@ export default {
                 ta.style.height = originalHeight
                 return
             }
+<<<<<<< HEAD
             ta.style.height = `${endHeight}px`
         },
         change() {
@@ -76,6 +77,9 @@ export default {
                 return
             }
             this.initValue()
+=======
+            ta.style.height = `${endHeight + 4}px`
+>>>>>>> 9592e197d6eb6d91adc17e51925426ee1d6bd415
         }
     },
     watch: {
