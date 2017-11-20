@@ -68,7 +68,7 @@ export default {
                 ta.style.height = originalHeight
                 return
             }
-            ta.style.height = `${endHeight}px`
+            ta.style.height = `${endHeight + 4}px`
         }
     },
     watch: {
