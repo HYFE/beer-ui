@@ -1,17 +1,17 @@
 <template>
     <textarea class="ui-edit-area-textarea"
-              ref="textarea"
-              v-model.trim="content"
-              :focus="focus"
-              :maxlength="maxlength"
-              :readonly="readonly"
-              :spellcheck="false"
-              rows="1"
-              @focus="e => $emit('focus', e)"
-              @blur="e => $emit('blur', e)"
-              @input="e => {resize();$emit('input', content)}"
-              @change="change"
-              @keydown="keydownEvent"></textarea>
+                ref="textarea"
+                v-model.trim="content"
+                :focus="focus"
+                :maxlength="maxlength"
+                :readonly="readonly"
+                :spellcheck="false"
+                rows="1"
+                @focus="e => $emit('focus', e)"
+                @blur="e => $emit('blur', e)"
+                @input="e => {resize();$emit('input', content)}"
+                @change="!readonly?$emit('change', content):''"
+                @keydown="keydownEvent"></textarea>
 </template>
 <script>
 export default {
@@ -41,7 +41,7 @@ export default {
             })
         },
         keydownEvent(e) {
-            if (e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
+            if(e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
                 e.preventDefault()
                 this.$refs.textarea.blur()
             }
@@ -53,7 +53,7 @@ export default {
         },
         changeOverflow(ta) {
             const overflowY = window.getComputedStyle(ta, null).overflowY
-            if (overflowY === 'hidden') {
+            if(overflowY === 'hidden') {
                 ta.style.overflowY = 'scroll'
                 ta.style.overflowY = 'hidden'
                 return
@@ -64,18 +64,11 @@ export default {
             const originalHeight = ta.style.height
             ta.style.height = ''
             const endHeight = ta.scrollHeight
-            if (endHeight === 0) {
+            if(endHeight === 0) {
                 ta.style.height = originalHeight
                 return
             }
             ta.style.height = `${endHeight}px`
-        },
-        change() {
-            if(!this.readonly && this.content) {
-                this.$emit('change', this.content)
-                return
-            }
-            this.initValue()
         }
     },
     watch: {
