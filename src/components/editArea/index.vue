@@ -70,9 +70,6 @@ export default {
         padding: 4px;
         width: 100%;
         background-color: transparent;
-        font-size: 16px;
-        line-height: 24px;
-        min-height: 24px;
     }
     &-editable {
         border: 2px solid transparent;
