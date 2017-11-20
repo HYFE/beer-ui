@@ -1,8 +1,9 @@
 <template>
     <div>
-        <ui-edit-area v-model="value"
+        <ui-edit-area :value="value"
                     isTextarea
-                    :wrapable="false">
+                    :wrapable="false"
+                    @change="change">
         </ui-edit-area>
         <button @click="value = '22222'">change</button>
         {{value}}
@@ -13,6 +14,11 @@ export default {
     data() {
         return {
             value: '我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框我是一个多行文本框'
+        }
+    },
+    methods: {
+        change(val) {
+            console.log(val)
         }
     }
 }
