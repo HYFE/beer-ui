@@ -47,9 +47,6 @@ export default {
             if(!this.visible) this.$nextTick(cb)
             else this.$refs.pop.updatePopper(payload)
         },
-        closePopover() {
-            this.visible = false
-        },
         syncValue(guid, { component, popover = {}, ...options }, changed) {
             if(!changed && this.guid !== guid) return
             popover.name = 'onlyPopover'
@@ -59,7 +56,10 @@ export default {
             this.popoverEvents = popoverEvents
             this.props = props
             this.events = events
-        }
+        },
+        closePopover() {
+            this.visible = false
+        },
     },
     created () {
         bus.$on('popover.only', this.handler)

@@ -15,6 +15,14 @@
                 <li v-for="n in 100">第 {{n}} 行</li>
             </ul>
         </ui-popover>
+        <button v-popover:full3>示例3</button>
+        <ui-popover fullHeight
+                    name="full3"
+                    placement="right-start">
+            <ul>
+                <li v-for="n in 100">第 {{n}} 行</li>
+            </ul>
+        </ui-popover>
     </div>
 </template>
 <script>

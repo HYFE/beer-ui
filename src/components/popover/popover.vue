@@ -124,11 +124,15 @@ const component = {
         handleFullHeight () {
             if (!this.fullHeight) return
             const clientHeight = window.innerHeight
-            const { top, bottom } = this.reference.getBoundingClientRect()
+            const { top, bottom, height } = this.reference.getBoundingClientRect()
+            const tHeight = top - 3
+            const bHeight = clientHeight - bottom - 3
             if (/top|bottom/.test(this.placement)) {
-                const tHeight = top - 15
-                const bHeight = clientHeight - bottom - 15
-                this.maxHeight = `${Math.max(tHeight, bHeight)}px`
+                this.maxHeight = `${Math.max(tHeight, bHeight) - 12}px`
+            } else if (/(left|right)-start/.test(this.placement)) {
+                this.maxHeight = `${bHeight + height}px`
+            } else if (/(left|right)-end/.test(this.placement)) {
+                this.maxHeight = `${tHeight + height}px`
             } else {
                 this.maxHeight = `${clientHeight - 10}px`
             }
