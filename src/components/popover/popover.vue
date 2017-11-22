@@ -123,19 +123,25 @@ const component = {
         },
         handleFullHeight () {
             if (!this.fullHeight) return
-            const clientHeight = window.innerHeight
-            const { top, bottom, height } = this.reference.getBoundingClientRect()
-            const tHeight = top - 3
-            const bHeight = clientHeight - bottom - 3
-            if (/top|bottom/.test(this.placement)) {
-                this.maxHeight = `${Math.max(tHeight, bHeight) - 12}px`
-            } else if (/(left|right)-start/.test(this.placement)) {
-                this.maxHeight = `${bHeight + height}px`
-            } else if (/(left|right)-end/.test(this.placement)) {
-                this.maxHeight = `${tHeight + height}px`
-            } else {
-                this.maxHeight = `${clientHeight - 10}px`
-            }
+            this.maxHeight = '' // 清除高度，防止 fullHeight 计算错误
+            this.$nextTick(() => {
+                const clientHeight = window.innerHeight
+                const { top, bottom, height } = this.reference.getBoundingClientRect()
+                const tHeight = top - 3
+                const bHeight = clientHeight - bottom - 3
+                const popHeight = this.$refs.pop ? this.$refs.pop.offsetHeight : 0
+                const preOverflow = h => Math.min(clientHeight - 10, h)
+
+                if (/top|bottom/.test(this.placement)) {
+                    this.maxHeight = `${Math.max(tHeight, bHeight) - 12}px`
+                } else if (/(left|right)-start/.test(this.placement)) {
+                    this.maxHeight = `${preOverflow(Math.max(popHeight, bHeight) + height)}px`
+                } else if (/(left|right)-end/.test(this.placement)) {
+                    this.maxHeight = `${preOverflow(Math.max(popHeight, tHeight) + height)}px`
+                } else {
+                    this.maxHeight = `${clientHeight - 10}px`
+                }
+            })
         },
         createPop () {
             this.cssIndex = this.zIndex || this.nextIndex()
@@ -178,7 +184,7 @@ const component = {
             }
         },
         onPopCreate (data) {
-            this.handleFullHeight()
+            // this.handleFullHeight()
             this.$emit('createPopover', data)
         },
         onPopUpdate (data) {
