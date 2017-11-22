@@ -18,8 +18,13 @@ const whereClose = target => {
     })
 }
 
-document.addEventListener('mousedown', e => (startClick = e.target))
-document.addEventListener('mouseup', e => whereClose(e.target))
+// mouse left
+const isLeftClick = e => e.button === 0 || e.which === 1
+
+document.addEventListener('mousedown', e => {
+    if(isLeftClick(e)) startClick = e.target
+})
+document.addEventListener('mouseup', e => isLeftClick(e) && whereClose(e.target))
 
 export default {
     bind(el, { value: { visible, handle } }) {
