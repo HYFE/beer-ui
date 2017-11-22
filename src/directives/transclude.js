@@ -55,7 +55,10 @@ export default {
             }
         } else if (value) {
             // 已经移动过
-            getTarget(value).appendChild(el)
+            const target = getTarget(value)
+            if(el.parentNode !== target) {
+                target.appendChild(el)
+            }
         }
     },
     unbind(el, { value }) {
