@@ -6,6 +6,7 @@
              v-if="exist && (reset ? visible : true)"
              v-show="visible"
              v-transclude="transclude"
+             v-on="hoverEvents"
              ref="pop">
             <div class="ui-popover-panel"
                  v-where-close="{ visible, handle: hideOnClickOutSide}"
@@ -78,11 +79,11 @@ const component = {
             visible: this.value,
             popper: null,
             reference: null,
-            domEvents: [],
+            hoverEvents: null,
             exist: false,
             maxHeight: '',
             trigger: 'click',
-            cssIndex: this.zIndex
+            cssIndex: this.zIndex,
         }
     },
     computed: {
@@ -105,6 +106,11 @@ const component = {
         },
     },
     methods: {
+        doShow() {
+            this.visible = true
+            this.pushStack()
+            this.$emit('show')
+        },
         show ({ name, reference, type }) {
             if (this.visible && type === 'click' && this.reference === reference) {
                 this.hide()
@@ -112,9 +118,7 @@ const component = {
             }
             this.reference = reference
             this.trigger = type
-            this.visible = true
-            this.pushStack()
-            this.$emit('show')
+            this.doShow()
         },
         hide () {
             this.visible = false
@@ -195,13 +199,18 @@ const component = {
             this.popper.destroy()
             this.popper = null
         },
+        handleHover(mouseenter, mouseleave) {
+            this.hoverEvents = { mouseenter, mouseleave }
+        },
         bind () {
             bus.$on(`show:popover-${this.name}`, this.show)
             bus.$on(`hide:popover-${this.name}`, this.hide)
+            bus.$on(`hover:popover-${this.name}`, this.handleHover)
         },
         unBind () {
             bus.$off(`show:popover-${this.name}`, this.show)
             bus.$off(`hide:popover-${this.name}`, this.hide)
+            bus.$off(`hover:popover-${this.name}`, this.handleHover)
         },
     },
     created () {

@@ -28,8 +28,8 @@ class PopTrigger {
     }
 
     update({ name, options }) {
-        if(name) this.name = name
-        if(options) {
+        if (name) this.name = name
+        if (options) {
             this.options = options
             bus.$emit('sync:popover.only', this.guid, this.options)
         }
@@ -40,21 +40,35 @@ class PopTrigger {
     }
 
     handleShow = e => {
-        this.only ? bus.$emit(
-            'popover.only', this.guid, this.options, this.payload(e), () => this.show(e)
-        ) : this.show(e)
+        this.only
+            ? bus.$emit('popover.only', this.guid, this.options, this.payload(e), () =>
+                  this.show(e)
+              )
+            : this.show(e)
     }
 
     handleHide = e => {
         bus.$emit(`hide:popover-${this.name}`, this.payload(e))
     }
 
+    _timer = null
+    onMouseEnter = e => {
+        if (this._timer) clearTimeout(this._timer)
+        this.handleShow(e)
+    }
+
+    onMouseLeave = e => {
+        if (this._timer) clearTimeout(this._timer)
+        this._timer = setTimeout(() => this.handleHide(e), 200)
+    }
+
     bindEvents() {
         const $el = this.$el
-        switch(this.trigger) {
+        switch (this.trigger) {
             case 'hover':
-                $el.addEventListener('mouseenter', this.handleShow)
-                $el.addEventListener('mouseleave', this.handleHide)
+                $el.addEventListener('mouseenter', this.onMouseEnter)
+                $el.addEventListener('mouseleave', this.onMouseLeave)
+                bus.$emit(`hover:popover-${this.name}`, this.onMouseEnter, this.onMouseLeave)
                 break
             case 'focus':
                 $el.addEventListener('focus', this.handleShow)
@@ -67,10 +81,10 @@ class PopTrigger {
 
     destroy() {
         const $el = this.$el
-        switch(this.trigger) {
+        switch (this.trigger) {
             case 'hover':
-                $el.removeEventListener('mouseenter', this.handleShow)
-                $el.removeEventListener('mouseleave', this.handleHide)
+                $el.removeEventListener('mouseenter', this.onMouseEnter)
+                $el.removeEventListener('mouseleave', this.onMouseLeave)
                 break
             case 'focus':
                 $el.removeEventListener('focus', this.handleShow)
@@ -85,7 +99,7 @@ class PopTrigger {
 export default {
     inserted(el, { value, modifiers = {}, arg }) {
         const name = modifiers.name ? value : arg
-        const trigger = modifiers.hover ? 'hover' : (modifiers.focus ? 'focus' : 'click')  // eslint-disable-line
+        const trigger = modifiers.hover ? 'hover' : modifiers.focus ? 'focus' : 'click' // eslint-disable-line
         const instance = new PopTrigger(el, {
             name,
             trigger,
@@ -95,7 +109,7 @@ export default {
         el.__POP_TRIGGER = instance
     },
     update(el, { value, oldValue, modifiers = {} }) {
-        if(el.__POP_TRIGGER && value && value !== oldValue) {
+        if (el.__POP_TRIGGER && value && value !== oldValue) {
             const updateVal = modifiers.name ? { name: value } : { options: value }
             el.__POP_TRIGGER.update(updateVal)
         }
