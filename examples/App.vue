@@ -16,10 +16,8 @@
                     <ui-listitem :to="{ name: 'icon' }">图标</ui-listitem>
                     <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
                     <ui-listitem :isAction="false"
-                                 :children="routes">
-                        组件
-                        <template slot="children"
-                                  slot-scope="{ value }">{{value.text}}</template>
+                                 :tree="routes">
+                        <template slot-scope="{ node }">{{node.text}}</template>
                     </ui-listitem>
                 </ui-list>
             </aside>
@@ -45,13 +43,17 @@ export default {
     },
     computed: {
         routes () {
-            return this.list.map(item => ({
-                id: item.name,
-                to: {
-                    name: item.name
-                },
-                text: `${item.name} ${item.text}`
-            }))
+            return {
+                id: 'components',
+                text: '组件',
+                children: this.list.map(item => ({
+                    id: item.name,
+                    to: {
+                        name: item.name
+                    },
+                    text: `${item.name} ${item.text}`
+                }))
+            }
         }
     },
     created () {

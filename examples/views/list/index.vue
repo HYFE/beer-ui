@@ -15,7 +15,7 @@
             <childrenDemo></childrenDemo>
             <template slot="desc">
                 <p>通过子组件的
-                    <code>children</code>属性设置多层级列表，传入的数据项必须包含
+                    <code>tree</code>属性设置多层级列表，传入的数据项必须包含
                     <code>id</code>属性作为内部实现的需要的
                     <code>key</code>。</p>
                 <p>每个列表项显示的内容通过插槽实现。</p>

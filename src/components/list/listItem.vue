@@ -1,55 +1,53 @@
 <template>
     <div class="ui-item"
          :class="{ bordered }">
-        <div v-if="!to || !isAction"
+        <div v-if="!route || !isAction"
              class="ui-item-inner"
              :style="itemStyle"
              :class="itemClass"
              @click="expand">
             <div class="ui-item-content">
-                <slot :to="to"></slot>
+                <slot :node="tree"></slot>
             </div>
             <slot name="right"></slot>
             <div class="ui-item-right"
-                 v-if="children">
-                <i class="icon-up-open ui-item-arrow"></i>
+                 v-if="hasChild">
+                <i class="icon-up-open ui-item-arrow"
+                    @click.stop="expanded = !expanded"></i>
             </div>
         </div>
-        <router-link v-if="!!to"
+        <router-link v-if="!!route"
                      class="ui-item-inner"
                      exact-active-class="active"
                      :exact="exact"
                      :class="itemClass"
                      :style="itemStyle"
-                     :to="to"
-                     @click="expand">
+                     :to="route"
+                     @click.native="expand">
             <div class="ui-item-content">
-                <slot :to="to"></slot>
+                <slot :node="tree"></slot>
             </div>
             <slot name="right"></slot>
             <div class="ui-item-right"
-                 v-if="children">
-                <i class="icon-up-open ui-item-arrow"></i>
+                 v-if="hasChild">
+                <i class="icon-up-open ui-item-arrow"
+                    @click.stop="expanded = !expanded"></i>
             </div>
         </router-link>
         <expand-transition>
-            <div v-if="children"
+            <div v-if="hasChild"
                  class="ui-item-children"
                  v-show="expanded">
-                <ui-listitem v-for="item in children"
+                <ui-listitem v-for="item in tree.children"
                              :key="item[nodeKey]"
                              :to="item.to"
-                             :children="item.children"
+                             :tree="item"
                              :depth="depth + 1"
-                             @click="onClick($event, item)">
-                    <slot :to="item.to"
-                          :value="item"
-                          name="children"></slot>
-                    <template slot="children"
-                              slot-scope="{ to, value }">
-                        <slot :to="to"
-                              :value="value"
-                              name="children"></slot>
+                             :router="router"
+                             :expanedByNode="expanedByNode"
+                             @click="onClick">
+                    <template slot-scope="{ node }">
+                        <slot :node="node"></slot>
                     </template>
                 </ui-listitem>
             </div>
@@ -75,7 +73,13 @@ export default {
             type: Boolean,
             default: true
         },
-        disabled: Boolean
+        disabled: Boolean,
+        tree: Object,
+        router: Function,
+        expanedByNode: {
+            type: Boolean,
+            default: true
+        }
     },
     data () {
         return {
@@ -106,18 +110,24 @@ export default {
         },
         itemClass () {
             return {
-                'non-action': !this.isAction && !this.children,
+                'non-action': !this.isAction && !this.hasChild,
                 disabled: this.disabled,
-                expanded: this.children && this.expanded
+                expanded: this.hasChild && this.expanded
             }
+        },
+        hasChild () {
+            return this.tree && this.tree.children && this.tree.children.length
+        },
+        route () {
+            return this.router ? this.router(this.tree) : this.to
         }
     },
     methods: {
         expand(e) {
-            if (this.children) {
+            if (this.expanedByNode && this.hasChild) {
                 this.expanded = !this.expanded
             }
-            this.onClick(e)
+            this.onClick(e, this.tree)
         },
         onClick (e, item) {
             this.$emit('click', e, item)
