@@ -5,7 +5,7 @@
              class="ui-item-inner"
              :style="itemStyle"
              :class="itemClass"
-             @click="onClick">
+             @click="expand">
             <div class="ui-item-content">
                 <slot :to="to"></slot>
             </div>
