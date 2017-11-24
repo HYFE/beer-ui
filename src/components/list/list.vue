@@ -31,13 +31,18 @@ export default {
 
 .ui-list {
     width: 100%;
-    padding-top: @divider-spacing;
-    padding-bottom: @divider-spacing;
+    padding-top: @list-divider-spacing;
+    padding-bottom: @list-divider-spacing;
     overflow: hidden;
     &.thin {
-        .ui-item-inner {
+        .ui-item-inner,
+        .ui-sub-header {
             padding: @list-item-padding-thin
         }
+    }
+    .ui-divider {
+        margin-top: @list-divider-spacing;
+        margin-bottom: @list-divider-spacing;
     }
 }
 </style>

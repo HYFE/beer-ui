@@ -3,9 +3,8 @@
         <ui-list>
             <ui-listitem to="/">首页</ui-listitem>
             <ui-listitem to="/icon">图标</ui-listitem>
-        </ui-list>
-        <ui-divider></ui-divider>
-        <ui-list>
+            <ui-divider></ui-divider>
+            <ui-sub-header>组织架构</ui-sub-header>
             <ui-listitem :children="treeRoutes">
                 <i class="icon-sitemap"></i> 某公司组织架构
                 <template slot="children"

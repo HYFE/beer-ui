@@ -23,7 +23,7 @@ export default {
 
 .ui-divider {
     position: relative;
-    margin: @divider-spacing 0;
+    margin: 0;
     width: 100%;
     height: 1px;
     background-color: @divider-color;

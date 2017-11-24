@@ -12,7 +12,7 @@
             <slot name="right"></slot>
             <div class="ui-item-right"
                  v-if="children">
-                <i class="icon-angle-up ui-item-arrow"></i>
+                <i class="icon-up-open ui-item-arrow"></i>
             </div>
         </div>
         <router-link v-if="!!to"
@@ -22,14 +22,14 @@
                      :class="itemClass"
                      :style="itemStyle"
                      :to="to"
-                     @click="onClick">
+                     @click="expand">
             <div class="ui-item-content">
                 <slot :to="to"></slot>
             </div>
             <slot name="right"></slot>
             <div class="ui-item-right"
                  v-if="children">
-                <i class="icon-angle-up ui-item-arrow"></i>
+                <i class="icon-up-open ui-item-arrow"></i>
             </div>
         </router-link>
         <expand-transition>
@@ -40,7 +40,8 @@
                              :key="item[nodeKey]"
                              :to="item.to"
                              :children="item.children"
-                             :depth="depth + 1">
+                             :depth="depth + 1"
+                             @click="onClick($event, item)">
                     <slot :to="item.to"
                           :value="item"
                           name="children"></slot>
@@ -112,11 +113,14 @@ export default {
         }
     },
     methods: {
-        onClick (e) {
+        expand(e) {
             if (this.children) {
                 this.expanded = !this.expanded
             }
-            this.$emit('click', e)
+            this.onClick(e)
+        },
+        onClick (e, item) {
+            this.$emit('click', e, item)
         }
     },
 }
@@ -139,11 +143,25 @@ export default {
         cursor: pointer;
         color: @text-base-color;
         text-decoration: none;
-        border-right: @list-item-active-border solid transparent;
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: @list-item-active-border;
+            background: @theme-color;
+            opacity: 0;
+            transition: transform .2s ease-in-out;
+            transform: scaleY(0);
+        }
         &.active {
             color: @theme-color;
-            border-right-color: @theme-color;
             background: @lighter-color;
+            &:after {
+                opacity: 1;
+                transform: scaleY(1);
+            }
         }
         &:not(.non-action):hover {
             background: @lighter-color;
@@ -171,7 +189,6 @@ export default {
     &-arrow {
         margin-right: -15px;
         font-size: 18px;
-        font-weight: 600;
         opacity: 0.7;
         transition: transform 0.3s ease-in-out;
     }
