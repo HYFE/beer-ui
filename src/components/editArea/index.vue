@@ -62,12 +62,12 @@ export default {
     &-input {
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: no-wrap;
+        white-space: nowrap;
     }
     &-input,
     &-textarea {
         border: 0;
-        padding: 4px;
+        padding: 0 2px;
         width: 100%;
         background-color: transparent;
     }
