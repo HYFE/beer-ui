@@ -15,7 +15,6 @@ export default {
         const parentNode = el.parentNode
         const target = getTarget(value)
         if (!parentNode || parentNode === target) {
-            console.log(el)
             return
         }
         const placeholder = document.createComment('')
@@ -35,6 +34,7 @@ export default {
         }
     },
     componentUpdated(el, { value }) { // 确保在 children 全部更新时调用（vs: `update`）
+        if(!el.__TRANSCLUDE) return
         const { parentNode, placeholder, hasMovedOut } = el.__TRANSCLUDE
         if (!hasMovedOut && value) {
             // 如果节点没有移动，且存在目标位置就移动到目标位置
