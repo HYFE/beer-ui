@@ -96,7 +96,7 @@ const component = {
     },
     watch: {
         visible (val) {
-            val ? this.createPop() : this.destroyPop()
+            val ? this.doShow() : this.doHide()
             if (!this.exist && val) this.exist = true
             this.$emit('change', val)
             this.$emit('input', val)
@@ -107,9 +107,14 @@ const component = {
     },
     methods: {
         doShow() {
-            this.visible = true
             this.pushStack()
             this.$emit('show')
+            this.createPop()
+        },
+        doHide() {
+            this.popStack()
+            this.$emit('hide')
+            this.destroyPop()
         },
         show ({ name, reference, type }) {
             if (this.visible && type === 'click' && this.reference === reference) {
@@ -118,12 +123,10 @@ const component = {
             }
             this.reference = reference
             this.trigger = type
-            this.doShow()
+            this.visible = true
         },
         hide () {
             this.visible = false
-            this.popStack()
-            this.$emit('hide')
         },
         handleFullHeight () {
             if (!this.fullHeight) return
