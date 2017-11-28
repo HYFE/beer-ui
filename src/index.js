@@ -8,6 +8,8 @@ import { tabs, tabPanel } from './components/tabs'
 import popover from './components/popover'
 import tooltip from './components/tooltip'
 import editArea from './components/editArea'
+import chip from './components/chip'
+import avatar from './components/avatar'
 
 export const install = (Vue, option = {}) => {
     Vue.component(divider.name, divider)
@@ -20,6 +22,8 @@ export const install = (Vue, option = {}) => {
     Vue.component(tabs.name, tabs)
     Vue.component(tabPanel.name, tabPanel)
     Vue.component(editArea.name, editArea)
+    Vue.component(chip.name, chip)
+    Vue.component(avatar.name, avatar)
     Vue.use(popover)
     Vue.use(tooltip, option.tooltip)
 }

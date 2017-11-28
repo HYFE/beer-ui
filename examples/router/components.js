@@ -19,4 +19,10 @@ export default [{
 }, {
     name: 'editArea',
     text: '编辑框'
+}, {
+    name: 'avatar',
+    text: '头像'
+}, {
+    name: 'chip',
+    text: '碎片'
 }]
