@@ -1,12 +1,12 @@
 <template>
-    <div class="ui-avatar"
-         :class="[{ circle }, size]"
-         @click="onClick">
+    <span class="ui-avatar"
+          :class="[{ circle, reverse }, size]"
+          @click="onClick">
         <slot>
             <img :src="src" v-if="src">
             <i :class="icon" v-if="icon"></i>
         </slot>
-    </div>
+    </span>
 </template>
 <script>
 export default {
@@ -18,7 +18,8 @@ export default {
             default: 'md'
         },
         src: String,
-        icon: String
+        icon: String,
+        reverse: Boolean
     },
     methods: {
         onClick (e) {
@@ -43,7 +44,12 @@ export default {
     overflow: hidden;
     color: @text-lightest-color;
     background: @gray-color;
-    border-radius: 4px;
+    border-radius: @avatar-rect-radius;
+
+    &.reverse {
+        color: #fff;
+        background: @text-lightest-color;
+    }
 
     &.circle {
         border-radius: 50%;
@@ -51,6 +57,7 @@ export default {
     img {
         width: 100%;
         height: 100%;
+        vertical-align: top;
     }
 
     &.xs {

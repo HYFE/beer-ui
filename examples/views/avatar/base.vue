@@ -1,7 +1,7 @@
 <template>
     <div>
         <ui-avatar v-for="s in size" icon="icon-user" :size="s" :key="s" class="demo-avatar"></ui-avatar><br>
-        <ui-avatar v-for="s in size" icon="icon-user" :circle="true" :size="s" :key="s" class="demo-avatar"></ui-avatar>
+        <ui-avatar v-for="s in size" icon="icon-user" circle :size="s" :key="s" class="demo-avatar"></ui-avatar>
     </div>
 </template>
 <script>
