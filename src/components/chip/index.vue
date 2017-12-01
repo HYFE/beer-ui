@@ -39,7 +39,8 @@ export default {
 <style lang="less">
 @import '../../styles/import';
 
-.size(@val) {
+.size(@step) {
+    @val: @chip-size-start + @chip-size-step * @step;
     line-height: @val;
     border-radius: @val / 2;
 
@@ -57,15 +58,14 @@ export default {
 .ui-chip {
     display: inline-block;
     padding: 0 12px;
-    line-height: 30px;
     vertical-align: middle;
-    border-radius: 15px;
-    background: @gray-color;
+    color: @chip-color;
+    background: @chip-background;
     cursor: pointer;
     &:hover {
-        background: @gray-dark-color;
+        background: @chip-background-hover;
         .ui-chip-close {
-            background: #999;
+            background: rgba(0, 0, 0, .3);
             color: #fff;
         }
     }
@@ -94,18 +94,18 @@ export default {
     }
 
     &.lg {
-        font-size: 14px;
-        .size(36px);
+        font-size: @chip-lg-fs;
+        .size(2);
     }
 
     &.md {
-        font-size: 13px;
-        .size(30px);
+        font-size: @chip-md-fs;
+        .size(1);
     }
 
     &.sm {
-        font-size: 12px;
-        .size(24px);
+        font-size: @chip-sm-fs;
+        .size(0);
     }
 }
 </style>

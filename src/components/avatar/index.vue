@@ -31,7 +31,8 @@ export default {
 <style lang="less">
 @import '../../styles/import';
 
-.size(@val) {
+.size(@step) {
+    @val: @avatar-size-start + @avatar-size-step * @step;
     width: @val;
     height: @val;
     line-height: @val;
@@ -42,13 +43,13 @@ export default {
     display: inline-block;
     text-align: center;
     overflow: hidden;
-    color: @text-lightest-color;
-    background: @gray-color;
+    color: @avatar-color;
+    background: @avatar-background;
     border-radius: @avatar-rect-radius;
 
     &.reverse {
-        color: #fff;
-        background: @text-lightest-color;
+        color: @avatar-color-reverse;
+        background: @avatar-background-reverse;
     }
 
     &.circle {
@@ -61,19 +62,19 @@ export default {
     }
 
     &.xs {
-        .size(24px);
+        .size(0);
     }
     &.sm {
-        .size(30px);
+        .size(1);
     }
     &.md {
-        .size(36px);
+        .size(2);
     }
     &.lg {
-        .size(42px);
+        .size(3);
     }
     &.xl {
-        .size(48px);
+        .size(4);
     }
 }
 </style>
