@@ -25,4 +25,7 @@ export default [{
 }, {
     name: 'chip',
     text: '碎片'
+}, {
+    name: 'dropdown',
+    text: '下拉菜单'
 }]
