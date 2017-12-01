@@ -43,9 +43,9 @@ modifiers.name|动态`name`，比如在一个循环中，你无法拼接一个�
 modifiers.only|定义单例的弹窗|`v-popover.only="settings"`
 value|单例弹窗时传入单例弹窗及弹窗内显示内容组件的参数和事件等；或者动态`name`传入一个字符串|-
 
-### 单例弹窗
+## 单例弹窗
 
-#### 全局配置
+### 全局配置
 
 仅用一个唯一的`props`用于公共的`popover`设置，可设置项对应`popover:props`。
 
@@ -53,7 +53,7 @@ value|单例弹窗时传入单例弹窗及弹窗内显示内容组件的参数�
 <ui-popover-holder :settings="yourSettings"></ui-popover-holder>
 ```
 
-#### 完整的参数据结构参考
+### 指令值数据结构参考
 
 ```js
 {
@@ -64,7 +64,7 @@ value|单例弹窗时传入单例弹窗及弹窗内显示内容组件的参数�
 
     events: {}, // 内容组件的事件监听
 
-    popover: { // popover 参数传递
+    popover: { // popover 参数传递，优先级高于全局配置
 
         // popover: props
         /* 略... */
@@ -74,9 +74,9 @@ value|单例弹窗时传入单例弹窗及弹窗内显示内容组件的参数�
 }
 ```
 
-#### 内部关闭弹窗
+### 内部关闭弹窗
 
-动态弹窗的方式无法传递响应式数据，不过`popoverHolder`组件内部实现了一个关闭弹窗的事件监听。内容组件需要关闭弹窗时，派发一个关闭事件即可。
+单例弹窗内部实现了一个关闭弹窗的事件监听，内容组件需要关闭弹窗时，派发一个关闭事件即可。
 
 如下，也可参考 **单例** 中的`Click3`相关代码：
 
@@ -90,4 +90,19 @@ export default {
 }
 ```
 
+### 也可以更Open
 
+可以在组件内使用`this`调用单例弹窗实例，去完成一些不可思议的操作。
+
+```js
+export default {
+    watch: {
+        $route() {
+            // 路由改变时关闭弹窗
+            this.$popover.visible = false
+        }
+    }
+}
+```
+
+更多示例需要你去阅读源码发现。

@@ -24,7 +24,7 @@ export const install = (Vue, option = {}) => {
     Vue.component(editArea.name, editArea)
     Vue.component(chip.name, chip)
     Vue.component(avatar.name, avatar)
-    Vue.use(popover)
+    Vue.use(popover, option.popover)
     Vue.use(tooltip, option.tooltip)
 }
 

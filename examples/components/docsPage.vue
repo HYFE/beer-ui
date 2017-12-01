@@ -6,6 +6,13 @@
     </article>
 </template>
 <script>
+import marked from 'marked'
+
+const renderer = new marked.Renderer()
+renderer.heading = function heading(text, level) {
+    return `<h${level} id="${text}">${text}</h${level}>`
+}
+
 export default {
     name: 'docsPage',
     directives: {
@@ -31,11 +38,11 @@ export default {
             return this.content.split('<!--code-->')
         },
         prevContent () {
-            return this.$marked(this.splitContent[0])
+            return this.$marked(this.splitContent[0], { renderer })
         },
         nextContent () {
             const string = this.splitContent[1]
-            return string ? this.$marked(this.splitContent[1]) : ''
+            return string ? this.$marked(this.splitContent[1], { renderer }) : ''
         }
     },
 }

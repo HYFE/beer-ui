@@ -1,4 +1,7 @@
-<template>
+import { bus } from './directive'
+import uiPopover from './popover'
+
+const template = `
     <ui-popover v-bind="popoverProps"
                 v-on="popoverEvents"
                 v-if="component"
@@ -10,13 +13,14 @@
                    v-if="visible"
                    @close:popover="closePopover"></component>
     </ui-popover>
-</template>
-<script>
-import { bus } from './directive'
-import uiPopover from './popover'
+`
 
-export default {
+export default Vue => ({
     name: 'uiPopoverHolder',
+    template,
+    components: {
+        uiPopover
+    },
     props: {
         settings: {
             type: Object,
@@ -24,9 +28,6 @@ export default {
                 return {}
             }
         }
-    },
-    components: {
-        uiPopover
     },
     data () {
         return {
@@ -61,6 +62,9 @@ export default {
             this.visible = false
         },
     },
+    beforeCreate () {
+        Vue.prototype.$popover = this
+    },
     created () {
         bus.$on('popover.only', this.handler)
         bus.$on('sync:popover.only', this.syncValue)
@@ -69,5 +73,4 @@ export default {
         bus.$off('popover.only', this.handler)
         bus.$off('sync:popover.only', this.syncValue)
     }
-}
-</script>
+})

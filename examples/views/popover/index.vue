@@ -23,7 +23,7 @@
         </code-block>
         <code-block title="单例"
                     :code="singletonCode"
-                    desc="使用一个占位组件进行动态内容展示，模拟单例组件。
+                    desc="只传递内容组件和配置，使用一个占位组件展示内容。
 > 实际使用中一般把`popoverHolder`放到根组件下。">
             <singletonDemo></singletonDemo>
         </code-block>

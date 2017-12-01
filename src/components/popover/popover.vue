@@ -23,14 +23,13 @@
     </transition>
 </template>
 <script>
-// import Vue from 'vue'
 import { bus } from './directive'
 import popManage from './popManage'
 import Popper from '../../libs/popper'
 import zIndex from '../../mixins/zIndex'
 import transclude from '../../directives/transclude'
 
-const component = {
+export default {
     name: 'uiPopover',
     mixins: [popManage, zIndex],
     directives: {
@@ -224,8 +223,6 @@ const component = {
         this.destroyPop()
     }
 }
-
-export default component
 </script>
 <style lang="less">
 @import '../../styles/import';

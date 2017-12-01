@@ -29,7 +29,8 @@ const pop3 = {
     template: `<button @click="onClick">内部关闭弹窗</button>`,
     methods: {
         onClick () {
-            this.$emit('close:popover')
+            this.$popover.visible = false
+            // this.$emit('close:popover')
         }
     }
 }
