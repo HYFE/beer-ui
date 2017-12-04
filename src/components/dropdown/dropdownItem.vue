@@ -7,11 +7,18 @@
 export default {
     name: 'uiDropdownItem',
     props: {
-        disabled: Boolean
+        disabled: Boolean,
+        hideOnClick: {  // 点击时关闭菜单
+            type: Boolean,
+            default: true
+        }
     },
     methods: {
         onClick(e) {
             this.$emit('click', e)
+            if(this.hideOnClick) {
+                this.$parent.hide()
+            }
         }
     }
 }

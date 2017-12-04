@@ -53,9 +53,12 @@ export default {
         }
     },
     methods: {
+        hide() {
+            this.$parent.hide()
+        },
         handleWhereClose (target) {
             if (this.reference && this.reference.contains(target)) return
-            this.$parent.hide()
+            this.hide()
         },
         createPopover () {
             if (!this.popper) {
@@ -69,7 +72,9 @@ export default {
                         },
                     })
                 })
+                return
             }
+            this.popper.update()
         },
         destroyPopover () {
             if (!this.popper) return

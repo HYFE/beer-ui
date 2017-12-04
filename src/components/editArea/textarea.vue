@@ -35,7 +35,9 @@ export default {
     methods: {
         initValue() {
             // Fix JSON.parse error
-            this.content = this.value.replace(/\r|\n/g, '\\n')
+            if(this.value) {
+                this.content = this.value.replace(/\r|\n/g, '\\n')
+            }
             this.$nextTick(() => {
                 this.resize()
             })
