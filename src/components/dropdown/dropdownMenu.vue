@@ -24,6 +24,9 @@ export default {
         transclude
     },
     mixins: [zIndex],
+    props: {
+        value: [String, Number]
+    },
     data () {
         return {
             reference: null,
@@ -53,6 +56,10 @@ export default {
         }
     },
     methods: {
+        change(val) {
+            this.$emit('input', val)
+            this.$emit('change', val)
+        },
         hide() {
             this.$parent.hide()
         },
@@ -110,6 +117,8 @@ export default {
 .ui-dropdown-menu {
     display: inline-block;
     min-width: @popover-min-width;
+    max-height: @dropdown-max-height;
+    overflow-y: auto;
     padding: 4px 0;
     background: #fff;
     border-radius: 4px;
