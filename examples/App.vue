@@ -15,10 +15,11 @@
                     <ui-listitem :to="{ name: 'contributing' }">贡献</ui-listitem>
                     <ui-listitem :to="{ name: 'icon' }">图标</ui-listitem>
                     <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
-                    <ui-listitem :isAction="false"
-                                 :tree="routes">
+                    <ui-treeitem :tree="routes"
+                                 :isHighlight="highlightNode"
+                                 @nodeClick="clickNode">
                         <template slot-scope="{ node }">{{node.text}}</template>
-                    </ui-listitem>
+                    </ui-treeitem>
                 </ui-list>
             </aside>
             <router-view class="docs-body" />
@@ -48,12 +49,19 @@ export default {
                 text: '组件',
                 children: this.list.map(item => ({
                     id: item.name,
-                    to: {
-                        name: item.name
-                    },
                     text: `${item.name} ${item.text}`
                 }))
             }
+        }
+    },
+    methods: {
+        clickNode(e, node) {
+            if(node.id !== 'components') {
+                this.$router.push({ name: node.id })
+            }
+        },
+        highlightNode(node) {
+            return node.id === this.$route.name
         }
     },
     created () {
@@ -94,7 +102,7 @@ body {
         min-height: 85vh;
         padding: 20px 0;
         border-right: 1px solid #e8e8e8;
-        .ui-item-inner {
+        .ui-treeitem-inner {
             text-transform: capitalize;
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ui-list bordered>
+        <ui-list bordered class="demo-treelist">
             <ui-listitem v-for="n in 3"
                          @click="onClick(n)"
                          :key="n">列表项{{n}}</ui-listitem>

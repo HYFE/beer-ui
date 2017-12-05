@@ -1,16 +1,17 @@
 <template>
     <div class="demo-treelist">
         <ui-list>
-            <ui-listitem to="/">首页</ui-listitem>
+            <ui-listitem disabled
+                         to="/">首页</ui-listitem>
             <ui-listitem to="/icon">图标</ui-listitem>
             <ui-divider></ui-divider>
             <ui-sub-header>组织架构</ui-sub-header>
-            <ui-listitem :tree="treeRoutes">
+            <ui-treeitem :tree="treeRoutes">
                 <template slot-scope="{ node }">
                     <i v-if="node.icon"
                        :class="`icon-${node.icon}`"></i> {{node.text}}
                 </template>
-            </ui-listitem>
+            </ui-treeitem>
         </ui-list>
     </div>
 </template>

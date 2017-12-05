@@ -10,18 +10,6 @@ export default {
     props: {
         bordered: Boolean,
         exact: Boolean,
-        nodeKey: {
-            type: String,
-            default: 'id'
-        },
-        arrowPlacement: {
-            type: String,
-            default: 'right'
-        },
-        alignPadding: {
-            type: Number,
-            default: 20
-        },
         thin: Boolean
     }
 }
@@ -35,7 +23,7 @@ export default {
     padding-bottom: @list-divider-spacing;
     overflow: hidden;
     &.thin {
-        .ui-item-inner,
+        .ui-item,
         .ui-sub-header {
             padding: @list-item-padding-thin
         }

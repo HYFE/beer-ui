@@ -1,7 +1,7 @@
 import './styles/base.less'
 import './styles/icons.css'
 import Divider from './components/divider'
-import { list, listItem, subHeader } from './components/list'
+import List from './components/list'
 import ExpandTransition from './components/expandTransition'
 import Tabbar from './components/tabbar'
 import Tabs from './components/tabs'
@@ -14,9 +14,7 @@ import Dropdown from './components/dropdown'
 
 export const install = (Vue, option = {}) => {
     Vue.component(Divider.name, Divider)
-    Vue.component(list.name, list)
-    Vue.component(subHeader.name, subHeader)
-    Vue.component(listItem.name, listItem)
+    Vue.use(List)
     Vue.component(ExpandTransition.name, ExpandTransition)
     Vue.use(Tabbar)
     Vue.use(Tabs)
