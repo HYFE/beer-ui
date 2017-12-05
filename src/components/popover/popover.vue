@@ -189,6 +189,11 @@ export default {
                 this.createPop()
             }
         },
+        reposition () {  // 重新定位
+            if (this.popper) {
+                this.popper.update()
+            }
+        },
         onPopCreate (data) {
             // this.handleFullHeight()
             this.$emit('createPopover', data)
