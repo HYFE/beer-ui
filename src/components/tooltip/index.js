@@ -29,11 +29,13 @@ export default class Tooltip {
         if (!tooltip) {
             tooltip = document.createElement('div')
             tooltip.id = this.globalId
+            tooltip.role = 'tooltip'
             document.body.appendChild(tooltip)
         }
         tooltip.className = `ui-tooltip ui-tooltip-${this.theme}`
         tooltip.innerHTML = `<div class="ui-tooltip-arrow"></div><div class="ui-tooltip-content">${this.text}</div>`
         tooltip.style.zIndex = nextIndex()
+        tooltip.setAttribute('aria-describedby', this.text)
         this.tooltip = tooltip
     }
 

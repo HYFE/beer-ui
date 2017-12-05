@@ -1,6 +1,7 @@
 <template>
     <div class="ui-tabbar"
-         :class="tabsClass">
+         :class="tabsClass"
+         role="toolbar">
         <nav class="ui-tabbar-nav">
             <slot></slot>
         </nav>

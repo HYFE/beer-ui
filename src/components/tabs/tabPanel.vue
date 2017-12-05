@@ -1,6 +1,7 @@
 <template>
     <transition :name="animate">
         <div class="ui-tab-panel"
+             role="tabpanel"
              v-show="name === current">
             <slot></slot>
         </div>

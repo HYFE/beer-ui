@@ -1,6 +1,7 @@
 <template>
     <div class="ui-divider"
-         :class="{ isLabel: label }">
+         :class="{ isLabel: label }"
+         role="separator">
         <label v-if="label"
                class="ui-divider-label"
                :class="align">{{label}}</label>

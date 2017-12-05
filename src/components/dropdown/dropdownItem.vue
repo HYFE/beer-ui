@@ -1,5 +1,8 @@
 <template>
     <li class="ui-dropdown-item"
+        role="menuitem"
+        :aria-disabled="disabled"
+        :aria-selected="selected"
         :class="{ disabled, selected }"
         @click="onClick"><slot></slot></li>
 </template>

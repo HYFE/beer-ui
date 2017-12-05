@@ -38,7 +38,9 @@ export default {
         return h(tag, {
             class: [this.itemClass, 'ui-item'],
             attrs: {
-                href: this.href
+                href: this.href,
+                role: 'listitem',
+                'aria-disabled': this.disabled
             },
             props: this.to && !this.disabled ? {
                 'exact-active-class': 'active',

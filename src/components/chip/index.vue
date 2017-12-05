@@ -10,7 +10,8 @@
             <slot></slot>
             <a class="ui-chip-close"
                v-if="closeable"
-               @click.stop="onClose">
+               @click.stop="onClose"
+               role="button">
                 &times;
             </a>
         </div>

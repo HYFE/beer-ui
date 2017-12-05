@@ -2,6 +2,7 @@
     <transition :name="amimate"
                 @after-leave="transclude = false">
         <ul class="ui-dropdown-menu"
+            role="menu"
             :style="{ zIndex: cssIndex }"
             v-show="visible"
             v-where-close="{ visible, handle: handleWhereClose }"

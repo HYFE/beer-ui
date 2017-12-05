@@ -1,6 +1,7 @@
 <template>
     <div class="ui-list"
-        :class="{ thin }">
+        :class="{ thin }"
+        role="list">
         <slot></slot>
     </div>
 </template>

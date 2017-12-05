@@ -1,5 +1,8 @@
 <template>
     <div class="ui-tab"
+         role="tab"
+         :aria-selected="active"
+         :aria-disabled="disabled"
          :class="{ active, disabled }"
          @click="onClick">
         <slot></slot>

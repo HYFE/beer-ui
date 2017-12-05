@@ -1,6 +1,7 @@
 <template>
     <div class="ui-dropdown"
-         :class="{ disabled }">
+         :class="{ disabled }"
+         aria-haspopup="true">
         <slot></slot>
         <slot name="menu"></slot>
     </div>

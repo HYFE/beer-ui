@@ -2,7 +2,7 @@
     <div class="ui-tabs"
          :class="{ horizontal: layout === 'x' }">
         <slot name="tabbar"></slot>
-        <div class="ui-tabs-container">
+        <div class="ui-tabs-container" role="tablist">
             <slot></slot>
         </div>
     </div>

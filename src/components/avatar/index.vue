@@ -1,7 +1,6 @@
 <template>
     <span class="ui-avatar"
-          :class="[{ circle, reverse }, size]"
-          @click="onClick">
+          :class="[{ circle, reverse }, size]">
         <slot>
             <img :src="src" v-if="src">
             <i :class="icon" v-if="icon"></i>
@@ -21,11 +20,6 @@ export default {
         icon: String,
         reverse: Boolean
     },
-    methods: {
-        onClick (e) {
-            this.$emit('click', e)
-        }
-    }
 }
 </script>
 <style lang="less">

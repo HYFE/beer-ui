@@ -1,5 +1,6 @@
 <template>
-    <div class="ui-treeitem">
+    <div class="ui-treeitem"
+         role="treeitem">
         <div class="ui-item ui-treeitem-inner"
              :style="itemStyle"
              :class="itemClass"
@@ -7,6 +8,7 @@
             <div class="ui-treeitem-left"
                  v-if="hasChild && arrowPlacement ==='left'">
                 <i class="icon-up-open ui-treeitem-arrow"
+                   role="button"
                    @click.stop="expanded = !expanded"></i>
             </div>
             <div class="ui-treeitem-content">
@@ -15,12 +17,14 @@
             <div class="ui-treeitem-right"
                  v-if="hasChild && arrowPlacement ==='right'">
                 <i class="icon-up-open ui-treeitem-arrow"
+                   role="button"
                    @click.stop="expanded = !expanded"></i>
             </div>
         </div>
         <expand-transition>
             <div v-if="hasChild"
                  class="ui-treeitem-children"
+                 :aria-expanded="expanded"
                  v-show="expanded">
                 <ui-treeitem v-for="item in tree.children"
                              :key="item[nodeKey]"
