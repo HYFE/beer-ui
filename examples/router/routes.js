@@ -1,4 +1,4 @@
-export default [{
+const components = [{
     name: 'divider',
     text: '分割线'
 }, {
@@ -13,9 +13,6 @@ export default [{
 }, {
     name: 'popover',
     text: '弹窗'
-}, {
-    name: 'tooltip',
-    text: '气泡提示'
 }, {
     name: 'editArea',
     text: '编辑框'
@@ -32,3 +29,13 @@ export default [{
     name: 'dropdown',
     text: '下拉菜单'
 }]
+
+const directives = [{
+    name: 'tooltip',
+    text: '气泡提示'
+}, {
+    name: 'whereClose',
+    text: '点击外部关闭'
+}]
+
+export { components, directives }

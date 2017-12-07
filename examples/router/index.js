@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import components from './components'
+import { components, directives } from './routes'
 import home from '@/views/home'
 import icon from '@/views/icon'
 import contributing from '@/views/contributing'
@@ -8,11 +8,14 @@ import transition from '@/views/transition'
 
 Vue.use(Router)
 
-const componentsRoutes = components.map(item => ({
+const mapRoutes = (items, path) => items.map(item => ({
     name: item.name,
-    path: `/components/${item.name}`,
+    path: `/${path}/${item.name}`,
     component: require(`@/views/${item.name}/index`).default
 }))
+
+const componentsRoutes = mapRoutes(components, 'components')
+const directivesRoutes = mapRoutes(directives, 'directives')
 
 export default new Router({
     routes: [{
@@ -31,5 +34,5 @@ export default new Router({
         path: '/transition',
         name: 'transition',
         component: transition
-    }].concat(componentsRoutes)
+    }].concat(componentsRoutes, directivesRoutes)
 })

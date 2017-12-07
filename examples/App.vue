@@ -15,7 +15,9 @@
                     <ui-listitem :to="{ name: 'contributing' }">贡献</ui-listitem>
                     <ui-listitem :to="{ name: 'icon' }">图标</ui-listitem>
                     <ui-listitem :to="{ name: 'transition' }">过渡</ui-listitem>
-                    <ui-treeitem :tree="routes"
+                    <ui-treeitem v-for="item in trees"
+                                 :key="item.id"
+                                 :tree="item"
                                  :isHighlight="highlightNode"
                                  @nodeClick="clickNode">
                         <template slot-scope="{ node }">{{node.text}}</template>
@@ -28,7 +30,7 @@
 </template>
 <script>
 import vHeader from './components/header'
-import components from './router/components'
+import { components, directives } from './router/routes'
 
 export default {
     name: 'app',
@@ -37,26 +39,34 @@ export default {
     },
     data () {
         return {
-            list: components.sort((a, b) => a.name.localeCompare(b.name)),
+            comps: components.sort((a, b) => a.name.localeCompare(b.name)),
+            direcs: directives.sort((a, b) => a.name.localeCompare(b.name)),
             title: 'BeerUI',
             version: ''
         }
     },
     computed: {
-        routes () {
-            return {
+        trees () {
+            return [{
                 id: 'components',
                 text: '组件',
-                children: this.list.map(item => ({
+                children: this.comps.map(item => ({
                     id: item.name,
                     text: `${item.name} ${item.text}`
                 }))
-            }
+            }, {
+                id: 'directives',
+                text: '指令',
+                children: this.direcs.map(item => ({
+                    id: item.name,
+                    text: `${item.name} ${item.text}`
+                }))
+            }]
         }
     },
     methods: {
         clickNode(e, node) {
-            if(node.id !== 'components') {
+            if(!node.children) {
                 this.$router.push({ name: node.id })
             }
         },

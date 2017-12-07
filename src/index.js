@@ -6,12 +6,14 @@ import ExpandTransition from './components/expandTransition'
 import Tabbar from './components/tabbar'
 import Tabs from './components/tabs'
 import Popover from './components/popover'
-import Tooltip from './components/tooltip'
 import EditArea from './components/editArea'
 import FlexTextarea from './components/flexTextarea'
 import Chip from './components/chip'
 import Avatar from './components/avatar'
 import Dropdown from './components/dropdown'
+
+import Tooltip from './directives/tooltip'
+import WhereClose from './directives/whereClose'
 
 export const install = (Vue, option = {}) => {
     Vue.component(Divider.name, Divider)
@@ -26,6 +28,7 @@ export const install = (Vue, option = {}) => {
     Vue.use(Popover, option.popover)
     Vue.use(Tooltip, option.tooltip)
     Vue.use(Dropdown)
+    Vue.use(WhereClose)
 }
 
 export default {

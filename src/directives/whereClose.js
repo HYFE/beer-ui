@@ -26,7 +26,7 @@ document.addEventListener('mousedown', e => {
 })
 document.addEventListener('mouseup', e => isLeftClick(e) && whereClose(e.target))
 
-export default {
+const plugin = {
     bind(el, { value: { visible, handle } }) {
         const key = uniqueKey()
         queue[key] = {
@@ -45,5 +45,10 @@ export default {
     },
     unbind(el) {
         delete queue[el._WHERE_CLOSE_KEY]
+    },
+    install(Vue) {
+        Vue.directive('whereClose', plugin)
     }
 }
+
+export default plugin
