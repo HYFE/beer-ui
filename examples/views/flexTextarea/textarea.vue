@@ -1,7 +1,7 @@
 <template>
     <div>
         <ui-flex-textarea :value="value"
-                    :wrapable="true"
+                    :wrapable="false"
                     @change="change">
         </ui-flex-textarea>
         <button @click="value = '22222'">change</button>

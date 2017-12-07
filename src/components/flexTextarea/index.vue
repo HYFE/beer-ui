@@ -25,7 +25,8 @@ export default {
         },
         maxlength: Number,
         readonly: Boolean,
-        wrapable: Boolean
+        wrapable: Boolean,
+        needBlur: Boolean
     },
     data() {
         return {
@@ -36,9 +37,7 @@ export default {
     methods: {
         initValue() {
             // Fix JSON.parse error
-            if(this.value) {
-                this.content = this.value.replace(/\r|\n/g, '\\n')
-            }
+            this.content = this.value.replace(/\r|\n/g, '\\n')
             this.$nextTick(() => {
                 this.resize()
             })
@@ -46,6 +45,7 @@ export default {
         keydownEvent(e) {
             if (e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
                 e.preventDefault()
+                if(!this.needBlur) return
                 this.$refs.textarea.blur()
             }
         },

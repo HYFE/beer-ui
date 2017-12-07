@@ -22,6 +22,7 @@
                        :placeholder="placeholder"
                        :style="inputStyle"
                        :wrapable="wrapable"
+                       needBlur
                        @focus="e => $emit('focus', e)"
                        @blur="e => $emit('blur', e)"
                        @input="value => $emit('input', value)"
