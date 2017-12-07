@@ -20,6 +20,9 @@ export default [{
     name: 'editArea',
     text: '编辑框'
 }, {
+    name: 'flexTextarea',
+    text: '多行编辑框'
+}, {
     name: 'avatar',
     text: '头像'
 }, {

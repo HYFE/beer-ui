@@ -1,21 +1,18 @@
 # EditArea 编辑框
 
-包含当行编辑框和多行编辑框
+多行编辑框
 
 ## 代码用例
 <!--code-->
 
-## API
 
 ### props
 属性|类型|描述|默认值
 ---|---|---|---
 value|String|定义文本框的内容|-
-isTextarea|Boolean|文本框类型|false
-inputStyle|Object|可直接修改输入框的样式|-
 maxlength|Number|规定输入字段的最大长度|-
 readonly|Boolean|规定输入字段为只读|false
-wrapable|Boolean|规定是否允许`shift+enter`换行(当isTextarea为true时生效)|-
+wrapable|Boolean|规定是否允许`shift+enter`换行|-
 
 ### 事件
 属性|描述|回调参数

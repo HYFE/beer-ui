@@ -15,26 +15,22 @@
                @input="e => !readonly?$emit('input', e.target.value):''"
                @change="e => !readonly?$emit('change', e.target.value):''"
                @keyup.enter="e => e.target.blur()">
-        <textarea-component v-else
-                            :value="value"
-                            :readonly="readonly"
-                            :maxlength="maxlength"
-                            :placeholder="placeholder"
-                            :class="{'ui-edit-area-editable': !readonly}"
-                            :style="inputStyle"
-                            :wrapable="wrapable"
-                            @focus="e => $emit('focus', e)"
-                            @blur="e => $emit('blur', e)"
-                            @input="value => $emit('input', value)"
-                            @change="value => $emit('change', value)"></textarea-component>
+        <ui-flex-textarea v-else
+                       :value="value"
+                       :readonly="readonly"
+                       :maxlength="maxlength"
+                       :placeholder="placeholder"
+                       :style="inputStyle"
+                       :wrapable="wrapable"
+                       @focus="e => $emit('focus', e)"
+                       @blur="e => $emit('blur', e)"
+                       @input="value => $emit('input', value)"
+                       @change="value => $emit('change', value)"></ui-flex-textarea>
     </div>
 </template>
 <script>
-import textareaComponent from './textarea'
-
 export default {
     name: 'uiEditArea',
-    components: { textareaComponent },
     props: {
         value: String,
         isTextarea: {

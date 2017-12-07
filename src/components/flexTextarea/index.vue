@@ -5,6 +5,7 @@
               :focus="focus"
               :maxlength="maxlength"
               :readonly="readonly"
+              :class="{'ui-edit-area-editable': !readonly}"
               :spellcheck="false"
               rows="1"
               @focus="e => $emit('focus', e)"
@@ -15,7 +16,7 @@
 </template>
 <script>
 export default {
-    name: 'textareaComponent',
+    name: 'uiFlexTextarea',
     props: {
         value: String,
         focus: {
@@ -92,9 +93,22 @@ export default {
 </script>
 <style lang="less">
 @import '../../styles/variables';
-
-.ui-edit-area-textarea {
-    resize: none;
-    overflow: hidden;
+.ui-edit-area- {
+    &textarea {
+        width: 100%;
+        resize: none;
+        overflow: hidden;
+    }
+    &editable {
+        border: 2px solid transparent;
+        border-radius: 3px;
+        &:hover {
+            background-color: @border-color;
+        }
+        &:focus {
+            background-color: #fff;
+            border-color: @theme-color;
+        }
+    }
 }
 </style>
