@@ -28,7 +28,7 @@
 </template>
 <script>
 import vHeader from './components/header'
-import list from './router/components'
+import components from './router/components'
 
 export default {
     name: 'app',
@@ -37,7 +37,7 @@ export default {
     },
     data () {
         return {
-            list,
+            list: components.sort((a, b) => a.name.localeCompare(b.name)),
             title: 'BeerUI',
             version: ''
         }

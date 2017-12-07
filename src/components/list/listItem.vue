@@ -68,9 +68,9 @@ export default {
     padding: @list-item-padding;
     display: flex;
     align-items: center;
-    cursor: pointer;
     color: @text-base-color;
     text-decoration: none;
+    cursor: pointer;
     &:after {
         content: '';
         position: absolute;
@@ -108,7 +108,7 @@ export default {
         }
     }
     &-content {
-        flex: 1;
+        flex: 1 1 auto;
     }
 }
 </style>

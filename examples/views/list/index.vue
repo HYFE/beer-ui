@@ -2,8 +2,13 @@
     <docs-page>
         <code-block title="基础用法"
                     :code="simpleCode"
-                    desc="默认列表项之间无分割线，你可以添加`borderer`属性显示菜单分割线。">
+                    desc="默认列表项之间无分割线，你可以添加`bordered`属性显示菜单分割线。">
             <simpleDemo></simpleDemo>
+        </code-block>
+        <code-block title="内容列表"
+                    :code="contentCode"
+                    desc="结合左右插槽展示丰富内容。">
+            <contentDemo></contentDemo>
         </code-block>
         <code-block title="结合路由"
                     :code="routerCode"
@@ -28,6 +33,8 @@
 <script>
 import simpleDemo from './simple'
 import simpleCode from '!raw-loader!./simple'
+import contentDemo from './content'
+import contentCode from '!raw-loader!./content'
 import routerDemo from './router'
 import routerCode from '!raw-loader!./router'
 import childrenDemo from './children'
@@ -36,15 +43,16 @@ import childrenCode from '!raw-loader!./children'
 export default {
     components: {
         simpleDemo,
+        contentDemo,
         routerDemo,
         childrenDemo
     },
     data() {
         return {
             simpleCode,
+            contentCode,
             routerCode,
             childrenCode,
-            tab: 'props'
         }
     }
 }

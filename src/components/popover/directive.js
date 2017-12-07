@@ -19,6 +19,8 @@ class PopTrigger {
         this.bindEvents()
     }
 
+    hoverDelay = 200
+
     payload(event) {
         return {
             reference: this.$el,
@@ -54,7 +56,7 @@ class PopTrigger {
     _timer = null
     onMouseEnter = e => {
         if (this._timer) clearTimeout(this._timer)
-        this.handleShow(e)
+        this._timer = setTimeout(() => this.handleShow(e), this.hoverDelay)
     }
 
     onMouseLeave = e => {
@@ -68,7 +70,7 @@ class PopTrigger {
             case 'hover':
                 $el.addEventListener('mouseenter', this.onMouseEnter)
                 $el.addEventListener('mouseleave', this.onMouseLeave)
-                bus.$emit(`hover:popover-${this.name}`, this.onMouseEnter, this.onMouseLeave)
+                bus.$emit(`hover:popover-${this.name}`, this.onMouseEnter, this.onMouseLeave, hoverDelay => (this.hoverDelay = hoverDelay))
                 break
             case 'focus':
                 $el.addEventListener('focus', this.handleShow)

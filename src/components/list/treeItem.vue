@@ -4,12 +4,12 @@
         <div class="ui-item ui-treeitem-inner"
              :style="itemStyle"
              :class="itemClass"
-             @click="expand">
+             @click="clickNode">
             <div class="ui-treeitem-left"
                  v-if="hasChild && arrowPlacement ==='left'">
                 <i class="icon-up-open ui-treeitem-arrow"
                    role="button"
-                   @click.stop="expanded = !expanded"></i>
+                   @click.stop="expand"></i>
             </div>
             <div class="ui-treeitem-content">
                 <slot :node="tree"></slot>
@@ -18,7 +18,7 @@
                  v-if="hasChild && arrowPlacement ==='right'">
                 <i class="icon-up-open ui-treeitem-arrow"
                    role="button"
-                   @click.stop="expanded = !expanded"></i>
+                   @click.stop="expand"></i>
             </div>
         </div>
         <expand-transition>
@@ -35,7 +35,13 @@
                              :arrowPlacement="arrowPlacement"
                              :alignPadding="alignPadding"
                              :expanedByNode="expanedByNode"
-                             @nodeClick="onClick">
+                             :accordion="accordion"
+                             :expandAll="expandAll"
+                             :expandedKeys="expandedKeys"
+                             @nodeClick="onClick"
+                             @expandParent="expandParent"
+                             @closeSiblings="closeSiblings"
+                             ref="childs">
                     <template slot-scope="{ node }">
                         <slot :node="node"></slot>
                     </template>
@@ -75,10 +81,21 @@ export default {
             type: Number,
             default: 20
         },
+        accordion: Boolean,  // 手风琴
+        expandAll: {        // 展开全部
+            type: Boolean,
+            default: true
+        },
+        expandedKeys: Array, // 展开的节点
     },
     data () {
         return {
-            expanded: true,
+            expanded: this.expandAll
+        }
+    },
+    watch: {
+        expandedKeys (val = []) {
+            this.expandByKeys()
         }
     },
     computed: {
@@ -91,24 +108,59 @@ export default {
         itemClass () {
             return {
                 expanded: this.hasChild && this.expanded,
-                active: this.isHighlight ? this.isHighlight(this.tree) : null
+                active: this.isHighlight && this.isHighlight(this.tree)
             }
         },
         hasChild () {
             return this.tree && this.tree.children && this.tree.children.length
         },
+        currentKey () {
+            return this.tree[this.nodeKey]
+        },
     },
     methods: {
-        expand (e) {
+        clickNode (e) {
             if (this.expanedByNode && this.hasChild) {
-                this.expanded = !this.expanded
+                this.expand()
             }
             this.onClick(e, this.tree)
         },
+        handleAccordion() {
+            if (this.expanded && this.accordion && this.depth !== 0) {
+                this.$emit('expandParent')
+                this.$emit('closeSiblings', this.currentKey)
+            }
+        },
+        expand (e) {
+            this.expanded = !this.expanded
+            this.handleAccordion()
+        },
+        expandParent (key) {
+            this.expanded = true
+            if (this.depth !== 0) {
+                this.$emit('expandParent')
+            }
+        },
+        closeSiblings (key) {
+            this.$refs.childs.forEach(item => {
+                if(item.currentKey !== key) {
+                    item.expanded = false
+                }
+            })
+        },
         onClick (e, item) {
             this.$emit('nodeClick', e, item)
+        },
+        expandByKeys() {
+            if(this.expandedKeys.some(key => key === this.currentKey)) {
+                this.expanded = true
+                this.handleAccordion()
+            }
         }
     },
+    created() {
+        this.expandByKeys()
+    }
 }
 </script>
 <style lang="less">

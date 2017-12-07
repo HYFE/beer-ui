@@ -1,4 +1,4 @@
-# EditArea 编辑框
+# FlexTextarea 弹性文本框
 
 多行编辑框
 

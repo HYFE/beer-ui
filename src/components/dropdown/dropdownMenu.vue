@@ -117,16 +117,16 @@ export default {
 
 .ui-dropdown-menu {
     display: inline-block;
-    min-width: @popover-min-width;
+    min-width: @dropdown-min-wdith;
     max-height: @dropdown-max-height;
     overflow-y: auto;
-    padding: 4px 0;
+    padding: @dropdown-spacing 0;
     background: #fff;
-    border-radius: 4px;
-    box-shadow: @popover-shadow;
+    border-radius: @dropdown-radius;
+    box-shadow: @dropdown-shadow;
     .ui-divider {
-        margin-top: 4px;
-        margin-bottom: 4px;
+        margin-top: @dropdown-spacing;
+        margin-bottom: @dropdown-spacing;
     }
 }
 

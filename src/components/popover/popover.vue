@@ -71,7 +71,11 @@ export default {
             type: Boolean,
             default: false
         },
-        contentClass: String
+        contentClass: String,
+        hoverDelay: {
+            type: Number,
+            default: 300
+        }
     },
     data () {
         return {
@@ -206,8 +210,9 @@ export default {
             this.popper.destroy()
             this.popper = null
         },
-        handleHover(mouseenter, mouseleave) {
+        handleHover(mouseenter, mouseleave, callback) {
             this.hoverEvents = { mouseenter, mouseleave }
+            callback(this.hoverDelay)
         },
         bind () {
             bus.$on(`show:popover-${this.name}`, this.show)

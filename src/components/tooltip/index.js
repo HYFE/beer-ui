@@ -29,7 +29,7 @@ export default class Tooltip {
         if (!tooltip) {
             tooltip = document.createElement('div')
             tooltip.id = this.globalId
-            tooltip.role = 'tooltip'
+            tooltip.setAttribute('role', 'tooltip')
             document.body.appendChild(tooltip)
         }
         tooltip.className = `ui-tooltip ui-tooltip-${this.theme}`
