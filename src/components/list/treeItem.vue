@@ -86,7 +86,12 @@ export default {
             type: Boolean,
             default: true
         },
-        expandedKeys: Array, // 展开的节点
+        expandedKeys: { // 展开的节点
+            type: Array,
+            default() {
+                return []
+            }
+        },
     },
     data () {
         return {
@@ -158,7 +163,7 @@ export default {
             }
         }
     },
-    created() {
+    mounted() {
         this.expandByKeys()
     }
 }

@@ -17,7 +17,7 @@
                 <div><strong>list title {{n}}</strong></div>
                 <div>list desc list desc list desc list desc list desc list desc </div>
                 <div slot="right">
-                    <img src="//placeholder.qiniudn.com/200x100" >
+                    <img src="http://placeholder.qiniudn.com/200x100" >
                 </div>
             </ui-listitem>
         </ui-list>
