@@ -22,6 +22,7 @@ transitionName|String|设置弹窗显示的过渡名称（`transition`）|`fade-
 mountPoint|Boolean/String|弹窗挂载点。<br>`false`: 组件当前位置；`true`:`document.body`；`String`:传入一个 DOM 选择器。|`true`
 reset|Boolean|弹窗关闭时是否保留状态（为`true`时将使用`v-if`控制显示状态）|`false`
 contentClass|String|弹窗内容面板的自定义样式类|-
+hoverDelay|Number|`hover`触发时的延迟显示设置，毫秒|300
 
 ### Events
 
