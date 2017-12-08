@@ -14,6 +14,7 @@ import Dropdown from './components/dropdown'
 
 import Tooltip from './directives/tooltip'
 import WhereClose from './directives/whereClose'
+import AutoHeight from './directives/autoHeight'
 
 export const install = (Vue, option = {}) => {
     Vue.component(Divider.name, Divider)
@@ -29,6 +30,7 @@ export const install = (Vue, option = {}) => {
     Vue.use(Tooltip, option.tooltip)
     Vue.use(Dropdown)
     Vue.use(WhereClose)
+    Vue.directive(AutoHeight.name, AutoHeight)
 }
 
 export default {

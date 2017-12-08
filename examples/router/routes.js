@@ -36,6 +36,9 @@ const directives = [{
 }, {
     name: 'whereClose',
     text: '点击外部关闭'
+}, {
+    name: 'autoHeight',
+    text: '高度自适应'
 }]
 
 export { components, directives }
