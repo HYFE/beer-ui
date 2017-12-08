@@ -116,6 +116,10 @@ export default {
 @import '../../styles/import';
 
 .ui-dropdown-menu {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    z-index: -1;
     display: inline-block;
     min-width: @dropdown-min-wdith;
     max-height: @dropdown-max-height;
