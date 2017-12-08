@@ -15,18 +15,21 @@
                @input="e => !readonly?$emit('input', e.target.value):''"
                @change="e => !readonly?$emit('change', e.target.value):''"
                @keyup.enter="e => e.target.blur()">
-        <ui-flex-textarea v-else
-                       :value="value"
-                       :readonly="readonly"
-                       :maxlength="maxlength"
-                       :placeholder="placeholder"
-                       :style="inputStyle"
-                       :wrapable="wrapable"
-                       needBlur
-                       @focus="e => $emit('focus', e)"
-                       @blur="e => $emit('blur', e)"
-                       @input="value => $emit('input', value)"
-                       @change="value => $emit('change', value)"></ui-flex-textarea>
+        <textarea v-else
+                  v-auto-height
+                  ref="textarea"
+                  :value="value"
+                  :readonly="readonly"
+                  :class="{'ui-edit-area-editable': !readonly}"
+                  :maxlength="maxlength"
+                  :placeholder="placeholder"
+                  :style="inputStyle"
+                  rows="1"
+                  @focus="e => $emit('focus', e)"
+                  @blur="e => $emit('blur', e)"
+                  @input="value => $emit('input', value)"
+                  @change="value => $emit('change', value)"
+                  @keydown="keydownEvent"></textarea>
     </div>
 </template>
 <script>
@@ -46,6 +49,42 @@ export default {
         },
         placeholder: String,
         wrapable: Boolean
+    },
+    data() {
+        return {
+            content: '',
+        }
+    },
+    methods: {
+        initValue() {
+            // Fix JSON.parse error
+            this.content = this.value.replace(/\r|\n/g, '\\n')
+        },
+        keydownEvent(e) {
+            if (e.keyCode === 13 && (this.wrapable ? !e.shiftKey : true)) {
+                e.preventDefault()
+                this.$refs.textarea.blur()
+            }
+        },
+        change() {
+            if (!this.readonly && this.content) {
+                this.$emit('change', this.content)
+                return
+            }
+            this.initValue()
+        }
+    },
+    watch: {
+        value(val) {
+            if(this.isTextarea) {
+                this.initValue()
+            }
+        }
+    },
+    mounted() {
+        if(this.isTextarea) {
+            this.initValue()
+        }
     }
 }
 </script>

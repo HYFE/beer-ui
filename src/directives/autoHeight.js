@@ -23,6 +23,7 @@ class AutoHeight {
     }
 
     resize() {
+        console.log('555')
         this.changeOverflow(this.el)
         this.setHeight(this.el)
     }
@@ -39,8 +40,8 @@ class AutoHeight {
 
     setHeight = dom => {
         const originalHeight = dom.style.height
-        const endHeight = dom.scrollHeight
         dom.style.height = 'auto'
+        const endHeight = dom.scrollHeight
         if (endHeight === 0) {
             dom.style.height = originalHeight
             return

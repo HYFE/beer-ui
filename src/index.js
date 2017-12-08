@@ -7,7 +7,6 @@ import Tabbar from './components/tabbar'
 import Tabs from './components/tabs'
 import Popover from './components/popover'
 import EditArea from './components/editArea'
-import FlexTextarea from './components/flexTextarea'
 import Chip from './components/chip'
 import Avatar from './components/avatar'
 import Dropdown from './components/dropdown'
@@ -23,7 +22,6 @@ export const install = (Vue, option = {}) => {
     Vue.use(Tabbar)
     Vue.use(Tabs)
     Vue.component(EditArea.name, EditArea)
-    Vue.component(FlexTextarea.name, FlexTextarea)
     Vue.component(Chip.name, Chip)
     Vue.component(Avatar.name, Avatar)
     Vue.use(Popover, option.popover)
