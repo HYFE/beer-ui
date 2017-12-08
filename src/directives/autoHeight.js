@@ -7,11 +7,19 @@ class AutoHeight {
 
         this.initDom()
         this.resize()
+        this.bind()
     }
 
     initDom() {
         this.el.style.resize = 'none'
         this.el.style.boxSizing = 'border-box'
+    }
+    bind () {
+        this.el.addEventListener('input', this.resize.bind(this))
+    }
+
+    unbind() {
+        this.el.removeEventListener('input', this.resize.bind(this))
     }
 
     resize() {
@@ -47,13 +55,9 @@ export default {
         if(node.tag !== 'textarea') return
         el._AutoHeight = new AutoHeight(el)
     },
-    update(el, binding) {
-        if(el._AutoHeight) {
-            el._AutoHeight.resize()
-        }
-    },
     unbind(el) {
         if(el._AutoHeight) {
+            el._AutoHeight.unbind()
             delete el._AutoHeight
         }
     }
