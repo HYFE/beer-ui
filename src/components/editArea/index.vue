@@ -20,6 +20,7 @@
                   ref="textarea"
                   :value="value"
                   :readonly="readonly"
+                  class="ui-edit-area-textarea"
                   :class="{'ui-edit-area-editable': !readonly}"
                   :maxlength="maxlength"
                   :placeholder="placeholder"
