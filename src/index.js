@@ -28,7 +28,7 @@ export const install = (Vue, option = {}) => {
     Vue.use(Tooltip, option.tooltip)
     Vue.use(Dropdown)
     Vue.use(WhereClose)
-    Vue.directive(AutoHeight.name, AutoHeight)
+    Vue.use(AutoHeight)
 }
 
 export default {

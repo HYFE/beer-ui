@@ -1,7 +1,7 @@
 
 class AutoHeight {
     constructor(el) {
-        this.el = el
+        this.$el = el
         this.value = el.value
         this.borderWidth = window.getComputedStyle(el, null).borderWidth.replace('px', '')
 
@@ -11,55 +11,58 @@ class AutoHeight {
     }
 
     initDom() {
-        this.el.style.resize = 'none'
-        this.el.style.boxSizing = 'border-box'
+        this.$el.style.resize = 'none'
+        this.$el.style.boxSizing = 'border-box'
     }
     bind () {
-        this.el.addEventListener('input', this.resize.bind(this))
+        this.$el.addEventListener('input', this.resize)
     }
 
     unbind() {
-        this.el.removeEventListener('input', this.resize.bind(this))
+        this.$el.removeEventListener('input', this.resize)
     }
 
-    resize() {
-        console.log('555')
-        this.changeOverflow(this.el)
-        this.setHeight(this.el)
+    resize = e => {
+        this.changeOverflow()
+        this.setHeight()
     }
 
-    changeOverflow = dom => {
-        const overflowY = window.getComputedStyle(dom, null).overflowY
+    changeOverflow() {
+        const overflowY = window.getComputedStyle(this.$el, null).overflowY
         if (overflowY === 'hidden') {
-            dom.style.overflowY = 'scroll'
-            dom.style.overflowY = 'hidden'
+            this.$el.style.overflowY = 'scroll'
+            this.$el.style.overflowY = 'hidden'
             return
         }
-        dom.style.overflowY = 'hidden'
+        this.$el.style.overflowY = 'hidden'
     }
 
-    setHeight = dom => {
-        const originalHeight = dom.style.height
-        dom.style.height = 'auto'
-        const endHeight = dom.scrollHeight
+    setHeight() {
+        const originalHeight = this.$el.style.height
+        this.$el.style.height = 'auto'
+        const endHeight = this.$el.scrollHeight
         if (endHeight === 0) {
-            dom.style.height = originalHeight
+            this.$el.style.height = originalHeight
             return
         }
-        dom.style.height = `${endHeight + this.borderWidth * 2}px`
+        this.$el.style.height = `${endHeight + this.borderWidth * 2}px`
     }
 }
 
-export default {
-    name: 'AutoHeight',
-    inserted(el, binding, node) {
-        if(node.tag !== 'textarea') return
-        el._AutoHeight = new AutoHeight(el)
+const plugin = {
+    inserted(el) {
+        if(el.tagName !== 'TEXTAREA') return
+        el.__AutoHeight = new AutoHeight(el)
     },
     unbind(el) {
-        if(el._AutoHeight) {
-            el._AutoHeight.unbind()
-            delete el._AutoHeight
+        if(el.__AutoHeight) {
+            el.__AutoHeight.unbind()
+            delete el.__AutoHeight
         }
+    },
+    install(Vue) {
+        Vue.directive('autoHeight', plugin)
     }
 }
+
+export default plugin
