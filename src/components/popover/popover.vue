@@ -107,6 +107,11 @@ export default {
         value (val) {
             this.visible = val
         },
+        trigger (val) {
+            if(val !== 'hover') {
+                this.hoverEvents = null
+            }
+        }
     },
     methods: {
         doShow() {

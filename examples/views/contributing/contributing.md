@@ -9,7 +9,7 @@
 |  |--🗎 docsPage.vue   ## 文档页组件
 |  `--🗎 header.vue
 |--🗁 router
-|  |--🗎 components.js  ## 添加组件到这里注册路由
+|  |--🗎 routes.js  ## 添加组件到这里注册路由
 |  `--🗎 index.js
 |--🗁 views         ## 文档页面目录
 |--🗎 App.vue
@@ -23,29 +23,34 @@
 
 ## 文档编写
 
-当你完成一个组件后，首先到`src/index.js`中确保组件已注册。然后`examples/views`下创建一个组件目录，添加一个`index.vue`文件用于输出该组件对应的路由页面，添加一个与目录名一致的`.md`文件用于书写文档。
+当你完成一个组件后，首先到`src/index.js`中确保组件已注册。
+
+执行以下命令创建文档目录：
+
+```bash
+npm run doc hello
+```
+
+按照顺序依次录入，将看到如下场景：
+
+```bash
+? Component name:  测试组件
+? Component description:  测试描述
+? Do you need an example?  Yes
+```
 
 **示例：**
 
 ```bash
 🗁 examples
 |--🗁 views
-    `--🗁 testComponent
-    |  |--🗎 index.vue
-    |  `--🗎 testComponent.md
+    `--🗁 hello
+    |  |--🗎 base.vue   # 空的示例组件
+    |  |--🗎 index.vue  # 一个基础页面组件
+    |  `--🗎 hello.md   # 包含基础内容结构文档内容
 ```
 
-编辑刚才添加的`index.vue`文件，添加以下内容：
-
-```html
-<template>
-    <docs-page></docs-page>
-</template>
-```
-
-`docs-page`组件是预定义好文档格式的容器组件，组件的内容由`.md`文件渲染后填充。提供唯一的插槽用于书写组件示例。
-
-现在打开`md`文件编写组件文档，格式如下：
+`md`文件内容格式大概如下：
 
 ```md
 # 组件名

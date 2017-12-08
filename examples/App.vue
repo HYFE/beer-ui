@@ -110,7 +110,7 @@ body {
     &aside {
         width: 18%;
         min-height: 85vh;
-        padding: 20px 0;
+        padding: 8px 0;
         border-right: 1px solid #e8e8e8;
         .ui-treeitem-inner {
             text-transform: capitalize;

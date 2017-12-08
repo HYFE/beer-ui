@@ -57,9 +57,9 @@ class PopTrigger {
     onMouseEnter = e => {
         if (this._timer) clearTimeout(this._timer)
         if(this.$el.contains(e.target)) {
-            this.handleShow(e)
-        } else {
             this._timer = setTimeout(() => this.handleShow(e), this.hoverDelay)
+        } else {
+            this.handleShow(e)
         }
     }
 
