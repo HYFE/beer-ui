@@ -23,6 +23,7 @@ class AutoHeight {
     }
 
     resize = e => {
+        console.log(222)
         this.changeOverflow()
         this.setHeight()
     }
@@ -58,6 +59,11 @@ const plugin = {
         if(el.__AutoHeight) {
             el.__AutoHeight.unbind()
             delete el.__AutoHeight
+        }
+    },
+    update(el) {
+        if(el.__AutoHeight) {
+            el.__AutoHeight.resize()
         }
     },
     install(Vue) {
