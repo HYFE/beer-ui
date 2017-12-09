@@ -1,22 +1,37 @@
 .animate-spin {
-    animation: spin 2s infinite linear;
-    display: inline-block;
+  animation: spin 2s infinite linear;
+  display: inline-block;
 }
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
 
-    100% {
-        transform: rotate(359deg);
-    }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
 
 .fade-in-enter-active,
 .fade-in-leave-active {
-    transition: opacity .3s ease-in-out;
+  transition: opacity .22s ease-in-out;
 }
+
 .fade-in-enter,
 .fade-in-leave-to {
-    opacity: 0;
+  opacity: 0;
+}
+
+.scale-in-enter-active,
+.scale-in-leave-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.scale-in-enter,
+.scale-in-leave-to {
+  opacity: 0;
+  transform: scale(.5)
 }

@@ -1,11 +1,7 @@
-import modal from 'modal'
+import Modal from './modal'
 
-const Model = (option)
-
-const install = Vue => {
-    Vue.component(modal.name, modal)
+Modal.install = Vue => {
+    Vue.component(Modal.name, Modal)
 }
 
-export default {
-    install
-}
+export default Modal

@@ -25,6 +25,9 @@ const components = [{
 }, {
     name: 'dropdown',
     text: '下拉菜单'
+}, {
+    name: 'modal',
+    text: '模态窗'
 }]
 
 const directives = [{

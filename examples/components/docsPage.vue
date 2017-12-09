@@ -82,6 +82,7 @@ export default {
     }
     h1 {
         font-size: 26px;
+        text-transform: capitalize
     }
 
     h2 {
@@ -171,5 +172,14 @@ export default {
     table thead {
         background-color: #f6f8fa;
     }
+}
+
+.demo-btn {
+    appearance: none;
+    width: 100px;
+    text-align: center;
+    border: none;
+    padding: 4px;
+    border-radius: 2px;
 }
 </style>

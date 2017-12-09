@@ -5,7 +5,6 @@
              :style="{ zIndex: cssIndex }"
              :class="{ transparent }"
              @click="clickMask">
-            <slot></slot>
         </div>
     </transition>
 </template>
@@ -17,45 +16,22 @@ export default {
     mixins: [zIndex],
     props: {
         visible: Boolean,
-        transparent: Boolean,
         animate: {
             type: String,
             default: 'fade-in'
         },
-        hideOnClick: {
-            type: Boolean,
-            default: true
-        }
+        transparent: Boolean
     },
-    data() {
-        return {
-            inBody: false
-        }
-    },
-    watch: {
-        visible(val) {
-            this.appendToBody()
+    computed: {
+        cssIndex() {
+            return this.zIndex || this.nextIndex()
         }
     },
     methods: {
-        appendToBody() {
-            if(this.visible && !this.inBody) {
-                document.body.appendChild(this.$el)
-                this.inBody = true
-            }
-        },
-        clickMask({ target }) {
-            if(this.hideOnClick && target === this.$el) this.$emit('update:visible', false)
+        clickMask() {
+            this.$emit('click')
         }
     },
-    mounted() {
-        this.appendToBody()
-    },
-    destroyed() {
-        if(this.inBody) {
-            document.body.removeChild(this.$el)
-        }
-    }
 }
 </script>
 <style lang="less">

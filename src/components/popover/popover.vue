@@ -6,7 +6,7 @@
              v-if="exist && (reset ? visible : true)"
              v-show="visible"
              v-transclude="transclude"
-             v-on="hoverEvents"
+             v-on="events"
              ref="pop">
             <div class="ui-popover-panel"
                  v-where-close="{ visible, handle: hideOnClickOutSide}"
@@ -95,6 +95,9 @@ export default {
         },
         transclude () {
             return this.visible ? this.mountPoint : false
+        },
+        events () {
+            return this.trigger === 'hover' ? this.hoverEvents : null
         }
     },
     watch: {
@@ -107,11 +110,6 @@ export default {
         value (val) {
             this.visible = val
         },
-        trigger (val) {
-            if(val !== 'hover') {
-                this.hoverEvents = null
-            }
-        }
     },
     methods: {
         doShow() {

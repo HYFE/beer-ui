@@ -10,6 +10,8 @@ import EditArea from './components/editArea'
 import Chip from './components/chip'
 import Avatar from './components/avatar'
 import Dropdown from './components/dropdown'
+import Mask from './components/mask'
+import Modal from './components/modal'
 
 import Tooltip from './directives/tooltip'
 import WhereClose from './directives/whereClose'
@@ -29,6 +31,8 @@ export const install = (Vue, option = {}) => {
     Vue.use(Dropdown)
     Vue.use(WhereClose)
     Vue.use(AutoHeight)
+    Vue.component(Mask.name, Mask)
+    Vue.use(Modal)
 }
 
 export default {

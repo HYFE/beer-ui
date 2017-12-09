@@ -1,12 +1,7 @@
 import Vue from 'vue'
+import guid from '../../utils/guid'
 
 export const bus = new Vue()
-
-let onlyPopoverSeq = 1
-const onlyKey = () => {
-    onlyPopoverSeq += 1
-    return onlyPopoverSeq
-}
 
 class PopTrigger {
     constructor(el, { name, options, trigger = 'click', only = false }) {
@@ -14,7 +9,7 @@ class PopTrigger {
         this.trigger = trigger
         this.only = only
         this.name = only ? 'onlyPopover' : name
-        this.guid = only ? `onlyPopover-${onlyKey()}` : null
+        this.guid = only ? guid('onlyPopover') : null
         this.options = options
         this.bindEvents()
     }

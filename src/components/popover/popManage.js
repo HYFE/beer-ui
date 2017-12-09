@@ -1,6 +1,5 @@
 import whereClose from '../../directives/whereClose'
-
-const popStack = []
+import popStack from '../../utils/popStack'
 
 export default {
     directives: {
@@ -16,8 +15,7 @@ export default {
         hideOnClickOutSide(target) {
             if(this.reference && this.reference.contains(target)) return
             if(target.__POP_TRIGGER && target.__POP_TRIGGER.name === this.name) return
-            const lastPop = popStack[popStack.length - 1]
-            if(lastPop === this.name) {
+            if(popStack.isLast(this.name)) {
                 this.hide()
             }
         }
