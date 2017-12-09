@@ -7,7 +7,7 @@
              @click="clickNode">
             <div class="ui-treeitem-left"
                  v-if="hasChild && arrowPlacement ==='left'">
-                <i class="icon-up-open ui-treeitem-arrow"
+                <i class="icon-right-open ui-treeitem-arrow"
                    role="button"
                    @click.stop="expand"></i>
             </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="ui-treeitem-right"
                  v-if="hasChild && arrowPlacement ==='right'">
-                <i class="icon-up-open ui-treeitem-arrow"
+                <i class="icon-right-open ui-treeitem-arrow"
                    role="button"
                    @click.stop="expand"></i>
             </div>
@@ -175,7 +175,7 @@ export default {
     &-inner {
         &.expanded {
             .ui-treeitem-arrow {
-                transform: rotate(180deg);
+                transform: rotate(90deg);
             }
         }
     }
@@ -189,13 +189,13 @@ export default {
     }
     &-left {
         .ui-treeitem-arrow {
-            margin-left: -15px;
+            margin-left: -14px;
         }
     }
     &-right {
         align-self: flex-end;
         .ui-treeitem-arrow {
-            margin-right: -15px;
+            margin-right: -14px;
         }
     }
     &-arrow {
