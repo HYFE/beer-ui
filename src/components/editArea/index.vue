@@ -28,8 +28,8 @@
                   rows="1"
                   @focus="e => $emit('focus', e)"
                   @blur="e => $emit('blur', e)"
-                  @input="value => $emit('input', value)"
-                  @change="value => $emit('change', value)"
+                  @input="e => !readonly?$emit('input', e.target.value):''"
+                  @change="e => !readonly?$emit('change', e.target.value):''"
                   @keydown="keydownEvent"></textarea>
     </div>
 </template>
