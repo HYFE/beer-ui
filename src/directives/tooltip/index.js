@@ -123,7 +123,7 @@ export default class Tooltip {
                 el.__TOOLTIP = tooltip
             },
             update(el, { value, oldValue }) {
-                if(oldValue && value !== oldValue) {
+                if(value !== oldValue) {
                     el.__TOOLTIP.update({
                         text: value
                     })
