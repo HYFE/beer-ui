@@ -1,14 +1,15 @@
 <template>
     <div class="ui-modal-wrap"
          :class="{ 'modal-center': center }"
-         v-transclude="appendToBody"
+         :style="{ zIndex: cssIndex }"
+         v-transclude="appendToBody ? visible : false"
          v-show="visible">
         <ui-mask :visible="visible"
-                 :zIndex="cssIndex - 1"
                  v-if="mask"></ui-mask>
         <transition :name="animate"
                     @after-leave="afterLeave">
             <div role="dialog"
+                 :aria-describedby="name"
                  tabindex="-1"
                  class="ui-modal"
                  :class="modalClass"
@@ -76,22 +77,22 @@ export default {
             type: Boolean,
             default: true
         },
-        beforeClose: {
-            type: Function,
-            default: () => true
-        },
         appendToBody: {
             type: Boolean,
             default: true
         },
         top: {
-            type: String,
+            type: [String, Number],
             default: '20%'
         },
         center: Boolean,
         reset: {
             type: Boolean,
             default: true
+        },
+        beforeClose: {
+            type: Function,
+            default: () => true
         },
     },
     data () {
@@ -103,13 +104,13 @@ export default {
     },
     computed: {
         cssIndex () {
-            return this.zIndex || this.nextIndex(2)
+            return this.zIndex || this.nextIndex()
         },
         styles () {
+            const top = isNaN(this.top) ? this.top : `${this.top}px`
             return {
-                zIndex: this.cssIndex,
                 width: isNaN(this.width) ? this.width : `${this.width}px`,
-                top: this.center ? 0 : this.top
+                top: this.center ? 0 : top
             }
         },
         visible: {
@@ -174,6 +175,7 @@ export default {
 
 .ui-modal {
     position: relative;
+    z-index: 3000;
     margin: 0 auto;
     background: #fff;
     border-radius: 4px;

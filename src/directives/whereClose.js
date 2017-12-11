@@ -1,3 +1,4 @@
+import guid from '../utils/guid'
 /**
  * 点击文档触发当前节点关闭/隐藏
  *
@@ -8,7 +9,6 @@
  */
 let startClick
 const queue = {}
-const uniqueKey = () => `WHERE_CLOSE_${Object.keys(queue).length + 1}`
 
 const whereClose = target => {
     Object.values(queue).forEach(({ element, visible, handle }) => {
@@ -28,7 +28,7 @@ document.addEventListener('mouseup', e => isLeftClick(e) && whereClose(e.target)
 
 const plugin = {
     bind(el, { value: { visible, handle } }) {
-        const key = uniqueKey()
+        const key = guid('whereClose')
         queue[key] = {
             element: el,
             visible,

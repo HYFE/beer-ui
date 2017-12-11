@@ -2,18 +2,14 @@
     <transition :name="animate">
         <div class="ui-mask"
              v-if="visible"
-             :style="{ zIndex: cssIndex }"
              :class="{ transparent }"
              @click="clickMask">
         </div>
     </transition>
 </template>
 <script>
-import zIndex from '../../mixins/zIndex'
-
 export default {
     name: 'uiMask',
-    mixins: [zIndex],
     props: {
         visible: Boolean,
         animate: {
@@ -39,6 +35,7 @@ export default {
 
 .ui-mask {
     position: absolute;
+    z-index: 2000;
     top: 0;
     left: 0;
     right: 0;
