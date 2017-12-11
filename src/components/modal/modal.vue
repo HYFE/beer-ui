@@ -100,12 +100,11 @@ export default {
             name: guid('uiModel'),
             modalVisible: false,
             exist: false,
+            cssIndex: this.zIndex,
+            bodyCss: ''
         }
     },
     computed: {
-        cssIndex () {
-            return this.zIndex || this.nextIndex()
-        },
         styles () {
             const top = isNaN(this.top) ? this.top : `${this.top}px`
             return {
@@ -130,6 +129,7 @@ export default {
     },
     methods: {
         onShow () {
+            this.cssIndex = this.zIndex || this.nextIndex()
             if (!this.exist) this.exist = true
             popStack.push(this.name)
             this.lockScroll(true)
@@ -149,13 +149,16 @@ export default {
         lockScroll (toggle) {
             if (!this.lockScreen) return
             const body = document.body
+            if(toggle) this.bodyCss = body.style.cssText
             body.style.paddingRight = ''
             body.style.overflow = ''
             if (toggle) {
-                body.style.paddingRight = ''
                 const scrollW = window.innerWidth - body.clientWidth
                 body.style.paddingRight = `${scrollW}px`
                 body.style.overflow = 'hidden'
+            } else {
+                body.style.cssText = this.bodyCss
+                this.bodyCss = ''
             }
         },
         clickOutside () {
