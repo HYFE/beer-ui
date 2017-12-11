@@ -149,13 +149,13 @@ export default {
         lockScroll (toggle) {
             if (!this.lockScreen) return
             const body = document.body
+            body.style.paddingRight = ''
+            body.style.overflow = ''
             if (toggle) {
+                body.style.paddingRight = ''
                 const scrollW = window.innerWidth - body.clientWidth
                 body.style.paddingRight = `${scrollW}px`
                 body.style.overflow = 'hidden'
-            } else {
-                body.style.paddingRight = ''
-                body.style.overflow = ''
             }
         },
         clickOutside () {
