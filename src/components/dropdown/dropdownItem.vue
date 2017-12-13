@@ -43,14 +43,13 @@ export default {
     color: @dropdown-color;
     cursor: pointer;
     &:not(.disabled):hover {
-        background: @dropdown-hover-background
+        background: @dropdown-hover-background;
     }
     &.disabled {
         cursor: default;
         color: @dropdown-disabled-color;
     }
     &.selected {
-        color: #fff;
         background: @dropdown-selected-background;
         &:hover {
             background: darken(@dropdown-selected-background, 5%);
