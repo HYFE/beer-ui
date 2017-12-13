@@ -18,7 +18,7 @@
         <textarea v-else
                   v-auto-height
                   ref="textarea"
-                  :value="value"
+                  v-model="content"
                   :readonly="readonly"
                   class="ui-edit-area-textarea"
                   :class="{'ui-edit-area-editable': !readonly}"
@@ -29,7 +29,7 @@
                   @focus="e => $emit('focus', e)"
                   @blur="e => $emit('blur', e)"
                   @input="e => !readonly?$emit('input', e.target.value):''"
-                  @change="e => !readonly?$emit('change', e.target.value):''"
+                  @change="change"
                   @keydown="keydownEvent"></textarea>
     </div>
 </template>
@@ -68,9 +68,8 @@ export default {
             }
         },
         change() {
-            if (!this.readonly && this.content) {
+            if (!this.readonly) {
                 this.$emit('change', this.content)
-                return
             }
             this.initValue()
         }
