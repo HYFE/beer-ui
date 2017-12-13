@@ -23,7 +23,6 @@ class AutoHeight {
     }
 
     resize = e => {
-        console.log(222)
         this.changeOverflow()
         this.setHeight()
     }
