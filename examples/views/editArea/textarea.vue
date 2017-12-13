@@ -19,6 +19,7 @@ export default {
     methods: {
         change(val) {
             console.log(val)
+            this.value = val
         }
     }
 }
