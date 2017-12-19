@@ -1,7 +1,7 @@
 <template>
     <transition :name="transitionName">
         <div class="ui-popover"
-             :style="{ zIndex: cssIndex }"
+             :style="{ zIndex: cssIndex, display: visible ? 'block' : 'none' }"
              :class="{ __arrow: arrow }"
              v-if="exist && (reset ? visible : true)"
              v-show="visible"
