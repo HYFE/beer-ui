@@ -28,6 +28,9 @@ const components = [{
 }, {
     name: 'modal',
     text: '模态窗'
+}, {
+    name: 'loadMore',
+    text: '加载更多'
 }]
 
 const directives = [{

@@ -12,6 +12,7 @@ import Avatar from './components/avatar'
 import Dropdown from './components/dropdown'
 import Mask from './components/mask'
 import Modal from './components/modal'
+import LoadMore from './components/loadMore'
 
 import Tooltip from './directives/tooltip'
 import WhereClose from './directives/whereClose'
@@ -33,6 +34,7 @@ export const install = (Vue, option = {}) => {
     Vue.use(AutoHeight)
     Vue.component(Mask.name, Mask)
     Vue.use(Modal)
+    Vue.component(LoadMore.name, LoadMore)
 }
 
 export default {
