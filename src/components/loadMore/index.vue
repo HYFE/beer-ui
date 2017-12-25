@@ -3,7 +3,7 @@
                :is="tag"
                @scroll.native="onScroll"
                @scroll="onScroll">
-        <slot :dataSource="dataSource"></slot>
+        <slot></slot>
         <div class="ui-loadmore-loading"
              :style="{ top: loadingTop }"
              v-if="autoLoad"
@@ -39,6 +39,7 @@ export default {
             type: Boolean,
             default: true
         },
+        loading: Boolean,
         pageNum: {
             type: Number,
             default: 1
@@ -47,19 +48,13 @@ export default {
             type: Number,
             default: 1
         },
-        loadMore: {
-            type: Function,
-            required: true
-        },
         loadingIcon: {
             type: String,
             default: 'icon-spin4'
-        }
+        },
     },
     data () {
         return {
-            dataSource: [],
-            loading: false,
             loadingTop: '50%'
         }
     },
@@ -74,15 +69,7 @@ export default {
         loadData () {
             if (this.loading || this.pageNum > this.pageCount) return
             this.loadingTop = `${this.$el.scrollHeight - 60}px`
-            this.loading = true
-            this.loadMore(this.pageNum).then(data => {
-                this.loading = false
-                this.dataSource = this.dataSource.concat(data)
-                this.$emit('loaded', this.dataSource)
-            }).catch(e => {
-                this.loading = false
-                this.$emit('error', e)
-            })
+            this.$emit('loadMore', this.pageNum)
         }
     },
     mounted () {

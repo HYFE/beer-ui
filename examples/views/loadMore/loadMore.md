@@ -11,17 +11,16 @@
 ---|---|---|---
 tag|String, Object|组件外层元素：HTML标签或自定义组件均可|`div`
 autoLoad|Boolean|是否使用自动加载|`true`
+loading|Boolean|设置组件加载状态|-
 pageNum|Number|设置当前请求数据页码（每次请求后应当更新该值）|`1`
 pageCount|Number|设置数据总页数（至少会请求一次，第一次请求完成后应该更新该值为实际总页数）|`1`
-loadMore|Function|加载数据执行的请求函数，必须返回`Promise`|-
 loadingIcon|String|设置加载数据时无限旋转的图标|`icon-spin4`
 
 ### Events
 
 事件|描述|参数
 ---|---|---
-loaded|每次加载数据后触发|`dataSource`: 本次加载数据
-error|请求发生错误后触发|`error`
+loadMore|满足加载行为（滚动到底或点击按钮）后触发，组件内部会判断是否可以继续下一次请求|`pageNum`: 下一次请求的页码
 
 ### Slots
 
