@@ -3,7 +3,7 @@ import Popper from '../../libs/popper'
 import nextIndex from '../../utils/zIndex'
 
 export default class Tooltip {
-    constructor(el, { text, placement, theme = '' }) {
+    constructor(el, { text = '', placement, theme = '' }) {
         this.$el = el
         this.text = text
         this.placement = placement
@@ -32,10 +32,11 @@ export default class Tooltip {
             tooltip.setAttribute('role', 'tooltip')
             document.body.appendChild(tooltip)
         }
+        const content = this.text.replace(/>/g, '&gt;').replace(/</g, '&lt;')
         tooltip.className = `ui-tooltip ui-tooltip-${this.theme}`
-        tooltip.innerHTML = `<div class="ui-tooltip-arrow"></div><div class="ui-tooltip-content">${this.text}</div>`
+        tooltip.innerHTML = `<div class="ui-tooltip-arrow"></div><div class="ui-tooltip-content">${content}</div>`
         tooltip.style.zIndex = nextIndex()
-        tooltip.setAttribute('aria-describedby', this.text)
+        tooltip.setAttribute('aria-describedby', content)
         this.tooltip = tooltip
     }
 
