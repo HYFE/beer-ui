@@ -130,6 +130,7 @@ export default {
     }
 
     pre {
+        margin-bottom: 0;
         padding: 16px;
         background: #f8f8f8;
         border-radius: 2px;
